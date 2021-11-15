@@ -10,6 +10,9 @@ public abstract class Question {
         this.type = type;
         this.num = num;
     }
+    public void supprDescription(){
+        this.description = "";
+    }
     public void setNum(int num){
         this.num = num;
     }
