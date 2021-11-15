@@ -1,12 +1,19 @@
-import java.util.List;
 public class Question_RC extends Question {
+    private String reponse;
 
-    protected Question_RC(int d, String description, String reponse, String type) {
-        super(d, description, reponse, type);
+    public Question_RC(int d, String description, String type, int num, String rep) {
+        super(d, description, type, num);
+        this.reponse = rep;
     }
 
+    public void setReponse(String rep){
+        this.reponse = rep;
+    }
+    public String getReponse(){
+        return this.reponse;
+    }
     @Override
     public String toString(){
-        return super.toString();
+        return super.toString() + "\n La bonne réponse de la question : " + this.reponse;
     }
 }

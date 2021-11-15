@@ -1,6 +1,6 @@
 public class Question_VF extends Question {
 
-    protected Question_VF(int d, String description, String reponse, String type) {
-        super(d, description, reponse, type);
+    protected Question_VF(int d, String description, String type, int num) {
+        super(d, description, type, num);
     }
 }
