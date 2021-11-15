@@ -3,18 +3,52 @@ import java.util.Scanner;
 public class Theme {
 
     protected ArrayList<String> listTheme;
-    protected int indicator;
+    protected ArrayList<Integer> indicator;
+
+    public Theme(ArrayList<String> listTheme,ArrayList<Integer> indicator, int phase){
+        switch(phase){
+
+            case 1:
+                this.listTheme = listTheme;
+                break;
+
+            case 2:
+                this.listTheme = listTheme;
+                for (int i = 0; i<= indicator.size(); i++){
+                    listTheme.remove(listTheme.get(indicator.get(i)));
+                }
+
+            case 3:
+                this.listTheme = listTheme;
+                for (int i = 0; i<= indicator.size(); i++){
+                    listTheme.remove(listTheme.get(indicator.get(i)));
+                }
+        }
+    }
 
     public Theme(ArrayList<String> listTheme){
         this.listTheme = listTheme;
     }
 
-    public int selectTheme(String theme){
+    public ArrayList<String> getListTheme() {
+        return listTheme;
+    }
+
+    public ArrayList<Integer> getIndicator() {
+        return indicator;
+    }
+
+    public int selectTheme(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter a theme: ");
+        String theme= reader.nextLine();
+        reader.close();
         if (!listTheme.contains(theme)){
             System.out.println("Theme isn't in the list");
             return -1;
         }
         else{
+            this.indicator.add(listTheme.indexOf(theme));
             return listTheme.indexOf(theme);
         }
     }
@@ -26,6 +60,12 @@ public class Theme {
         themes.add(listTheme.get(theme3));
         themes.add(listTheme.get(theme4));
         themes.add(listTheme.get(theme5));
+        this.indicator.add(theme1);
+        this.indicator.add(theme2);
+        this.indicator.add(theme3);
+        this.indicator.add(theme4);
+        this.indicator.add(theme5);
+
         return themes;
     }
 
