@@ -11,7 +11,7 @@ public class Joueurs {
 
     //Selectionne un joueur aléatoirement selon la taille du tableau de joueurs
     public Joueur selectJoueur() {
-        Random rand = new Random();
+        Random rand = new Random(); //Génère un nouveau random
         int joueurSelectionne = rand.nextInt(tabJoueurs.length);
 
         return tabJoueurs[joueurSelectionne]; //Retourne le joueur sélectionné
