@@ -30,8 +30,9 @@ public class Joueur {
             //Si le joueur a saisi une réponse
             if(rep != null) {
                 if(q instanceof Question_VF) {
+                    String repUp = rep.toUpperCase();
                     //Si la réponse est null, ou qu'elle n'est pas égale à V ou F, ressaisir la réponse
-                    if(!rep.equals("V") || !Objects.equals(rep, "F"))
+                    if(!repUp.equals("V") || !Objects.equals(repUp, "F"))
                         System.out.println("[ERR] Saisie incorrecte.");
                     else
                         valide = 1;
