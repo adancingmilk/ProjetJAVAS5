@@ -1,6 +1,6 @@
 public class Question_QCM extends Question {
 
-    public Question_QCM(int d, String description) {
-        super(d, description);
+    protected Question_QCM(int d, String description, String reponse, String type) {
+        super(d, description, reponse, type);
     }
 }
