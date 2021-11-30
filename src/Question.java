@@ -4,6 +4,7 @@ public abstract class Question {
     protected String type;
     protected int num;
 
+
     protected Question(int d, String description, String type, int num){
         this.difficulte = d;
         this.description = description;
