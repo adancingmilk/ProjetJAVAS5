@@ -1,16 +1,19 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Questions {
-    private List<Question> listQuestions;
+    private ArrayList<Question> listQuestions;
 
-    public Questions(List<Question> listQuestions){
+    public Questions(ArrayList<Question> listQuestions){
         this.listQuestions = listQuestions;
+    }
+    public Questions(){
+        this.listQuestions = new ArrayList<Question>();
     }
     public void addQuestion(Question Q){
         this.listQuestions.add(Q);
     }
+
     public void supprQuestion(int num){
         this.listQuestions.remove(num);
     }
@@ -23,7 +26,8 @@ public class Questions {
                 listIndice.add(i);
             }
         }
-        int randomIndex = (int) (Math.random() * (listIndice.size() - 0 + 1 ) + 0);
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(listIndice.size());
         return listQuestions.get(randomIndex);
     }
 }
