@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Theme {
+public class Themes {
 
     protected ArrayList<String> listTheme;
     protected ArrayList<Integer> indicator;
 
-    public Theme(ArrayList<String> listTheme,ArrayList<Integer> indicator, int phase){
+    public Themes(ArrayList<String> listTheme, ArrayList<Integer> indicator, int phase){
         switch(phase){
 
             case 1:
@@ -26,7 +26,7 @@ public class Theme {
         }
     }
 
-    public Theme(ArrayList<String> listTheme){
+    public Themes(ArrayList<String> listTheme){
         this.listTheme = listTheme;
     }
 
