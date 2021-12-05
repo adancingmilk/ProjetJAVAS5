@@ -5,16 +5,17 @@ public abstract class Question {
     protected String description;
     protected String theme;
     protected int num;
+    protected String reponse;
 
-
-    protected Question(int difficulte, String description, String theme, int num){
+    protected Question(int difficulte, String description, String theme, int num, String reponse){
         this.difficulte = difficulte;
         this.description = description;
         this.theme = theme;
         this.num = num;
+        this.reponse = reponse;
     }
     protected Question(){
-        this(0,"","",0);
+        this(0,"","",0,"");
     }
     public void supprDescription(){
         this.description = "";
@@ -25,10 +26,10 @@ public abstract class Question {
     public int getNum(){
         return this.num;
     }
-    public void setType(String type){
+    public void setTheme(String type){
         this.theme = type;
     }
-    public String getType(){
+    public String getTheme(){
         return this.theme;
     }
     public String getDescription(){
@@ -43,9 +44,18 @@ public abstract class Question {
     public void setDifficulte(int d){
         this.difficulte = d;
     }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
     @Override
     public String toString() {
         return "Difficulté de la question : " + this.difficulte + "\n questions.Question : " + this.description
-                + "\n Numéro de la question : " + this.num + "\n Type de la question : " + this.theme;
+                + "\n Numéro de la question : " + this.num + "\n Type de la question : " + this.theme + "\n La réponse à la question est : " + this.reponse;
     }
 }

@@ -9,7 +9,7 @@ public class Joueur {
     private int numero;
     private String nom;
     private int score;
-    private String[] etats = { "G", "SG", "E", "A" }; //Gagnant, Super-Gagnant, Éliminé, En Attente
+    private final String[] etats = { "G", "SG", "E", "A" }; //Gagnant, Super-Gagnant, Éliminé, En Attente
     private String etatActuel;
 
     //Constructeur principal
@@ -17,6 +17,12 @@ public class Joueur {
         this.numero = numero;
         this.nom = nom;
         this.score = 0;
+        this.etatActuel = "A";
+    }
+    public Joueur(){
+        this.numero = 0;
+        this.nom = "";
+        this.score = 9999;
     }
 
     //Méthode pour que le joueur saisisse la réponse à une question
@@ -89,5 +95,41 @@ public class Joueur {
             if(etat == i)
                 etatActuel = etats[i];
         }
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getEtatActuel() {
+        return etatActuel;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setEtatActuel(String etatActuel) {
+        this.etatActuel = etatActuel;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String[] getEtats() {
+        return etats;
     }
 }

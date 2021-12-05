@@ -1,5 +1,7 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Themes {
 
     protected ArrayList<String> listTheme;     // The list of the themes
@@ -9,12 +11,9 @@ public class Themes {
         this.listTheme = listTheme;
     }
 
-
-
     public ArrayList<String> getListTheme() {
         return listTheme;
     }
-
     public ArrayList<Integer> getIndicator() {
         return indicator;
     }
