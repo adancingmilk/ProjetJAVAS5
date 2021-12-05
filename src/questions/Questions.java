@@ -79,5 +79,6 @@ public class Questions {
     public void setListQuestions(ArrayList<Question> listQuestions) {
         this.listQuestions = listQuestions;
     }
+
 }
 
