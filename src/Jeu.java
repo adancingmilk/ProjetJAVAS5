@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Jeu {
     public static void main(String[] args) {
-        Question Q1 = new Question_RC(1,"1+1=2","Math",1, "Vrai");
-        Questions listQ = new Questions();
-        listQ.addQuestion(Q1);
-        System.out.println(listQ.selectQuestion(1));
+//        Question Q1 = new Question_RC(1,"1+1=2","Math",1, "Vrai");
+//        Questions listQ = new Questions();
+//        listQ.addQuestion(Q1);
+//        System.out.println(listQ.selectQuestion(1));
 
         //1. INITIALISATION THEMES
         ArrayList<String> listThemes = new ArrayList<String>();
@@ -23,6 +23,8 @@ public class Jeu {
         joueurs.genererJoueurs(4); //Génère 4 joueurs
 
         //3. INITIALISATION QUESTIONS POUR CHAQUE THÈME
+        Questions listQ = new Questions();
+        listQ.genererQuestions(); //Génère les questions de TOUS les thèmes
 
         //4. DÉROULEMENT PHASE 1
 
