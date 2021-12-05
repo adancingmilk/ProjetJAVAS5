@@ -1,3 +1,5 @@
+package questions;
+
 public abstract class Question {
     protected int difficulte;
     protected String description;
@@ -40,7 +42,7 @@ public abstract class Question {
     }
     @Override
     public String toString() {
-        return "Difficulté de la question : " + this.difficulte + "\n Question : " + this.description
+        return "Difficulté de la question : " + this.difficulte + "\n questions.Question : " + this.description
                 + "\n Numéro de la question : " + this.num + "\n Type de la question : " + this.type;
     }
 }

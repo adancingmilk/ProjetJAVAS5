@@ -1,3 +1,5 @@
+package questions;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +18,10 @@ public class Questions {
 
     public void supprQuestion(int num){
         this.listQuestions.remove(num);
+    }
+
+    public void genererQuestions() {
+
     }
 
     public Question selectQuestion(int difficulte){
