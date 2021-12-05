@@ -11,10 +11,10 @@ public class Question_VF extends Question {
     public void repondre(){
         boolean valid = false;
         while(!valid) {
-            System.out.println("Saisir la réponse à la question :");
+            System.out.println("Saisir la réponse à la question (V ou F) :");
             Scanner scanner = new Scanner(System.in);
             String response = scanner.nextLine();
-            if ((response.equals("vrai")) || (response.equals("faux"))) {
+            if ((response.equals("V")) || (response.equals("F"))) {
                 valid = true;
                 this.reponse = response;
             } else {
