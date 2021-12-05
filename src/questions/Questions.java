@@ -20,6 +20,20 @@ public class Questions {
         this.listQuestions.remove(num);
     }
 
+    //Génère 10 questions (3 faciles, 4 moyennes, 3 difficiles) par thème
+    public void genererQuestions() {
+        //1. THÈME MATHÉMATIQUES
+        //2. HISTOIRE
+        //3. GÉOGRAPHIE
+        //4. JEUX-VIDÉO
+        //5. ANIMAUX
+        //6. SPORT
+        //7. LA LANGUE FRANÇAISE
+        //8. CULTURE JAPONAISE
+        //9. NOURRITURE
+        //10.INFORMATIQUE
+    }
+
     public Question selectQuestion(int difficulte){
         ArrayList<Integer> listIndice = new ArrayList<Integer>();
 
