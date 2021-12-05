@@ -50,6 +50,25 @@ public class Themes {
         return themes; //this function was useful in subject n°1, "add 5 themes to the list"
     }
 
+    public ArrayList<String> selectMultipleTheme(int n){
+        ArrayList<String> themes = new ArrayList<>();
+        int i =0;
+        while (i<n){
+            Scanner reader = new Scanner(System.in);
+            System.out.println("Enter a theme: ");
+            String theme= reader.nextLine();
+            reader.close(); //We ask the user a theme
+            if (!listTheme.contains(theme)){
+                System.out.println("Theme isn't in the list");
+            }
+            else{
+                this.indicator.add(listTheme.indexOf(theme));
+                themes.add(theme);
+                i++;
+            }// We verify if the theme is in the list, if yes we return the indicator of the theme and add the theme to the final list
+        return themes;
+    }
+
     public String toString(){
        String listThemes = "";
         for (int i = 0; i<=(listTheme.size()+1);i++){
