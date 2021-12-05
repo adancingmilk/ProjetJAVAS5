@@ -22,7 +22,39 @@ public class Jeu {
         Joueurs joueurs = new Joueurs(tabJoueurs);
         joueurs.genererJoueurs(4); //Génère 4 joueurs
 
+        //3. INITIALISATION QUESTIONS POUR CHAQUE THÈME
 
+        //4. DÉROULEMENT PHASE 1
+
+            //4.1 SELECTION 1 THÈME
+
+            //4.2 POSER AU MOINS 1 QUESTION FACILE PAR JOUEUR
+
+            //4.3 SCORE JOUEUR +2 SI BONNE RÉPONSE
+
+            //4.4 ÉLIMINATION DU JOUEUR AYANT LE PLUS FAIBLE SCORE À LA FIN DE LA PHASE 1
+
+        //5. DÉROULEMENT PHASE 2
+
+            //5.1 SÉLECTION 6 THÈMES
+
+            //5.2 CHAQUE JOUEUR CHOISI THÈME DE SON CHOIX PARMI CEUX SÉLECTIONNÉS
+
+            //5.3 POSER AU MOINS 2 QUESTIONS MOYENNES PAR JOUEUR
+
+            //5.4 SCORE JOUEUR +3 SI BONNE RÉPONSE
+
+            //5.4 ÉLIMINATION DES JOUEURS AYANT LE PLUS FAIBLE SCORE À LA FIN DE LA PHASE 2 POUR GARDER QUW 2 JOUEURS
+
+        //6. DÉROULEMENT PHASE 3
+
+            //6.1 SÉLECTION 3 THÈMES
+
+            //6.2 POSER AU MOINS 2 QUESTIONS DIFFICILES PAR JOUEUR
+
+            //6.3 SCORE JOUEUR +5 SI BONNE RÉPONSE
+
+            //6.4 GAGNANT = CELUI AYANT LE MEILLEUR SCORE LORS DE LA PHASE 3
     }
 
     //Ajoute les thèmes à l'ArrayList listThemes

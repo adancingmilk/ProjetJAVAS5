@@ -20,10 +20,6 @@ public class Questions {
         this.listQuestions.remove(num);
     }
 
-    public void genererQuestions() {
-
-    }
-
     public Question selectQuestion(int difficulte){
         ArrayList<Integer> listIndice = new ArrayList<Integer>();
 
