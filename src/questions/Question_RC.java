@@ -1,7 +1,5 @@
 package questions;
 
-import java.sql.SQLOutput;
-import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,10 +10,12 @@ public class Question_RC extends Question {
         super(d, description, type, num);
         this.reponse = rep;
     }
+
     public Question_RC(){
         super();
         this.reponse = "";
     }
+
     public String repondre(){
         String rep = "";
         while (Objects.equals(rep, "")){
