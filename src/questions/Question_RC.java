@@ -1,10 +1,5 @@
 package questions;
 
-import java.sql.SQLOutput;
-import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.Scanner;
-
 public class Question_RC extends Question {
 
     public Question_RC(int d, String description, String type, int num, String rep) {

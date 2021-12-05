@@ -1,7 +1,4 @@
 package questions;
-import javax.print.attribute.standard.PresentationDirection;
-import java.util.Scanner;
-
 public class Question_VF extends Question {
 
     protected Question_VF(int d, String description, String type, int num, String rep) {
