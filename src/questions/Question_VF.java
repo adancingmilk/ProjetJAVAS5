@@ -18,7 +18,7 @@ public class Question_VF extends Question {
                 valid = true;
                 this.reponse = response;
             } else {
-                System.out.println("La réponse n'est pas valable, choisissez vrai ou faux :");
+                System.out.println("La réponse n'est pas valable, choisissez V ou F :");
             }
         }
     }
