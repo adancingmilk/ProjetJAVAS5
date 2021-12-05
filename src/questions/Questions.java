@@ -38,6 +38,16 @@ public class Questions {
         Question mathQ9 = new Question_QCM(3, "Qui a popularisé les logarithmes ?", "Mathématiques", 9, reps_mathQ9, 1);
         Question mathQ10 = new Question_VF(3, "René Descartes fut né le 13 Mars 1595", "Mathématiques", 10, "F");
 
+        addQuestion(mathQ1);
+        addQuestion(mathQ2);
+        addQuestion(mathQ3);
+        addQuestion(mathQ4);
+        addQuestion(mathQ5);
+        addQuestion(mathQ6);
+        addQuestion(mathQ7);
+        addQuestion(mathQ8);
+        addQuestion(mathQ9);
+        addQuestion(mathQ10);
         //2. HISTOIRE
         //3. GÉOGRAPHIE
         //4. JEUX-VIDÉO
