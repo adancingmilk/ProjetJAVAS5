@@ -1,6 +1,8 @@
 package questions;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Question_RC extends Question {
@@ -10,32 +12,20 @@ public class Question_RC extends Question {
         super(d, description, type, num);
         this.reponse = rep;
     }
-    public void saisir() {
-        boolean valid = false;
-        try {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Veuillez saisir la description de la question");
-            String desc = sc.nextLine();
-            if(desc != "") {
-                this.setDescription(desc);
-                while(!valid) {
-                    Scanner rep = new Scanner(System.in);
-                    System.out.println("Saisir la bonne réponse à la question");
-                    String response = rep.nextLine();
-                    if (response != ""){
-                        valid = true;
-                        this.reponse = response;
-                    }
-                }
+    public Question_RC(){
+        super();
+        this.reponse = "";
+    }
+    public String repondre(){
+        String rep = "";
+        while (Objects.equals(rep, "")){
+            System.out.println("Veuillez saisir votre réponse à la question");
+            try (Scanner sc = new Scanner(System.in)){
+                rep = sc.next();
             }
         }
-        catch (InputMismatchException e){
-            System.out.println("La réponse n'est pas valide");
-            this.supprDescription();
-        }
-
+        return rep;
     }
-
     public void setReponse(String rep){
         this.reponse = rep;
     }

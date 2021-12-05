@@ -3,15 +3,18 @@ package questions;
 public abstract class Question {
     protected int difficulte;
     protected String description;
-    protected String type;
+    protected String theme;
     protected int num;
 
 
-    protected Question(int d, String description, String type, int num){
-        this.difficulte = d;
+    protected Question(int difficulte, String description, String theme, int num){
+        this.difficulte = difficulte;
         this.description = description;
-        this.type = type;
+        this.theme = theme;
         this.num = num;
+    }
+    protected Question(){
+        this(0,"","",0);
     }
     public void supprDescription(){
         this.description = "";
@@ -23,10 +26,10 @@ public abstract class Question {
         return this.num;
     }
     public void setType(String type){
-        this.type = type;
+        this.theme = type;
     }
     public String getType(){
-        return this.type;
+        return this.theme;
     }
     public String getDescription(){
         return this.description;
@@ -43,6 +46,6 @@ public abstract class Question {
     @Override
     public String toString() {
         return "Difficulté de la question : " + this.difficulte + "\n questions.Question : " + this.description
-                + "\n Numéro de la question : " + this.num + "\n Type de la question : " + this.type;
+                + "\n Numéro de la question : " + this.num + "\n Type de la question : " + this.theme;
     }
 }
