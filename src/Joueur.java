@@ -41,8 +41,8 @@ public class Joueur {
                 if(q instanceof Question_VF) {
                     String repUp = rep.toUpperCase();
                     //Si la réponse est null, ou qu'elle n'est pas égale à V ou F, ressaisir la réponse
-                    if(!repUp.equals("V") || !Objects.equals(repUp, "F"))
-                        System.out.println("[ERR] Saisie incorrecte.");
+                    if(!Objects.equals(repUp,"V") || !Objects.equals(repUp, "F"))
+                        System.out.println("[ERR] Saisie A incorrecte.");
                     else
                         valide = 1;
                 } else if(q instanceof Question_QCM) {

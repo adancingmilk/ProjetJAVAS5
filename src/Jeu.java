@@ -22,6 +22,7 @@ public class Jeu implements Phase{
         this.listQ = listQ;
         this.listThemes = listThemes;
         this.listPlayer = listPlayer;
+        this.indiceThemesJouer = new ArrayList<Integer>();
     }
 
     @Override
@@ -30,13 +31,13 @@ public class Jeu implements Phase{
         for (int i = 0; i < participants.length ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
             participants[i] = listPlayer.selectJoueur();
         }
-        int indiceTheme = listThemes.selectTheme(); //On pioche un thème au hasard du jeu
+        int indiceTheme = 0; //On pioche un thème au hasard du jeu
         indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
         ArrayList<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
         ArrayList<String> listeTheme = listThemes.getListTheme();
 
-        ArrayList<Question> listeQduTheme = null;
+        ArrayList<Question> listeQduTheme = new ArrayList<Question>();
 
         for(int i = 0 ; i < listeQuestions.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
             if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))){
@@ -48,7 +49,7 @@ public class Jeu implements Phase{
         for (int i = 0 ; i < listeQduTheme.size(); i++){
             for(int j = 0 ; j < participants.length ; j++){
                 System.out.println("Joueur : " + participants[i].getNom() + " Veuillez répondre à la question suivante : ");
-                System.out.println("\n" + listeQduTheme.get(i).toString());
+                System.out.println("\n" + listeQduTheme.get(i).getDescription());
                 repJoueur = participants[i].saisie(listeQduTheme.get(i));
                 if (Objects.equals(repJoueur, listeQduTheme.get(i).getReponse())){
                     System.out.println("Bonne réponse !");
@@ -151,7 +152,8 @@ public class Jeu implements Phase{
         listQ.genererQuestions(); //Génère les questions de TOUS les thèmes
 
         //4. DÉROULEMENT PHASE 1
-
+        Jeu QuestionReponse = new Jeu(4, listQ, themes, joueurs);
+        QuestionReponse.Phase1();
             //4.1 SELECTION 1 THÈME
 
             //4.2 POSER AU MOINS 1 QUESTION FACILE PAR JOUEUR
