@@ -1,37 +1,50 @@
 import questions.Question;
+import questions.Question_QCM;
 import questions.Question_RC;
 import questions.Questions;
+import sun.security.util.ArrayUtil;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Jeu implements Phase{
+    private int nbJ;
     private Questions listQ;
     private Themes listThemes;
     private Joueurs listPlayer;
-    private Joueur[] participants;
+    private ArrayList<Joueur> participants;
     private ArrayList<Integer> indiceThemesJouer;
 
     public Jeu(){
-        this.participants = new Joueur[4];
     }
 
-    public Jeu(int nbJ, Questions listQ, Themes listThemes, Joueurs listPlayer){
-        this.participants = new Joueur[nbJ];
+    public Jeu(int nbJ,Questions listQ, Themes listThemes, Joueurs listPlayer){
+        this.participants = new ArrayList<Joueur>();
         this.listQ = listQ;
         this.listThemes = listThemes;
         this.listPlayer = listPlayer;
         this.indiceThemesJouer = new ArrayList<Integer>();
+        this.nbJ = nbJ;
     }
 
     @Override
     public void Phase1() {
-        for (int i = 0; i < participants.length ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
-            participants[i] = listPlayer.selectJoueur();
+        Joueur player = new Joueur();
+        for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
+            player = listPlayer.selectJoueur();
+            boolean doublon = false;
+            for (Joueur J : participants){
+                if(player.getNumero() == J.getNumero()){
+                    doublon = true;
+                    i--;
+                }
+            }
+            if(!doublon){
+                participants.add(player);
+            }
         }
-        System.out.println(participants);
-        System.out.println(listPlayer);
         int indiceTheme = 0; //On pioche un thème au hasard du jeu
         indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
@@ -45,20 +58,21 @@ public class Jeu implements Phase{
                 listeQduTheme.add(listQ.getListQuestions().get(i));
             }
         }
-
         String repJoueur = "";
-        for (int i = 0 ; i < listeQduTheme.size(); i++){
-            for(int j = 0 ; j < participants.length ; j++){
-                System.out.println(participants[j]);
-                System.out.println("Joueur : " + participants[j].getNom() + " Veuillez répondre à la question suivante : ");
-                System.out.println("\n" + listeQduTheme.get(i).getDescription());
-                repJoueur = participants[j].saisie(listeQduTheme.get(i));
-                if (Objects.equals(repJoueur, listeQduTheme.get(i).getReponse())){
-                    System.out.println("Bonne réponse !");
-                    int score = participants[j].getScore();
-                    participants[j].setScore(score + 2);
+        for (Question question : listeQduTheme) {
+            for (Joueur participant : participants) {
+                System.out.println(participants.size());
+                System.out.println("Joueur : " + participant.getNom() + " Veuillez répondre à la question suivante : ");
+                System.out.println(question.getDescription());
+                if (question instanceof Question_QCM){
+                    System.out.println(Arrays.toString(question.getReponses()));
                 }
-                else{
+                repJoueur = participant.saisie(question);
+                if (Objects.equals(repJoueur, question.getReponse())) {
+                    System.out.println("Bonne réponse !");
+                    int score = participant.getScore();
+                    participant.setScore(score + 2);
+                } else {
                     System.out.println("Mauvaise réponse");
                 }
             }
@@ -97,7 +111,7 @@ public class Jeu implements Phase{
     public Joueurs getListPlayer(){
         return this.listPlayer;
     }
-    public Joueur[] getParticipants() {
+    public ArrayList<Joueur> getParticipants() {
         return participants;
     }
     public ArrayList<Integer> getIndiceThemesJouer() {
@@ -115,7 +129,7 @@ public class Jeu implements Phase{
     public void setListThemes(Themes listThemes) {
         this.listThemes = listThemes;
     }
-    public void setParticipants(Joueur[] participants) {
+    public void setParticipants(ArrayList<Joueur> participants) {
         this.participants = participants;
     }
 

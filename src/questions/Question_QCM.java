@@ -9,11 +9,11 @@ public class Question_QCM extends Question {
         super(d, description, type, num, bonneRep);
         this.reponses = reponses;
     }
-
+    @Override
     public String[] getReponses() {
         return reponses;
     }
-
+    @Override
     public void setReponses(String[] reponses) {
         this.reponses = reponses;
     }

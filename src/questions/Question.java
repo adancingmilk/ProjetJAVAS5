@@ -6,6 +6,7 @@ public abstract class Question {
     protected String theme;
     protected int num;
     protected String reponse;
+    protected String[] reponses;
 
     protected Question(int difficulte, String description, String theme, int num, String reponse){
         this.difficulte = difficulte;
@@ -51,6 +52,14 @@ public abstract class Question {
 
     public String getReponse() {
         return reponse;
+    }
+
+    public String[] getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(String[] reponses) {
+        this.reponses = reponses;
     }
 
     @Override

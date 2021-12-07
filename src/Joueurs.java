@@ -51,4 +51,12 @@ public class Joueurs {
 
         return s.toString();
     }
+
+    public Joueur[] getTabJoueurs() {
+        return tabJoueurs;
+    }
+
+    public void setTabJoueurs(Joueur[] tabJoueurs) {
+        this.tabJoueurs = tabJoueurs;
+    }
 }
