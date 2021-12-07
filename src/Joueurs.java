@@ -19,14 +19,16 @@ public class Joueurs {
 
     //Génère des joueurs selon le nombre donné en paramètre
     public void genererJoueurs(int nbJoueurs) {
+        int indexJoueur = 0;
         if(nbJoueurs >= 4 && nbJoueurs <= 20) {
             String[] tabNomJoueur = { "J", "0" };
             String nomJoueur;
             int numJoueur = 100;
 
             for(int i = 0; i < nbJoueurs; i++) {
+                indexJoueur++;
                 //Génère un nom de joueur allant de J1 à J20 selon le nombre de joueur
-                tabNomJoueur[1] = String.valueOf(i++);
+                tabNomJoueur[1] = Integer.toString(indexJoueur);
                 nomJoueur = tabNomJoueur[0] + tabNomJoueur[1];
 
                 tabJoueurs[i] = new Joueur(nomJoueur, numJoueur); //Ajoute un nouveau joueur de nom JXX et de numéro XXX
