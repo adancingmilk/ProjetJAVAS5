@@ -68,6 +68,20 @@ public class Themes {
         return themes;
     }
 
+    //Ajoute les thèmes à l'ArrayList listThemes
+    public void genererThemes() {
+        listTheme.add("Mathématiques");
+        listTheme.add("Histoire");
+        listTheme.add("Géographie");
+        listTheme.add("Jeux-Vidéo");
+        listTheme.add("Animaux");
+        listTheme.add("Sport");
+        listTheme.add("La langue française");
+        listTheme.add("Culture Japonaise");
+        listTheme.add("Nourriture");
+        listTheme.add("Informatique");
+    }
+
     @Override
     public String toString(){
        String listThemes = "";

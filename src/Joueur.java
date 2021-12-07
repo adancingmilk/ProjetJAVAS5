@@ -34,23 +34,24 @@ public class Joueur {
         do {
             //L'utilisateur saisi sa réponse. 1, 2, ou 3 si QCM, V ou F si VF, une phrase si RC
             System.out.println("[INFO] Veuillez saisir votre réponse: ");
-            rep = sc.nextLine();
+            rep = sc.next();
 
             //Si le joueur a saisi une réponse
             if(rep != null) {
                 if(q instanceof Question_VF) {
                     String repUp = rep.toUpperCase();
+
                     //Si la réponse est null, ou qu'elle n'est pas égale à V ou F, ressaisir la réponse
-                    if(!Objects.equals(repUp,"V") || !Objects.equals(repUp, "F"))
-                        System.out.println("[ERR] Saisie A incorrecte.");
-                    else
+                    if(repUp.equals("V") || repUp.equals("F"))
                         valide = 1;
+                    else
+                        System.out.println("[ERR] Saisie X incorrecte.");
                 } else if(q instanceof Question_QCM) {
                     //Si la réponse est null, ou qu'elle n'est pas égale à 1, 2 ou 3, ressaisir la réponse
-                    if(!rep.equals("1") || !Objects.equals(rep, "2") || !Objects.equals(rep, "3"))
-                        System.out.println("[ERR] Saisie incorrecte.");
+                    if(rep.equals("1") || rep.equals("2") || rep.equals("3"))
+                        valide =1;
                     else
-                        valide = 1;
+                        System.out.println("[ERR] Saisie incorrecte.");
                 } else { //Si c'est une réponse courte et qu'elle a été saisi, alors elle est valide
                     valide = 1;
                 }
@@ -59,7 +60,7 @@ public class Joueur {
 
         } while(valide == 0); //Tant que ce que saisi le joueur n'est pas valide, on reste dans cette boucle
 
-        sc.close(); //Fermeture du scanner
+        //sc.close(); //Fermeture du scanner
         return rep;
     }
 
