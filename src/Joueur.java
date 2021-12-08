@@ -2,6 +2,7 @@ import questions.Question;
 import questions.Question_QCM;
 import questions.Question_VF;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class Joueur {
     private int score;
     private final String[] etats = { "G", "SG", "E", "A" }; //Gagnant, Super-Gagnant, Éliminé, En Attente
     private String etatActuel;
+    private String theme1P2; //Thème sélectionné par le joueur lors de la phase 2
+    private String theme2P2; //2nd thème sélectionné par le joueur lors de la phase 2
 
     //Constructeur principal
     public Joueur(String nom, int numero) {
@@ -82,6 +85,30 @@ public class Joueur {
         }
     }
 
+    //Méthode de sélection d'un thème lors de la phase 2
+    public String selectionTheme(ArrayList<String> themesP2) {
+        Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
+        boolean valide = false; //Validité de la réponse
+        String rep ="";
+
+        while(!valide) {
+            System.out.print("Entrez un thème que vous souhaitez : ");
+            rep = sc.next();
+            for(String theme : themesP2) {
+                if(rep == theme) {
+                    valide = true;
+                    break;
+                }
+            }
+            if(!valide)
+                System.out.println("[ERR] Le thème saisi n'est pas dans la liste. Réessayez.");
+        }
+
+        sc.close();
+        theme1P2 = rep;
+        return rep; //Retourne le thème sélectionné par le joueur
+    }
+
     @Override
     public String toString() {
         return "JOUEUR" + nom.toUpperCase() +
@@ -99,39 +126,43 @@ public class Joueur {
         }
     }
 
+    //GETTERS & SETTERS
     public int getNumero() {
         return numero;
+    }
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public int getScore() {
         return score;
     }
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public String getEtatActuel() {
         return etatActuel;
+    }
+    public void setEtatActuel(String etatActuel) {
+        this.etatActuel = etatActuel;
     }
 
     public String getNom() {
         return nom;
     }
-
-    public void setEtatActuel(String etatActuel) {
-        this.etatActuel = etatActuel;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public String[] getEtats() {
         return etats;
+    }
+
+    public String getTheme1P2() {
+        return theme1P2;
+    }
+    public void setTheme1P2(String theme1P2) {
+        this.theme1P2 = theme1P2;
     }
 }

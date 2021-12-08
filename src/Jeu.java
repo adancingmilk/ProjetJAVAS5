@@ -94,7 +94,30 @@ public class Jeu implements Phase{
 
     @Override
     public void Phase2() {
-        listThemes.setListTheme(listThemes.selectMultipleThemeRandomly(6)); //Sélectionne 6 thèmes aléatoirement
+        ArrayList<String> listeThemeP2 = listThemes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+        System.out.println("Thèmes sélectionnés pour cette phase :");
+        for(String theme : listeThemeP2)
+            System.out.println(theme);
+
+        //SÉLECTION DU THÈME POUR CHAQUE JOUEUR À TOUR DE RÔLE
+        for(Joueur participant : participants) {
+            participant.setTheme1P2(participant.selectionTheme(listeThemeP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
+            System.out.println(participant.getNom() + " a sélectionné le thème " + participant.getTheme1P2());
+        }
+
+        //INITIALISATION DES QUESTIONS
+        ArrayList<Question> listeQuestionsP2 = listQ.getListQuestions(); //On récupère la liste des questions des thèmes la phase 2
+        ArrayList<Question> listeQduThemeP2 = new ArrayList<>(); //Liste des questions d'un thème
+
+        //On récupère toutes les questions qui ont comme thème selectionné et on les stock dans listQduTheme
+        for(int i = 0 ; i < listeQuestionsP2.size() ; i++){
+            for(String theme : listeThemeP2) {
+                if (Objects.equals(listeQuestionsP2.get(i).getTheme(), theme)){
+                    listeQduThemeP2.add(listQ.getListQuestions().get(i));
+                }
+            }
+        }
+
 
     }
 
