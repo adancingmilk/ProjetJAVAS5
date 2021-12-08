@@ -20,11 +20,11 @@ public class Jeu implements Phase{
     }
 
     public Jeu(int nbJ,Questions listQ, Themes listThemes, Joueurs listPlayer){
-        this.participants = new ArrayList();
+        this.participants = new ArrayList<>();
         this.listQ = listQ;
         this.listThemes = listThemes;
         this.listPlayer = listPlayer;
-        this.indiceThemesJouer = new ArrayList();
+        this.indiceThemesJouer = new ArrayList<>();
         this.nbJ = nbJ;
     }
 
