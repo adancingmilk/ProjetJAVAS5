@@ -1,9 +1,8 @@
+import joueurs.Joueur;
+import joueurs.Joueurs;
 import questions.*;
-import sun.security.util.ArrayUtil;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Jeu implements Phase{
@@ -59,7 +58,7 @@ public class Jeu implements Phase{
         for (Question question : listeQduTheme) {
             for (Joueur participant : participants) {
                 System.out.println(participants.size());
-                System.out.println("Joueur : " + participant.getNom() + " Veuillez répondre à la question suivante : ");
+                System.out.println("joueurs.Joueur : " + participant.getNom() + " Veuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
                 if (question instanceof Question_QCM){
                     String propositions = "";

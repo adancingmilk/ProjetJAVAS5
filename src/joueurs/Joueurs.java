@@ -1,4 +1,7 @@
-import java.util.Arrays;
+package joueurs;
+
+import joueurs.Joueur;
+
 import java.util.Random;
 
 public class Joueurs {
