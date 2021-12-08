@@ -120,7 +120,7 @@ public class Jeu implements Phase{
     @Override
     public void selectJoueurNextPhase() {
         //Si l'état d'un participant est E (Éliminé), alors on le supprime des participants
-        participants.removeIf(participant -> participant.getEtatActuel() == "E");
+        participants.removeIf(participant -> Objects.equals(participant.getEtatActuel(), "E"));
     }
 
     public Questions getListQ(){
