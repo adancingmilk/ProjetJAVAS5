@@ -116,7 +116,7 @@ public class Joueur {
         return "JOUEUR" + nom.toUpperCase() +
                 "\n| NUM: " + numero +
                 "\n| SCORE: " + score +
-                "\n| ETAT: " + etatActuel;
+                "\n| ETAT: " + etatActuel + "\n";
     }
 
     //Met à jour l'état selon celui précisé en paramètres

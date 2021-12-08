@@ -90,6 +90,7 @@ public class Jeu implements Phase{
             }
         }
         joueurElimine.setEtatActuel("E");
+        System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
         System.out.println("Thème utilisé lors de la phase 1 : " + this.listThemes.getListTheme().get(indiceTheme) + "\n");
     }
