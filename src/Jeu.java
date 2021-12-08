@@ -106,18 +106,6 @@ public class Jeu implements Phase{
         }
 
         //INITIALISATION DES QUESTIONS
-        ArrayList<Question> listeQuestionsP2 = listQ.getListQuestions(); //On récupère la liste des questions des thèmes la phase 2
-        ArrayList<Question> listeQduThemeP2 = new ArrayList<>(); //Liste des questions d'un thème
-
-        //On récupère toutes les questions qui ont comme thème selectionné et on les stock dans listQduTheme
-        for(int i = 0 ; i < listeQuestionsP2.size() ; i++){
-            for(String theme : listeThemeP2) {
-                if (Objects.equals(listeQuestionsP2.get(i).getTheme(), theme)){
-                    listeQduThemeP2.add(listQ.getListQuestions().get(i));
-                }
-            }
-        }
-
 
     }
 

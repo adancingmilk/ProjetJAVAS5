@@ -95,7 +95,7 @@ public class Joueur {
             System.out.print("Entrez un thème que vous souhaitez : ");
             rep = sc.next();
             for(String theme : themesP2) {
-                if(rep == theme) {
+                if(Objects.equals(rep, theme)) {
                     valide = true;
                     break;
                 }
