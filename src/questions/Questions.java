@@ -1,16 +1,17 @@
 package questions;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Questions {
-    private ArrayList<Question> listQuestions;
+    private List<Question> listQuestions;
 
     public Questions(ArrayList<Question> listQuestions){
         this.listQuestions = listQuestions;
     }
     public Questions(){
-        this.listQuestions = new ArrayList<Question>();
+        this.listQuestions = new ArrayList();
     }
     public void addQuestion(Question Q){
         this.listQuestions.add(Q);
@@ -295,7 +296,7 @@ public class Questions {
         return listQuestions.get(randomIndex);
     }
 
-    public ArrayList<Question> getListQuestions() {
+    public List<Question> getListQuestions() {
         return listQuestions;
     }
 
