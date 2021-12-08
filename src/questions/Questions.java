@@ -72,6 +72,8 @@ public class Questions {
         addQuestion(histQ8);
         addQuestion(histQ9);
         addQuestion(histQ10);
+        //2. ANIME
+
         //3. GÉOGRAPHIE
         Question geoQ1 = new Question_VF(1, "Le Portugal est un pays anglophone ?", "Géographie", 1, "F");
         String[] reps_geoQ2 = { "Europe", "Amérique", "Asie" };
@@ -278,10 +280,6 @@ public class Questions {
         addQuestion(infoQ8);
         addQuestion(infoQ9);
         addQuestion(infoQ10);
-        //2. HISTOIRE
-        //4. JEUX-VIDÉO
-        //5. ANIMAUX
-        //7. LA LANGUE FRANÇAISE
     }
 
     public Question selectQuestion(int difficulte){
