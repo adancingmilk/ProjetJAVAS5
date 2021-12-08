@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Questions {
-    private List<Question> listQuestions;
+    private ArrayList<Question> listQuestions;
 
     public Questions(ArrayList<Question> listQuestions){
         this.listQuestions = listQuestions;
@@ -296,7 +296,7 @@ public class Questions {
         return listQuestions.get(randomIndex);
     }
 
-    public List<Question> getListQuestions() {
+    public ArrayList<Question> getListQuestions() {
         return listQuestions;
     }
 

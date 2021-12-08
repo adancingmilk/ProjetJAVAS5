@@ -11,7 +11,7 @@ public class Jeu implements Phase{
     private Questions listQ;
     private Themes listThemes;
     private Joueurs listPlayer;
-    private List<Joueur> participants;
+    private ArrayList<Joueur> participants;
     private List<Integer> indiceThemesJouer;
 
     public Jeu(){
@@ -42,10 +42,10 @@ public class Jeu implements Phase{
                 participants.add(player);
             }
         }
-        int indiceTheme = 0; //On pioche un thème au hasard du jeu
+        int indiceTheme = this.listThemes.selectRandomTheme(); //On pioche un thème au hasard du jeu
         indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
-        List<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
+        ArrayList<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
         ArrayList<String> listeTheme = listThemes.getListTheme();
 
         ArrayList<Question> listeQduTheme = new ArrayList<Question>();
@@ -72,12 +72,12 @@ public class Jeu implements Phase{
                     System.out.println("Vrai(V) ou Faux(F) ?");
                 }
                 repJoueur = participant.saisie(question);
-                if (Objects.equals(repJoueur, question.getReponse())) {
-                    System.out.println("Bonne réponse !");
+                if (Objects.equals(repJoueur.toUpperCase(), question.getReponse().toUpperCase())) {
+                    System.out.println("Bonne réponse ! \n");
                     int score = participant.getScore();
                     participant.setScore(score + 2);
                 } else {
-                    System.out.println("Mauvaise réponse");
+                    System.out.println("Mauvaise réponse \n");
                 }
             }
         }

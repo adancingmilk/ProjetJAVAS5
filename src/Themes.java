@@ -27,8 +27,8 @@ public class Themes {
             return listTheme.indexOf(theme);
         }  // We verify if the theme is in the list, if yes we return the indicator of the theme
     }
-    public String selectRandomTheme(){
-        return listTheme.get(ThreadLocalRandom.current().nextInt(0,10));
+    public int selectRandomTheme(){
+        return ThreadLocalRandom.current().nextInt(0,listTheme.size());
     }
 
     public ArrayList<String> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
