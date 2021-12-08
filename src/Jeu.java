@@ -97,6 +97,7 @@ public class Jeu implements Phase{
     @Override
     public void Phase2() {
         ArrayList<String> listeThemeP2 = listThemes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+
         System.out.println("Thèmes sélectionnés pour cette phase :");
         for(String theme : listeThemeP2)
             System.out.println(theme);
