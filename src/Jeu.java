@@ -3,6 +3,7 @@ import joueurs.Joueurs;
 import questions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Jeu implements Phase{
@@ -10,18 +11,18 @@ public class Jeu implements Phase{
     private Questions listQ;
     private Themes listThemes;
     private Joueurs listPlayer;
-    private ArrayList<Joueur> participants;
-    private ArrayList<Integer> indiceThemesJouer;
+    private List<Joueur> participants;
+    private List<Integer> indiceThemesJouer;
 
     public Jeu(){
     }
 
     public Jeu(int nbJ,Questions listQ, Themes listThemes, Joueurs listPlayer){
-        this.participants = new ArrayList<Joueur>();
+        this.participants = new ArrayList();
         this.listQ = listQ;
         this.listThemes = listThemes;
         this.listPlayer = listPlayer;
-        this.indiceThemesJouer = new ArrayList<Integer>();
+        this.indiceThemesJouer = new ArrayList();
         this.nbJ = nbJ;
     }
 
@@ -57,8 +58,7 @@ public class Jeu implements Phase{
         String repJoueur = "";
         for (Question question : listeQduTheme) {
             for (Joueur participant : participants) {
-                System.out.println(participants.size());
-                System.out.println("joueurs.Joueur : " + participant.getNom() + " Veuillez répondre à la question suivante : ");
+                System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
                 if (question instanceof Question_QCM){
                     String propositions = "";
@@ -128,10 +128,10 @@ public class Jeu implements Phase{
     public Joueurs getListPlayer(){
         return this.listPlayer;
     }
-    public ArrayList<Joueur> getParticipants() {
+    public List<Joueur> getParticipants() {
         return participants;
     }
-    public ArrayList<Integer> getIndiceThemesJouer() {
+    public List<Integer> getIndiceThemesJouer() {
         return indiceThemesJouer;
     }
     public void setListQ(Questions listQ){
