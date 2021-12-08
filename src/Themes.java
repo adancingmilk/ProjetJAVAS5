@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Themes {
 
@@ -25,6 +26,9 @@ public class Themes {
             this.indicator.add(listTheme.indexOf(theme));
             return listTheme.indexOf(theme);
         }  // We verify if the theme is in the list, if yes we return the indicator of the theme
+    }
+    public String selectRandomTheme(){
+        return listTheme.get(ThreadLocalRandom.current().nextInt(0,10));
     }
 
     public ArrayList<String> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
