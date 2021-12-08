@@ -104,7 +104,8 @@ public class Jeu implements Phase{
 
     @Override
     public void selectJoueurNextPhase() {
-
+        //Si l'état d'un participant est E (Éliminé), alors on le supprime des participants
+        participants.removeIf(participant -> participant.getEtatActuel() == "E");
     }
 
     public Questions getListQ(){
@@ -139,11 +140,6 @@ public class Jeu implements Phase{
     }
 
     public static void main(String[] args) {
-//        Question Q1 = new Question_RC(1,"1+1=2","Math",1, "Vrai");
-//        Questions listQ = new Questions();
-//        listQ.addQuestion(Q1);
-//        System.out.println(listQ.selectQuestion(1));
-
         //1. INITIALISATION THEMES
         ArrayList<String> listThemes = new ArrayList<String>();
 
@@ -162,15 +158,11 @@ public class Jeu implements Phase{
         //4. DÉROULEMENT PHASE 1
         Jeu QuestionReponse = new Jeu(4, listQ, themes, joueurs);
         QuestionReponse.Phase1();
-            //4.1 SELECTION 1 THÈME
 
-            //4.2 POSER AU MOINS 1 QUESTION FACILE PAR JOUEUR
-
-            //4.3 SCORE JOUEUR +2 SI BONNE RÉPONSE
-
-            //4.4 ÉLIMINATION DU JOUEUR AYANT LE PLUS FAIBLE SCORE À LA FIN DE LA PHASE 1
+        QuestionReponse.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
 
         //5. DÉROULEMENT PHASE 2
+        QuestionReponse.Phase2();
 
             //5.1 SÉLECTION 6 THÈMES
 
