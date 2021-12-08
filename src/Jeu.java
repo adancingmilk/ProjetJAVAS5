@@ -2,6 +2,8 @@ import joueurs.Joueur;
 import joueurs.Joueurs;
 import questions.*;
 
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -89,6 +91,7 @@ public class Jeu implements Phase{
         }
         joueurElimine.setEtatActuel("E");
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
+        System.out.println("Thème utilisé lors de la phase 1 : " + this.listThemes.getListTheme().get(indiceTheme) + "\n");
     }
 
     @Override
