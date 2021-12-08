@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Themes {
@@ -9,13 +10,6 @@ public class Themes {
 
     public Themes(ArrayList<String> listTheme){
         this.listTheme = listTheme;
-    }
-
-    public ArrayList<String> getListTheme() {
-        return listTheme;
-    }
-    public ArrayList<Integer> getIndicator() {
-        return indicator;
     }
 
     public int selectTheme(){
@@ -47,6 +41,22 @@ public class Themes {
         this.indicator.add(theme5);
 
         return themes; //this function was useful in subject n°1, "add 5 themes to the list"
+    }
+
+    public ArrayList<String> selectMultipleThemeRandomly(int n) {
+        ArrayList<String> selectedThemes = new ArrayList<>();
+        ArrayList<String> tempThemes = listTheme; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
+
+        Random rand = new Random();
+        int selectedThemeIndex;
+
+        for(int i = 0; i < n; i++) {
+            selectedThemeIndex = rand.nextInt(tempThemes.size()); //Sélectionne aléatoire un thème parmi les 10
+            selectedThemes.add(tempThemes.get(selectedThemeIndex)); //Puis l'ajoute aux thèmes selectionnés
+            tempThemes.remove(selectedThemeIndex); //Et on le supprime des thèmes temporaires pour ne pas sélectionner plusieurs fois le même thème
+        }
+
+        return selectedThemes;
     }
 
     public ArrayList<String> selectMultipleTheme(int n) {
@@ -92,5 +102,18 @@ public class Themes {
         return listThemes;
     }
 
+    //GETTERS & SETTERS
+    public ArrayList<String> getListTheme() {
+        return listTheme;
+    }
+    public void setListTheme(ArrayList<String> listTheme) {
+        this.listTheme = listTheme;
+    }
 
+    public ArrayList<Integer> getIndicator() {
+        return indicator;
+    }
+    public void setIndicator(ArrayList<Integer> indicator) {
+        this.indicator = indicator;
+    }
 }
