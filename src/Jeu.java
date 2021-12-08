@@ -46,9 +46,9 @@ public class Jeu implements Phase{
         indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
         List<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
-        List<String> listeTheme = listThemes.getListTheme();
+        ArrayList<String> listeTheme = listThemes.getListTheme();
 
-        List<Question> listeQduTheme = new ArrayList<Question>();
+        ArrayList<Question> listeQduTheme = new ArrayList<Question>();
 
         for(int i = 0 ; i < listeQuestions.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
             if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))){
