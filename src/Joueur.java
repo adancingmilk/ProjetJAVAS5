@@ -42,10 +42,11 @@ public class Joueur {
                     String repUp = rep.toUpperCase();
 
                     //Si la réponse est null, ou qu'elle n'est pas égale à V ou F, ressaisir la réponse
-                    if(repUp.equals("V") || repUp.equals("F"))
+                    if(repUp.equals("V") || repUp.equals("F")){
                         valide = 1;
-                    else
-                        System.out.println("[ERR] Saisie X incorrecte.");
+                        return repUp;}
+                    else {
+                        System.out.println("[ERR] Saisie X incorrecte.");}
                 } else if(q instanceof Question_QCM) {
                     //Si la réponse est null, ou qu'elle n'est pas égale à 1, 2 ou 3, ressaisir la réponse
                     if(rep.equals("1") || rep.equals("2") || rep.equals("3"))

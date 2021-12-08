@@ -65,7 +65,12 @@ public class Jeu implements Phase{
                 System.out.println("Joueur : " + participant.getNom() + " Veuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
                 if (question instanceof Question_QCM){
-                    System.out.println(Arrays.toString(question.getReponses()));
+                    String propositions = "";
+                    int i = 1;
+                    for(String s : question.getReponses()){
+                        propositions +=  i++ + ". (" + s.toString() + ") ";
+                    };
+                    System.out.println(propositions);
                 }
                 repJoueur = participant.saisie(question);
                 if (Objects.equals(repJoueur, question.getReponse())) {
