@@ -1,7 +1,4 @@
-import questions.Question;
-import questions.Question_QCM;
-import questions.Question_RC;
-import questions.Questions;
+import questions.*;
 import sun.security.util.ArrayUtil;
 
 import java.lang.reflect.Array;
@@ -71,6 +68,9 @@ public class Jeu implements Phase{
                         propositions +=  i++ + ". (" + s.toString() + ") ";
                     };
                     System.out.println(propositions);
+                }
+                else if (question instanceof Question_VF){
+                    System.out.println("Vrai(V) ou Faux(F) ?");
                 }
                 repJoueur = participant.saisie(question);
                 if (Objects.equals(repJoueur, question.getReponse())) {
