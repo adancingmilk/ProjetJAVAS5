@@ -84,7 +84,7 @@ public class Questions {
         Question geoQ5 = new Question_RC(2, "Quel est le plus grand pays du monde ?", "Géographie", 5, "Russie");
         String[] reps_geoQ6 = { "5432", "4809", "8848" };
         Question geoQ6 = new Question_QCM(2, "Quelle est l'altitude du mont Everest (en m) ?", "Géographie", 6, reps_geoQ6, "3");
-        Question geoQ7 = new Question_RC(2, "Quelle est la capital de l'australie ?", "Géographie", 7, "Canberra");
+        Question geoQ7 = new Question_RC(2, "Quelle est la capitale de l'australie ?", "Géographie", 7, "Canberra");
         Question geoQ8 = new Question_RC(3, "Comment le Malawi s'appelait en 1950 ?", "Géographie", 8, "Nyassaland");
         String[] reps_geoQ9 = { "540 000", "620 000", "510 000" };
         Question geoQ9 = new Question_QCM(3, "Quelle est la superficie de la France (en km) ?", "Géographie", 9, reps_geoQ9, "1");

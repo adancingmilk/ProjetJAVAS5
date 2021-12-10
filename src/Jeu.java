@@ -97,7 +97,7 @@ public class Jeu implements Phase{
 
     @Override
     public void Phase2() {
-        ArrayList<String> listeThemeP2 = listThemes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+        /*ArrayList<String> listeThemeP2 = listThemes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
         for(String theme : listeThemeP2)
@@ -107,11 +107,33 @@ public class Jeu implements Phase{
         for(Joueur participant : participants) {
             participant.setTheme1P2(participant.selectionTheme(listeThemeP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
             System.out.println(participant.getNom() + " a sélectionné le thème " + participant.getTheme1P2());
+        }*/
+
+        int nbThemes = 6;
+        ArrayList<String> listeThemeP2;
+        ArrayList<Question> questionsP2 = new ArrayList<>();
+        for (int i = 0; i < nbThemes; i++) {
+            int indiceTheme = this.listThemes.selectRandomTheme(); //On pioche un thème au hasard du jeu
+            while (indiceThemesJouer.indexOf(indiceTheme) != -1) {
+                indiceTheme = this.listThemes.selectRandomTheme();
+            }
+            indiceThemesJouer.add(indiceTheme); //Le thème jouer, on le note
+            ArrayList<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
+            ArrayList<String> listeTheme = listThemes.getListTheme();
+
+            for (int n = 0; i < listeQuestions.size(); i++) { //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
+                if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))) {
+                    questionsP2.add(listQ.getListQuestions().get(i));
+                }
+            }
         }
-
-        //INITIALISATION DES QUESTIONS
-
     }
+
+
+
+
+
+
 
     @Override
     public void Phase3() {
