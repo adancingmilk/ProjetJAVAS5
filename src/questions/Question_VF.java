@@ -1,8 +1,11 @@
 package questions;
+
+import themes.Theme;
+
 public class Question_VF extends Question {
 
-    protected Question_VF(int d, String description, String type, int num, String rep) {
-        super(d, description, type, num, rep);
+    protected Question_VF(int d, String description, String nomTheme, int num, String rep) {
+        super(d, description, nomTheme, num, rep);
     }
 
     @Override

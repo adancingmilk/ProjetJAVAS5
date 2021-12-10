@@ -1,3 +1,6 @@
+package themes;
+
+import themes.Theme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +10,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Themes {
 
-    protected List<String> themes;     // The list of the themes
+    protected List<Theme> themes;     // The list of the themes
     protected List<Integer> indicator;    // Position, indicator of each theme
 
-    public Themes(List<String> themes){
+    public Themes(List<Theme> themes){
         this.themes = themes;
     }
 
@@ -20,7 +23,7 @@ public class Themes {
         String theme= reader.nextLine();
         reader.close(); //We ask the user a theme
         if (!themes.contains(theme)){
-            System.out.println("Theme isn't in the list");
+            System.out.println("themes.Theme isn't in the list");
             return -1;
         }
         else{
@@ -28,12 +31,17 @@ public class Themes {
             return themes.indexOf(theme);
         }  // We verify if the theme is in the list, if yes we return the indicator of the theme
     }
+
+    public void add(Theme theme) {
+        themes.add(theme);
+    }
+
     public int selectRandomTheme(){
         return ThreadLocalRandom.current().nextInt(0, themes.size());
     }
 
-    public List<String> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
-        List<String> themes = new ArrayList<String>();
+    public List<Theme> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
+        List<Theme> themes = new ArrayList<>();
         themes.add(this.themes.get(theme1));
         themes.add(this.themes.get(theme2));
         themes.add(this.themes.get(theme3));
@@ -48,9 +56,9 @@ public class Themes {
         return themes; //this function was useful in subject n°1, "add 5 themes to the list"
     }
 
-    public List<String> selectMultipleThemeRandomly(int n) {
-        List<String> selectedThemes = new ArrayList<>();
-        List<String> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
+    public List<Theme> selectMultipleThemeRandomly(int n) {
+        List<Theme> selectedThemes = new ArrayList<>();
+        List<Theme> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
 
         Random rand = new Random();
         int selectedThemeIndex;
@@ -73,7 +81,7 @@ public class Themes {
             String theme = reader.nextLine();
             reader.close(); //We ask the user a theme
             if (!this.themes.contains(theme)) {
-                System.out.println("Theme isn't in the list");
+                System.out.println("themes.Theme isn't in the list");
             } else {
                 this.indicator.add(this.themes.indexOf(theme));
                 themes.add(theme);
@@ -83,18 +91,18 @@ public class Themes {
         return themes;
     }
 
-    //Ajoute les thèmes à l'ArrayList listThemes
+    //Ajoute les thèmes à List themes
     public void genererThemes() {
-        themes.add("Mathématiques");
-        themes.add("Histoire");
-        themes.add("Géographie");
-        themes.add("Jeux-Vidéo");
-        themes.add("Animaux");
-        themes.add("Sport");
-        themes.add("La langue française");
-        themes.add("Culture Japonaise");
-        themes.add("Nourriture");
-        themes.add("Informatique");
+        themes.add(new Theme("Mathématiques"));
+        themes.add(new Theme("Histoire"));
+        themes.add(new Theme("Géographie"));
+        themes.add(new Theme("Jeux-Vidéo"));
+        themes.add(new Theme("Animaux"));
+        themes.add(new Theme("Sport"));
+        themes.add(new Theme("La langue française"));
+        themes.add(new Theme("Culture Japonaise"));
+        themes.add(new Theme("Nourriture"));
+        themes.add(new Theme("Informatique"));
     }
 
     @Override
@@ -108,10 +116,10 @@ public class Themes {
     }
 
     //GETTERS & SETTERS
-    public List<String> getThemes() {
+    public List<Theme> getThemes() {
         return themes;
     }
-    public void setThemes(List<String> themes) {
+    public void setThemes(List<Theme> themes) {
         this.themes = themes;
     }
 

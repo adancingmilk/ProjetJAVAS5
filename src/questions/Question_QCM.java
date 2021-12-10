@@ -1,12 +1,14 @@
 package questions;
+import themes.Theme;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Question_QCM extends Question {
     private String[] reponses;
 
-    public Question_QCM(int d, String description, String type, int num, String[] reponses, String bonneRep) {
-        super(d, description, type, num, bonneRep);
+    public Question_QCM(int d, String description, String nomTheme, int num, String[] reponses, String bonneRep) {
+        super(d, description, nomTheme, num, bonneRep);
         this.reponses = reponses;
     }
     @Override

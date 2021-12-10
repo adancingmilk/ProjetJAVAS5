@@ -1,22 +1,24 @@
 package questions;
 
+import themes.Theme;
+
 public abstract class Question {
     protected int difficulte;
     protected String description;
-    protected String theme;
+    protected final Theme theme;
     protected int num;
     protected String reponse;
     protected String[] reponses;
 
-    protected Question(int difficulte, String description, String theme, int num, String reponse){
+    protected Question(int difficulte, String description, String nomTheme, int num, String reponse){
         this.difficulte = difficulte;
         this.description = description;
-        this.theme = theme;
+        this.theme = new Theme(nomTheme);
         this.num = num;
         this.reponse = reponse;
     }
     protected Question(){
-        this(0,"","",0,"");
+        this(0,"", "",0,"");
     }
     public void supprDescription(){
         this.description = "";
@@ -26,12 +28,6 @@ public abstract class Question {
     }
     public int getNum(){
         return this.num;
-    }
-    public void setTheme(String type){
-        this.theme = type;
-    }
-    public String getTheme(){
-        return this.theme;
     }
     public String getDescription(){
         return this.description;
@@ -60,6 +56,10 @@ public abstract class Question {
 
     public void setReponses(String[] reponses) {
         this.reponses = reponses;
+    }
+
+    public Theme getTheme() {
+        return theme;
     }
 
     @Override

@@ -3,8 +3,9 @@ package joueurs;
 import questions.Question;
 import questions.Question_QCM;
 import questions.Question_VF;
+import themes.Theme;
+import themes.Themes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -15,8 +16,7 @@ public class Joueur {
     private int score;
     private final String[] etats = { "G", "SG", "E", "A" }; //Gagnant, Super-Gagnant, Éliminé, En Attente
     private String etatActuel;
-    private String theme1P2; //Thème sélectionné par le joueur lors de la phase 2
-    private String theme2P2; //2nd thème sélectionné par le joueur lors de la phase 2
+    private Themes themesP2sel; //Thème sélectionné par le joueur lors de la phase 2
 
     //Constructeur principal
     public Joueur(String nom, int numero) {
@@ -89,27 +89,31 @@ public class Joueur {
     }
 
     //Méthode de sélection d'un thème lors de la phase 2
-    public String selectionTheme(List<String> themesP2) {
+    public void selectionTheme(List<Theme> themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         boolean valide = false; //Validité de la réponse
         String rep ="";
 
-        while(!valide) {
-            System.out.print("Entrez un thème que vous souhaitez : ");
-            rep = sc.next();
-            for(String theme : themesP2) {
-                if(Objects.equals(rep, theme)) {
-                    valide = true;
-                    break;
+        for(int i = 0; i < 2; i++) { //2 thèmes à choisir
+            System.out.println("Entrez le " + (i++) + "e thème que vous souhaitez : ");
+            while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
+                rep = sc.next();
+                for(Theme theme : themesP2) {
+                    if(Objects.equals(rep, theme.getNom())) {
+                        valide = true;
+                        themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la Phase 2 (2 thèmes à choisir)
+                        break;
+                    }
                 }
+                if(!valide)
+                    System.out.println("[ERR] Le thème saisi n'est pas dans la liste. Réessayez.");
             }
-            if(!valide)
-                System.out.println("[ERR] Le thème saisi n'est pas dans la liste. Réessayez.");
         }
 
+        //Affiche les 2 thèmes sélectionnés par le joueur
+        System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0) + " et " + themesP2sel.getThemes().get(1) + ".");
+
         sc.close();
-        theme1P2 = rep;
-        return rep; //Retourne le thème sélectionné par le joueur
     }
 
     @Override
@@ -162,10 +166,10 @@ public class Joueur {
         return etats;
     }
 
-    public String getTheme1P2() {
-        return theme1P2;
+    public Themes getThemesP2sel() {
+        return themesP2sel;
     }
-    public void setTheme1P2(String theme1P2) {
-        this.theme1P2 = theme1P2;
+    public void setThemesP2sel(Themes themesP2sel) {
+        this.themesP2sel = themesP2sel;
     }
 }
