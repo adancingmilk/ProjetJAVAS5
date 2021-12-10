@@ -95,7 +95,7 @@ public class Joueur {
         String rep ="";
 
         for(int i = 0; i < 2; i++) { //2 thèmes à choisir
-            System.out.println("Entrez le " + (i++) + "e thème que vous souhaitez : ");
+            System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
             while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
                 rep = sc.next();
                 for(Theme theme : themesP2) {
@@ -113,7 +113,7 @@ public class Joueur {
         //Affiche les 2 thèmes sélectionnés par le joueur
         System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0) + " et " + themesP2sel.getThemes().get(1) + ".");
 
-        sc.close();
+        //sc.close();
     }
 
     @Override

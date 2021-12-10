@@ -45,20 +45,20 @@ public class Jeu implements Phase{
             }
         }
         int indiceTheme = this.themes.selectRandomTheme(); //On pioche un thème au hasard du jeu
-        indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
+        indiceThemesJouer.add(indiceTheme); //Le thème joué lors de la phase 1 on le note
 
         List<Question> questionsP1 = questions.getQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
         List<Theme> themesP1 = themes.getThemes();
 
-        ArrayList<Question> listeQduTheme = new ArrayList<Question>();
+        List<Question> questionsDuTheme = new ArrayList<>();
 
         for(int i = 0; i < questionsP1.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
-            if (Objects.equals(questionsP1.get(i).getTheme(), themesP1.get(indiceTheme))){
-                listeQduTheme.add(questions.getQuestions().get(i));
+            if (Objects.equals(questionsP1.get(i).getTheme().getNom(), themesP1.get(indiceTheme).getNom())) {
+                questionsDuTheme.add(questions.getQuestions().get(i));
             }
         }
         String repJoueur = "";
-        for (Question question : listeQduTheme) {
+        for (Question question : questionsDuTheme) {
             for (Joueur participant : participants) {
                 System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
@@ -173,7 +173,7 @@ public class Jeu implements Phase{
     public static void main(String[] args) {
         System.out.println("Bienvenue dans le jeu des Questions-Réponses !");
         //1. INITIALISATION THEMES
-        Themes themesJeu = new Themes(new ArrayList<Theme>()); //Place une liste de thèmes dans une instance de Thèmes
+        Themes themesJeu = new Themes(); //Place une liste de thèmes dans une instance de Thèmes
         themesJeu.genererThemes(); //Génère les 10 thèmes
 
         //2. INITIALISATION JOUEURS

@@ -1,7 +1,5 @@
 package themes;
 
-import themes.Theme;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,8 +11,8 @@ public class Themes {
     protected List<Theme> themes;     // The list of the themes
     protected List<Integer> indicator;    // Position, indicator of each theme
 
-    public Themes(List<Theme> themes){
-        this.themes = themes;
+    public Themes(){
+        this.themes = new ArrayList<>();
     }
 
     public int selectTheme(){
@@ -107,12 +105,12 @@ public class Themes {
 
     @Override
     public String toString(){
-       String listThemes = "";
-        for (int i = 0; i<=(themes.size()+1); i++){
-            String a = "Thème : " + themes.get(i) + ", indicator : " + i + "\n";
-            listThemes = listThemes + a;
+       String themes = "";
+        for (int i = 0; i<=(this.themes.size()+1); i++){
+            String a = "Thème : " + this.themes.get(i).getNom() + ", indicator : " + i + "\n";
+            themes += a;
         }
-        return listThemes;
+        return themes;
     }
 
     //GETTERS & SETTERS
