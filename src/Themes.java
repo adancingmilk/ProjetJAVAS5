@@ -48,9 +48,9 @@ public class Themes {
         return themes; //this function was useful in subject n°1, "add 5 themes to the list"
     }
 
-    public ArrayList<String> selectMultipleThemeRandomly(int n) {
-        ArrayList<String> selectedThemes = new ArrayList<>();
-        ArrayList<String> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
+    public List<String> selectMultipleThemeRandomly(int n) {
+        List<String> selectedThemes = new ArrayList<>();
+        List<String> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
 
         Random rand = new Random();
         int selectedThemeIndex;

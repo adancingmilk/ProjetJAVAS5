@@ -95,15 +95,15 @@ public class Jeu implements Phase{
 
     @Override
     public void Phase2() {
-        ArrayList<String> listeThemeP2 = themes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+        List<String> themesP2 = themes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
-        for(String theme : listeThemeP2)
+        for(String theme : themesP2)
             System.out.println(theme);
 
         //SÉLECTION DU THÈME POUR CHAQUE JOUEUR À TOUR DE RÔLE
         for(Joueur participant : participants) {
-            participant.setTheme1P2(participant.selectionTheme(listeThemeP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
+            participant.setTheme1P2(participant.selectionTheme(themesP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
             System.out.println(participant.getNom() + " a sélectionné le thème " + participant.getTheme1P2());
         }
 
@@ -154,6 +154,7 @@ public class Jeu implements Phase{
     }
 
     public static void main(String[] args) {
+        System.out.println("Bienvenue au jeu de Questions Réponses !");
         //1. INITIALISATION THEMES
         ArrayList<String> listThemes = new ArrayList<String>();
 
