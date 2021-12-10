@@ -5,7 +5,6 @@ import questions.Question_QCM;
 import questions.Question_VF;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -89,7 +88,7 @@ public class Joueur {
     }
 
     //Méthode de sélection d'un thème lors de la phase 2
-    public String selectionTheme(List<String> themesP2) {
+    public String selectionTheme(ArrayList<String> themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         boolean valide = false; //Validité de la réponse
         String rep ="";

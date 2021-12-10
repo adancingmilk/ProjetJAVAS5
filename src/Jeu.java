@@ -2,27 +2,29 @@ import joueurs.Joueur;
 import joueurs.Joueurs;
 import questions.*;
 
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Jeu implements Phase{
     private int nbJ;
-    private Questions questions;
-    private Themes themes;
-    private Joueurs joueurs;
+    private Questions listQ;
+    private Themes listThemes;
+    private Joueurs listPlayer;
     private ArrayList<Joueur> participants;
-    private List<Integer> indicesThemesJouer;
+    private List<Integer> indiceThemesJouer;
 
     public Jeu(){
     }
 
-    public Jeu(int nbJ, Questions questions, Themes listThemes, Joueurs joueurs){
+    public Jeu(int nbJ,Questions listQ, Themes listThemes, Joueurs listPlayer){
         this.participants = new ArrayList<>();
-        this.questions = questions;
-        this.themes = listThemes;
-        this.joueurs = joueurs;
-        this.indicesThemesJouer = new ArrayList<>();
+        this.listQ = listQ;
+        this.listThemes = listThemes;
+        this.listPlayer = listPlayer;
+        this.indiceThemesJouer = new ArrayList<>();
         this.nbJ = nbJ;
     }
 
@@ -30,7 +32,7 @@ public class Jeu implements Phase{
     public void Phase1() {
         Joueur player = new Joueur();
         for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
-            player = joueurs.selectJoueur();
+            player = listPlayer.selectJoueur();
             boolean doublon = false;
             for (Joueur J : participants){
                 if(player.getNumero() == J.getNumero()){
@@ -42,17 +44,17 @@ public class Jeu implements Phase{
                 participants.add(player);
             }
         }
-        int indiceTheme = this.themes.selectRandomTheme(); //On pioche un thème au hasard du jeu
-        indicesThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
+        int indiceTheme = this.listThemes.selectRandomTheme(); //On pioche un thème au hasard du jeu
+        indiceThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
-        List<Question> questionsTemp = questions.getQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
-        ArrayList<String> listeTheme = themes.getThemes();
+        ArrayList<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
+        ArrayList<String> listeTheme = listThemes.getListTheme();
 
         ArrayList<Question> listeQduTheme = new ArrayList<Question>();
 
-        for(int i = 0; i < questionsTemp.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
-            if (Objects.equals(questionsTemp.get(i).getTheme(), listeTheme.get(indiceTheme))){
-                listeQduTheme.add(questions.getQuestions().get(i));
+        for(int i = 0 ; i < listeQuestions.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
+            if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))){
+                listeQduTheme.add(listQ.getListQuestions().get(i));
             }
         }
         String repJoueur = "";
@@ -63,7 +65,7 @@ public class Jeu implements Phase{
                 if (question instanceof Question_QCM){
                     String propositions = "";
                     int i = 1;
-                    for(String s : ((Question_QCM) question).getChoix()){
+                    for(String s : question.getReponses()){
                         propositions +=  i++ + ". (" + s.toString() + ") ";
                     };
                     System.out.println(propositions);
@@ -90,26 +92,48 @@ public class Jeu implements Phase{
         joueurElimine.setEtatActuel("E");
         System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
-        System.out.println("Thème utilisé lors de la phase 1 : " + this.themes.getThemes().get(indiceTheme) + "\n");
+        System.out.println("Thème utilisé lors de la phase 1 : " + this.listThemes.getListTheme().get(indiceTheme) + "\n");
     }
 
     @Override
     public void Phase2() {
-        List<String> themesP2 = themes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+        /*ArrayList<String> listeThemeP2 = listThemes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
-        for(String theme : themesP2)
+        for(String theme : listeThemeP2)
             System.out.println(theme);
 
         //SÉLECTION DU THÈME POUR CHAQUE JOUEUR À TOUR DE RÔLE
         for(Joueur participant : participants) {
-            participant.setTheme1P2(participant.selectionTheme(themesP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
+            participant.setTheme1P2(participant.selectionTheme(listeThemeP2)); //Chaque joueur sélectionne un thème sur lequel il veut être interrogé
             System.out.println(participant.getNom() + " a sélectionné le thème " + participant.getTheme1P2());
+        }*/
+
+        int nbThemes = 6;
+        ArrayList<String> listeThemeP2;
+        ArrayList<Question> questionsP2 = new ArrayList<>();
+        for (int i = 0; i < nbThemes; i++) {
+            int indiceTheme = this.listThemes.selectRandomTheme(); //On pioche un thème au hasard du jeu
+            while (indiceThemesJouer.indexOf(indiceTheme) != -1) {
+                indiceTheme = this.listThemes.selectRandomTheme();
+            }
+            indiceThemesJouer.add(indiceTheme); //Le thème jouer, on le note
+            ArrayList<Question> listeQuestions = listQ.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
+            ArrayList<String> listeTheme = listThemes.getListTheme();
+
+            for (int n = 0; i < listeQuestions.size(); i++) { //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
+                if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))) {
+                    questionsP2.add(listQ.getListQuestions().get(i));
+                }
+            }
         }
-
-        //INITIALISATION DES QUESTIONS
-
     }
+
+
+
+
+
+
 
     @Override
     public void Phase3() {
@@ -122,39 +146,38 @@ public class Jeu implements Phase{
         participants.removeIf(participant -> Objects.equals(participant.getEtatActuel(), "E"));
     }
 
-    public Questions getQuestions(){
-        return this.questions;
+    public Questions getListQ(){
+        return this.listQ;
     }
     public Themes getListThemes(){
-        return this.themes;
+        return this.listThemes;
     }
-    public Joueurs getJoueurs(){
-        return this.joueurs;
+    public Joueurs getListPlayer(){
+        return this.listPlayer;
     }
     public List<Joueur> getParticipants() {
         return participants;
     }
-    public List<Integer> getIndicesThemesJouer() {
-        return indicesThemesJouer;
+    public List<Integer> getIndiceThemesJouer() {
+        return indiceThemesJouer;
     }
-    public void setQuestions(Questions questions){
-        this.questions = questions;
+    public void setListQ(Questions listQ){
+        this.listQ = listQ;
     }
-    public void setIndicesThemesJouer(ArrayList<Integer> indicesThemesJouer) {
-        this.indicesThemesJouer = indicesThemesJouer;
+    public void setIndiceThemesJouer(ArrayList<Integer> indiceThemesJouer) {
+        this.indiceThemesJouer = indiceThemesJouer;
     }
-    public void setJoueurs(Joueurs joueurs) {
-        this.joueurs = joueurs;
+    public void setListPlayer(Joueurs listPlayer) {
+        this.listPlayer = listPlayer;
     }
     public void setListThemes(Themes listThemes) {
-        this.themes = listThemes;
+        this.listThemes = listThemes;
     }
     public void setParticipants(ArrayList<Joueur> participants) {
         this.participants = participants;
     }
 
     public static void main(String[] args) {
-        System.out.println("Bienvenue au jeu de Questions Réponses !");
         //1. INITIALISATION THEMES
         ArrayList<String> listThemes = new ArrayList<String>();
 
@@ -171,13 +194,13 @@ public class Jeu implements Phase{
         listQ.genererQuestions(); //Génère les questions de TOUS les thèmes
 
         //4. DÉROULEMENT PHASE 1
-        Jeu jeu = new Jeu(4, listQ, themes, joueurs);
-        jeu.Phase1();
+        Jeu QuestionReponse = new Jeu(4, listQ, themes, joueurs);
+        QuestionReponse.Phase1();
 
-        jeu.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
+        QuestionReponse.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
 
         //5. DÉROULEMENT PHASE 2
-        jeu.Phase2();
+        QuestionReponse.Phase2();
 
             //5.1 SÉLECTION 6 THÈMES
 

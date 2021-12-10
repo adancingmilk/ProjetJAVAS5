@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.Random;
 
 public class Questions {
-    private List<Question> questions;
+    private ArrayList<Question> listQuestions;
 
-    public Questions(ArrayList<Question> questions){
-        this.questions = questions;
+    public Questions(ArrayList<Question> listQuestions){
+        this.listQuestions = listQuestions;
     }
     public Questions(){
-        this.questions = new ArrayList();
+        this.listQuestions = new ArrayList();
     }
-    public void add(Question q){
-        this.questions.add(q);
+    public void addQuestion(Question Q){
+        this.listQuestions.add(Q);
     }
 
     public void supprQuestion(int num){
-        this.questions.remove(num);
+        this.listQuestions.remove(num);
     }
 
     //Génère 10 questions (3 faciles, 4 moyennes, 3 difficiles) par thème
@@ -39,18 +39,16 @@ public class Questions {
         Question mathQ9 = new Question_QCM(3, "Qui a popularisé les logarithmes ?", "Mathématiques", 9, reps_mathQ9, "1");
         Question mathQ10 = new Question_VF(3, "René Descartes fut né le 13 Mars 1595", "Mathématiques", 10, "F");
 
-        Question[] listQuestions = new Question[100];
-
-        add(mathQ1);
-        add(mathQ2);
-        add(mathQ3);
-        add(mathQ4);
-        add(mathQ5);
-        add(mathQ6);
-        add(mathQ7);
-        add(mathQ8);
-        add(mathQ9);
-        add(mathQ10);
+        addQuestion(mathQ1);
+        addQuestion(mathQ2);
+        addQuestion(mathQ3);
+        addQuestion(mathQ4);
+        addQuestion(mathQ5);
+        addQuestion(mathQ6);
+        addQuestion(mathQ7);
+        addQuestion(mathQ8);
+        addQuestion(mathQ9);
+        addQuestion(mathQ10);
 
         Question histQ1 = new Question_RC(1,"En quelle année a débuté la 1ère guerre mondiale","Histoire",1,"1914");
         Question histQ2 = new Question_VF(1,"Les gaulois mangeaient du sanglier", "Histoire", 2, "F");
@@ -65,16 +63,16 @@ public class Questions {
         Question histQ9 = new Question_RC(3,"Comment l'Egypte s'appelait elle ?","Histoire",9,"Taouy");
         Question histQ10 = new Question_VF(3,"Le chien de Napoléon Bonaparte s'appelait Milou", "Histoire", 10, "V");
 
-        add(histQ1);
-        add(histQ2);
-        add(histQ3);
-        add(histQ4);
-        add(histQ5);
-        add(histQ6);
-        add(histQ7);
-        add(histQ8);
-        add(histQ9);
-        add(histQ10);
+        addQuestion(histQ1);
+        addQuestion(histQ2);
+        addQuestion(histQ3);
+        addQuestion(histQ4);
+        addQuestion(histQ5);
+        addQuestion(histQ6);
+        addQuestion(histQ7);
+        addQuestion(histQ8);
+        addQuestion(histQ9);
+        addQuestion(histQ10);
         //2. ANIME
 
         //3. GÉOGRAPHIE
@@ -86,22 +84,22 @@ public class Questions {
         Question geoQ5 = new Question_RC(2, "Quel est le plus grand pays du monde ?", "Géographie", 5, "Russie");
         String[] reps_geoQ6 = { "5432", "4809", "8848" };
         Question geoQ6 = new Question_QCM(2, "Quelle est l'altitude du mont Everest (en m) ?", "Géographie", 6, reps_geoQ6, "3");
-        Question geoQ7 = new Question_RC(2, "Quelle est la capital de l'australie ?", "Géographie", 7, "Canberra");
+        Question geoQ7 = new Question_RC(2, "Quelle est la capitale de l'australie ?", "Géographie", 7, "Canberra");
         Question geoQ8 = new Question_RC(3, "Comment le Malawi s'appelait en 1950 ?", "Géographie", 8, "Nyassaland");
         String[] reps_geoQ9 = { "540 000", "620 000", "510 000" };
         Question geoQ9 = new Question_QCM(3, "Quelle est la superficie de la France (en km) ?", "Géographie", 9, reps_geoQ9, "1");
         Question geoQ10 = new Question_VF(3, "Rovaniemi, la ville du Père noël se trouve en Norvège ?", "Géographie", 10, "F");
 
-        add(geoQ1);
-        add(geoQ2);
-        add(geoQ3);
-        add(geoQ4);
-        add(geoQ5);
-        add(geoQ6);
-        add(geoQ7);
-        add(geoQ8);
-        add(geoQ9);
-        add(geoQ10);
+        addQuestion(geoQ1);
+        addQuestion(geoQ2);
+        addQuestion(geoQ3);
+        addQuestion(geoQ4);
+        addQuestion(geoQ5);
+        addQuestion(geoQ6);
+        addQuestion(geoQ7);
+        addQuestion(geoQ8);
+        addQuestion(geoQ9);
+        addQuestion(geoQ10);
 
         //4. JEUX-VIDÉO
         Question jvQ1 = new Question_RC(1,"Quel est le nom du fameux personnage de nintendo effectuant le métier de plombier et ayant une moustanche et des habits rouges et bleus?","Jeux-Vidéo",1,"Mario");
@@ -118,16 +116,16 @@ public class Questions {
         Question jvQ9 = new Question_RC(3,"Dans quel pays les jeux vidéos sont-ils installés sur des machines en premier ","Jeux-Vidéo",9,"Etats-Unis");
         Question jvQ10 = new Question_RC(3,"En quelle année le premier jeu vidéo a-t-il été créé ?","Jeux-Vidéo",10,"1962");
 
-        add(jvQ1);
-        add(jvQ2);
-        add(jvQ3);
-        add(jvQ4);
-        add(jvQ5);
-        add(jvQ6);
-        add(jvQ7);
-        add(jvQ8);
-        add(jvQ9);
-        add(jvQ10);
+        addQuestion(jvQ1);
+        addQuestion(jvQ2);
+        addQuestion(jvQ3);
+        addQuestion(jvQ4);
+        addQuestion(jvQ5);
+        addQuestion(jvQ6);
+        addQuestion(jvQ7);
+        addQuestion(jvQ8);
+        addQuestion(jvQ9);
+        addQuestion(jvQ10);
 
         //5. ANIMAUX
         Question animauxQ1 = new Question_RC(1,"Combien de pattes a une araignée","Animaux",1,"8");
@@ -145,16 +143,16 @@ public class Questions {
         String[] reps_animauxQ10 = {"2cm","25cm","55cm"};
         Question animauxQ10 = new Question_QCM(3,"Quelle est la taille d'un bébé kangourou lors de sa naissance ?","Animaux",10,reps_animauxQ10, "1");
 
-        add(animauxQ1);
-        add(animauxQ2);
-        add(animauxQ3);
-        add(animauxQ4);
-        add(animauxQ5);
-        add(animauxQ6);
-        add(animauxQ7);
-        add(animauxQ8);
-        add(animauxQ9);
-        add(animauxQ10);
+        addQuestion(animauxQ1);
+        addQuestion(animauxQ2);
+        addQuestion(animauxQ3);
+        addQuestion(animauxQ4);
+        addQuestion(animauxQ5);
+        addQuestion(animauxQ6);
+        addQuestion(animauxQ7);
+        addQuestion(animauxQ8);
+        addQuestion(animauxQ9);
+        addQuestion(animauxQ10);
 
         //6. SPORT
         String[] reps_sportQ1 = { "Allemagne", "Brésil", "France" };
@@ -172,16 +170,16 @@ public class Questions {
         Question sportQ9 = new Question_QCM(3, "En quelle année le badminton est devenu une discipline olympique ?", "Sport", 9, reps_sportQ5, "1");
         Question sportQ10 = new Question_VF(3, "Le plus long match de baseball a duré 7h20 ?", "Sport", 10, "V");
 
-        add(sportQ1);
-        add(sportQ2);
-        add(sportQ3);
-        add(sportQ4);
-        add(sportQ5);
-        add(sportQ6);
-        add(sportQ7);
-        add(sportQ8);
-        add(sportQ9);
-        add(sportQ10);
+        addQuestion(sportQ1);
+        addQuestion(sportQ2);
+        addQuestion(sportQ3);
+        addQuestion(sportQ4);
+        addQuestion(sportQ5);
+        addQuestion(sportQ6);
+        addQuestion(sportQ7);
+        addQuestion(sportQ8);
+        addQuestion(sportQ9);
+        addQuestion(sportQ10);
         //7. LA LANGUE FRANÇAISE
         Question frQ1 = new Question_RC(1,"Quel est le pronom personnel sujet de la 2ème personne du singulier","La langue française",1,"tu");
         Question frQ2 = new Question_VF(1 , "Ils croivent est la conjugaison correcte du verbe croire à la 3eme personne du pluriel","La langue française", 2,"F");
@@ -196,16 +194,16 @@ public class Questions {
         Question frQ9 = new Question_QCM(3,"Dans quelle ville est né Molière ?","La langue française",9,reps_frQ9,"2");
         Question frQ10 = new Question_VF(3 ,"Il est correct de dire : Après qu'il soit parti","La langue française",10,"F");
 
-        add(frQ1);
-        add(frQ2);
-        add(frQ3);
-        add(frQ4);
-        add(frQ5);
-        add(frQ6);
-        add(frQ7);
-        add(frQ8);
-        add(frQ9);
-        add(frQ10);
+        addQuestion(frQ1);
+        addQuestion(frQ2);
+        addQuestion(frQ3);
+        addQuestion(frQ4);
+        addQuestion(frQ5);
+        addQuestion(frQ6);
+        addQuestion(frQ7);
+        addQuestion(frQ8);
+        addQuestion(frQ9);
+        addQuestion(frQ10);
         //8. CULTURE JAPONAISE
         String[] reps_JapQ1 = { "Osaka", "Tokyo", "Shibuya" };
         Question JapQ1 = new Question_QCM(1, "Quelle est la capitale du Japon ?", "Culture_Japonaise", 1, reps_JapQ1, "2");
@@ -223,16 +221,16 @@ public class Questions {
         Question JapQ10 = new Question_VF(3, "Le titre de l'hymne japonias est : Kimi ga yo ?", "Culture_Japonaise", 10, "V");
 
 
-        add(JapQ1);
-        add(JapQ2);
-        add(JapQ3);
-        add(JapQ4);
-        add(JapQ5);
-        add(JapQ6);
-        add(JapQ7);
-        add(JapQ8);
-        add(JapQ9);
-        add(JapQ10);
+        addQuestion(JapQ1);
+        addQuestion(JapQ2);
+        addQuestion(JapQ3);
+        addQuestion(JapQ4);
+        addQuestion(JapQ5);
+        addQuestion(JapQ6);
+        addQuestion(JapQ7);
+        addQuestion(JapQ8);
+        addQuestion(JapQ9);
+        addQuestion(JapQ10);
         //9. NOURRITURE
         String[] reps_nourQ1 = { "yaourt", "fromage", "carotte" };
         Question nourQ1 = new Question_QCM(1, "Qui n'est pas un produit laitier ?", "nourriture", 1, reps_sportQ1, "3");
@@ -248,16 +246,16 @@ public class Questions {
         Question nourQ9 = new Question_QCM(3, "Quel est le diamètre idéal d'une pizza ?", "nourriture", 9, reps_sportQ5, "1");
         Question nourQ10 = new Question_VF(3, "L’arachibutyrophobie désigne la peur du beurre d’arachide. ?", "nourriture", 10, "V");
 
-        add(nourQ1);
-        add(nourQ2);
-        add(nourQ3);
-        add(nourQ4);
-        add(nourQ5);
-        add(nourQ6);
-        add(nourQ7);
-        add(nourQ8);
-        add(nourQ9);
-        add(nourQ10);
+        addQuestion(nourQ1);
+        addQuestion(nourQ2);
+        addQuestion(nourQ3);
+        addQuestion(nourQ4);
+        addQuestion(nourQ5);
+        addQuestion(nourQ6);
+        addQuestion(nourQ7);
+        addQuestion(nourQ8);
+        addQuestion(nourQ9);
+        addQuestion(nourQ10);
         //10.INFORMATIQUE
         String[] reps_infoQ1 = { "HTML", "Java", "python" };
         Question infoQ1 = new Question_QCM(1, "Quel est le langage utilisé pour créer un site web ?", "informatique", 1, reps_sportQ1, "1");
@@ -273,37 +271,37 @@ public class Questions {
         Question infoQ9 = new Question_QCM(3, "Qu'est ce que l'héritage ?", "informatique", 9, reps_sportQ5, "3");
         Question infoQ10 = new Question_VF(3, "Les package java.nio2 existe ?", "informatique", 10, "F");
 
-        add(infoQ1);
-        add(infoQ2);
-        add(infoQ3);
-        add(infoQ4);
-        add(infoQ5);
-        add(infoQ6);
-        add(infoQ7);
-        add(infoQ8);
-        add(infoQ9);
-        add(infoQ10);
+        addQuestion(infoQ1);
+        addQuestion(infoQ2);
+        addQuestion(infoQ3);
+        addQuestion(infoQ4);
+        addQuestion(infoQ5);
+        addQuestion(infoQ6);
+        addQuestion(infoQ7);
+        addQuestion(infoQ8);
+        addQuestion(infoQ9);
+        addQuestion(infoQ10);
     }
 
     public Question selectQuestion(int difficulte){
         ArrayList<Integer> listIndice = new ArrayList<Integer>();
 
-        for(int i = 0; i < questions.size(); i++){
-            if(questions.get(i).getDifficulte() == difficulte){
+        for(int i = 0; i < listQuestions.size(); i++){
+            if(listQuestions.get(i).getDifficulte() == difficulte){
                 listIndice.add(i);
             }
         }
         Random rand = new Random();
         int randomIndex = rand.nextInt(listIndice.size());
-        return questions.get(randomIndex);
+        return listQuestions.get(randomIndex);
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public ArrayList<Question> getListQuestions() {
+        return listQuestions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
+    public void setListQuestions(ArrayList<Question> listQuestions) {
+        this.listQuestions = listQuestions;
     }
 
 }
