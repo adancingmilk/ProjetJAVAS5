@@ -101,7 +101,7 @@ public class Joueur {
                 for(Theme theme : themesP2) {
                     if(Objects.equals(rep, theme.getNom())) {
                         valide = true;
-                        themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la Phase 2 (2 thèmes à choisir)
+                        themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
                         break;
                     }
                 }

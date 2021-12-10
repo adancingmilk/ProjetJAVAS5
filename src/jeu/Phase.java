@@ -1,3 +1,5 @@
+package jeu;
+
 public interface Phase {
     public void Phase1();
     public void Phase2();

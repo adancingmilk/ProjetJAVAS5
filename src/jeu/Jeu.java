@@ -1,3 +1,5 @@
+package jeu;
+
 import joueurs.Joueur;
 import joueurs.Joueurs;
 import questions.*;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Jeu implements Phase{
+public class Jeu implements Phase {
     private int nbJ;
     private Questions questions;
     private Themes themes;
