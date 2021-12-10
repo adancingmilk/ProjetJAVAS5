@@ -1,23 +1,21 @@
 package joueurs;
 
-import joueurs.Joueur;
-
 import java.util.Random;
 
 public class Joueurs {
-    Joueur[] tabJoueurs;
+    Joueur[] joueurs;
 
     //Constructeur principal
     public Joueurs(Joueur[] joueurs) {
-        this.tabJoueurs = joueurs;
+        this.joueurs = joueurs;
     }
 
     //Selectionne un joueur aléatoirement selon la taille du tableau de joueurs
     public Joueur selectJoueur() {
         Random rand = new Random(); //Génère un nouveau random
-        int joueurSelectionne = rand.nextInt(tabJoueurs.length);
+        int joueurSelectionne = rand.nextInt(joueurs.length);
 
-        return tabJoueurs[joueurSelectionne]; //Retourne le joueur sélectionné
+        return joueurs[joueurSelectionne]; //Retourne le joueur sélectionné
     }
 
     //Génère des joueurs selon le nombre donné en paramètre
@@ -34,7 +32,7 @@ public class Joueurs {
                 tabNomJoueur[1] = Integer.toString(indexJoueur);
                 nomJoueur = tabNomJoueur[0] + tabNomJoueur[1];
 
-                tabJoueurs[i] = new Joueur(nomJoueur, numJoueur); //Ajoute un nouveau joueur de nom JXX et de numéro XXX
+                joueurs[i] = new Joueur(nomJoueur, numJoueur); //Ajoute un nouveau joueur de nom JXX et de numéro XXX
 
                 numJoueur+=10; //Ajoute 10 au numéro
             }
@@ -48,18 +46,18 @@ public class Joueurs {
         StringBuilder s = new StringBuilder("JOUEURS\n");
 
         //Chaque joueur contenu dans le tableau
-        for(Joueur j : tabJoueurs) {
+        for(Joueur j : joueurs) {
             s.append(j.toString()).append("\n");
         }
 
         return s.toString();
     }
 
-    public Joueur[] getTabJoueurs() {
-        return tabJoueurs;
+    public Joueur[] getJoueurs() {
+        return joueurs;
     }
 
-    public void setTabJoueurs(Joueur[] tabJoueurs) {
-        this.tabJoueurs = tabJoueurs;
+    public void setJoueurs(Joueur[] joueurs) {
+        this.joueurs = joueurs;
     }
 }
