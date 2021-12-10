@@ -45,14 +45,14 @@ public class Jeu implements Phase{
         int indiceTheme = this.themes.selectRandomTheme(); //On pioche un thème au hasard du jeu
         indicesThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
-        ArrayList<Question> listeQuestions = questions.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
+        List<Question> listeQuestions = questions.getQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
         ArrayList<String> listeTheme = themes.getThemes();
 
         ArrayList<Question> listeQduTheme = new ArrayList<Question>();
 
         for(int i = 0 ; i < listeQuestions.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
             if (Objects.equals(listeQuestions.get(i).getTheme(), listeTheme.get(indiceTheme))){
-                listeQduTheme.add(questions.getListQuestions().get(i));
+                listeQduTheme.add(questions.getQuestions().get(i));
             }
         }
         String repJoueur = "";
@@ -63,7 +63,7 @@ public class Jeu implements Phase{
                 if (question instanceof Question_QCM){
                     String propositions = "";
                     int i = 1;
-                    for(String s : question.getReponses()){
+                    for(String s : ((Question_QCM) question).getChoix()){
                         propositions +=  i++ + ". (" + s.toString() + ") ";
                     };
                     System.out.println(propositions);
