@@ -46,7 +46,7 @@ public class Jeu implements Phase{
         indicesThemesJouer.add(indiceTheme); //Le thème jouer lors de la phase 1 on le note
 
         ArrayList<Question> listeQuestions = questions.getListQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
-        ArrayList<String> listeTheme = themes.getListTheme();
+        ArrayList<String> listeTheme = themes.getThemes();
 
         ArrayList<Question> listeQduTheme = new ArrayList<Question>();
 
@@ -90,7 +90,7 @@ public class Jeu implements Phase{
         joueurElimine.setEtatActuel("E");
         System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
-        System.out.println("Thème utilisé lors de la phase 1 : " + this.themes.getListTheme().get(indiceTheme) + "\n");
+        System.out.println("Thème utilisé lors de la phase 1 : " + this.themes.getThemes().get(indiceTheme) + "\n");
     }
 
     @Override
@@ -170,13 +170,13 @@ public class Jeu implements Phase{
         listQ.genererQuestions(); //Génère les questions de TOUS les thèmes
 
         //4. DÉROULEMENT PHASE 1
-        Jeu QuestionReponse = new Jeu(4, listQ, themes, joueurs);
-        QuestionReponse.Phase1();
+        Jeu jeu = new Jeu(4, listQ, themes, joueurs);
+        jeu.Phase1();
 
-        QuestionReponse.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
+        jeu.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
 
         //5. DÉROULEMENT PHASE 2
-        QuestionReponse.Phase2();
+        jeu.Phase2();
 
             //5.1 SÉLECTION 6 THÈMES
 

@@ -1,16 +1,17 @@
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Themes {
 
-    protected ArrayList<String> listTheme;     // The list of the themes
+    protected ArrayList<String> themes;     // The list of the themes
     protected ArrayList<Integer> indicator;    // Position, indicator of each theme
 
     public Themes(ArrayList<String> listTheme){
-        this.listTheme = listTheme;
+        this.themes = listTheme;
     }
 
     public int selectTheme(){
@@ -18,26 +19,26 @@ public class Themes {
         System.out.println("Enter a theme: ");
         String theme= reader.nextLine();
         reader.close(); //We ask the user a theme
-        if (!listTheme.contains(theme)){
+        if (!themes.contains(theme)){
             System.out.println("Theme isn't in the list");
             return -1;
         }
         else{
-            this.indicator.add(listTheme.indexOf(theme));
-            return listTheme.indexOf(theme);
+            this.indicator.add(themes.indexOf(theme));
+            return themes.indexOf(theme);
         }  // We verify if the theme is in the list, if yes we return the indicator of the theme
     }
     public int selectRandomTheme(){
-        return ThreadLocalRandom.current().nextInt(0,listTheme.size());
+        return ThreadLocalRandom.current().nextInt(0, themes.size());
     }
 
-    public ArrayList<String> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
+    public List<String> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
         ArrayList<String> themes = new ArrayList<String>();
-        themes.add(listTheme.get(theme1));
-        themes.add(listTheme.get(theme2));
-        themes.add(listTheme.get(theme3));
-        themes.add(listTheme.get(theme4));
-        themes.add(listTheme.get(theme5));
+        themes.add(this.themes.get(theme1));
+        themes.add(this.themes.get(theme2));
+        themes.add(this.themes.get(theme3));
+        themes.add(this.themes.get(theme4));
+        themes.add(this.themes.get(theme5));
         this.indicator.add(theme1);
         this.indicator.add(theme2);
         this.indicator.add(theme3);
@@ -49,7 +50,7 @@ public class Themes {
 
     public ArrayList<String> selectMultipleThemeRandomly(int n) {
         ArrayList<String> selectedThemes = new ArrayList<>();
-        ArrayList<String> tempThemes = listTheme; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
+        ArrayList<String> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
 
         Random rand = new Random();
         int selectedThemeIndex;
@@ -71,10 +72,10 @@ public class Themes {
             System.out.println("Enter a theme: ");
             String theme = reader.nextLine();
             reader.close(); //We ask the user a theme
-            if (!listTheme.contains(theme)) {
+            if (!this.themes.contains(theme)) {
                 System.out.println("Theme isn't in the list");
             } else {
-                this.indicator.add(listTheme.indexOf(theme));
+                this.indicator.add(this.themes.indexOf(theme));
                 themes.add(theme);
                 i++;
             }// We verify if the theme is in the list, if yes we return the indicator of the theme and add the theme to the final list
@@ -84,34 +85,34 @@ public class Themes {
 
     //Ajoute les thèmes à l'ArrayList listThemes
     public void genererThemes() {
-        listTheme.add("Mathématiques");
-        listTheme.add("Histoire");
-        listTheme.add("Géographie");
-        listTheme.add("Jeux-Vidéo");
-        listTheme.add("Animaux");
-        listTheme.add("Sport");
-        listTheme.add("La langue française");
-        listTheme.add("Culture Japonaise");
-        listTheme.add("Nourriture");
-        listTheme.add("Informatique");
+        themes.add("Mathématiques");
+        themes.add("Histoire");
+        themes.add("Géographie");
+        themes.add("Jeux-Vidéo");
+        themes.add("Animaux");
+        themes.add("Sport");
+        themes.add("La langue française");
+        themes.add("Culture Japonaise");
+        themes.add("Nourriture");
+        themes.add("Informatique");
     }
 
     @Override
     public String toString(){
        String listThemes = "";
-        for (int i = 0; i<=(listTheme.size()+1);i++){
-            String a = "Thème : " + listTheme.get(i) + ", indicator : " + i + "\n";
+        for (int i = 0; i<=(themes.size()+1); i++){
+            String a = "Thème : " + themes.get(i) + ", indicator : " + i + "\n";
             listThemes = listThemes + a;
         }
         return listThemes;
     }
 
     //GETTERS & SETTERS
-    public ArrayList<String> getListTheme() {
-        return listTheme;
+    public ArrayList<String> getThemes() {
+        return themes;
     }
-    public void setListTheme(ArrayList<String> listTheme) {
-        this.listTheme = listTheme;
+    public void setThemes(ArrayList<String> themes) {
+        this.themes = themes;
     }
 
     public ArrayList<Integer> getIndicator() {
