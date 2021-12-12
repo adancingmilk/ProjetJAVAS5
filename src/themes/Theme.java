@@ -24,4 +24,9 @@ public class Theme {
         Theme theme = (Theme) o;
         return Objects.equals(nom, theme.nom);
     }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
 }

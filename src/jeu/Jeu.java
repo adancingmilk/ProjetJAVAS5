@@ -105,11 +105,11 @@ public class Jeu implements Phase {
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
         for(Theme theme : themesP2)
-            System.out.println(theme.getNom());
+            System.out.println(theme);
 
-        //SÉLECTION DU THÈME POUR CHAQUE JOUEUR À TOUR DE RÔLE
+        //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE
         for(Joueur participant : participants) {
-            participant.selectionTheme(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+            participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
         }
 
         /*int nbThemes = 6;

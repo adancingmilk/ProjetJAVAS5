@@ -90,7 +90,7 @@ public class Joueur {
     }
 
     //Méthode de sélection d'un thème lors de la phase 2
-    public void selectionTheme(List<Theme> themesP2) {
+    public void selectionThemeP2(List<Theme> themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         themesP2sel = new Themes();
         boolean valide = false; //Validité de la réponse
