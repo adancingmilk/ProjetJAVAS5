@@ -1,5 +1,7 @@
 package questions;
 
+import themes.Theme;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -298,6 +300,17 @@ public class Questions {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    //Retourne une liste contenant les questions d'un thème en particulier
+    public List<Question> getQuestionsTheme(Theme theme) {
+        List<Question> questionsTheme = new ArrayList<Question>();
+        for(Question q : questions) {
+            if(q.theme.equals(theme))
+                questionsTheme.add(q);
+        }
+
+        return questionsTheme;
     }
 
     public void setQuestions(List<Question> questions) {

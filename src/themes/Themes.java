@@ -36,8 +36,11 @@ public class Themes {
 
     public void remove(Theme theme) { themes.remove(theme); }
 
-    public int selectRandomTheme(){
-        return ThreadLocalRandom.current().nextInt(0, themes.size());
+    public Theme selectRandomTheme(){
+        Random rand = new Random();
+        int selectedThemeIndex = rand.nextInt(themes.size());
+        return themes.get(selectedThemeIndex); //Retourne le thème sélectionné
+        //return ThreadLocalRandom.current().nextInt(0, themes.size());
     }
 
     public List<Theme> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
@@ -107,12 +110,12 @@ public class Themes {
 
     @Override
     public String toString(){
-       String themes = "";
-        for (int i = 0; i<=(this.themes.size()+1); i++){
-            String a = "Thème : " + this.themes.get(i).getNom() + ", indicator : " + i + "\n";
-            themes += a;
+       String text = "";
+        for (int i = 0; i < themes.size(); i++){
+            String a = "Thème : " + themes.get(i).getNom() + ", indicator : " + i + "\n";
+            text += a;
         }
-        return themes;
+        return text;
     }
 
     //GETTERS & SETTERS

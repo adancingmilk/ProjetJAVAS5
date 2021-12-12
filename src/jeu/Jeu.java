@@ -33,6 +33,7 @@ public class Jeu implements Phase {
 
     @Override
     public void Phase1() {
+        System.out.println("- - - DÉBUT PHASE 1 - - -");
         Joueur player = new Joueur();
         for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
             player = joueurs.selectJoueur();
@@ -47,21 +48,13 @@ public class Jeu implements Phase {
                 participants.add(player);
             }
         }
-        int indiceTheme = this.themes.selectRandomTheme(); //On pioche un thème au hasard du jeu
-        indiceThemesJouer.add(indiceTheme); //Le thème joué lors de la phase 1 on le note
 
-        List<Question> questionsP1 = questions.getQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
-        List<Theme> themesP1 = themes.getThemes();
+        Theme themeSelP1 = themes.selectRandomTheme(); //Thème sélectionné lors de la Phase 1
+        System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
+        List<Question> questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
 
-        List<Question> questionsDuTheme = new ArrayList<>();
-
-        for(int i = 0; i < questionsP1.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
-            if (questionsP1.get(i).getTheme().equals(themesP1.get(indiceTheme))) {
-                questionsDuTheme.add(questions.getQuestions().get(i));
-            }
-        }
         String repJoueur = "";
-        for (Question question : questionsDuTheme) {
+        for (Question question : questionsP1) {
             for (Joueur participant : participants) {
                 System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
@@ -96,12 +89,14 @@ public class Jeu implements Phase {
         joueurElimine.setEtatActuel("E");
         System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
-        System.out.println("Thème utilisé lors de la phase 1 : " + this.themes.getThemes().get(indiceTheme).getNom() + "\n");
-        themes.remove(themesP1.get(indiceTheme)); //On supprime le thème de cette manche des thèmes du jeu
+        System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
+        themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
+        System.out.println("- - - FIN PHASE 1 - - -");
     }
 
     @Override
     public void Phase2() {
+        System.out.println("- - - DÉBUT PHASE 2 - - -");
         List<Theme> themesP2 = themes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
@@ -113,29 +108,17 @@ public class Jeu implements Phase {
             participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
         }
 
-        /*int nbThemes = 6;
-        ArrayList<String> listeThemeP2;
-        ArrayList<Question> questionsP2 = new ArrayList<>();
-        for (int i = 0; i < nbThemes; i++) {
-            int indiceTheme = this.themes.selectRandomTheme(); //On pioche un thème au hasard du jeu
-            while (indiceThemesJouer.indexOf(indiceTheme) != -1) {
-                indiceTheme = this.themes.selectRandomTheme();
-            }
-            indiceThemesJouer.add(indiceTheme); //Le thème jouer, on le note
-            List<Question> listeQuestions = questions.getQuestions(); //On récupère la liste des questions du thème de l'indice selectionné
-            List<String> listeTheme = themes.getThemes();
+        //CODE PHASE 2
 
-            for (int n = 0; i < listeQuestions.size(); i++) { //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
-                if (Objects.equals(listeQuestions.get(i).getNom(), listeTheme.get(indiceTheme))) {
-                    questionsP2.add(questions.getQuestions().get(i));
-                }
-            }
-        } */
+        System.out.println("- - - FIN PHASE 2 - - -");
     }
 
     @Override
     public void Phase3() {
-
+        System.out.println("- - - DÉBUT PHASE 3 - - -");
+        //CODE PHASE 3
+        System.out.println("- - - FIN PHASE 3 - - -");
+        System.out.println("- - - - - FIN DU JEU - - - - -");
     }
 
     @Override
