@@ -55,7 +55,7 @@ public class Jeu implements Phase {
         List<Question> questionsDuTheme = new ArrayList<>();
 
         for(int i = 0; i < questionsP1.size() ; i++){ //On récupère toutes les questions qui ont comme thème selectionné et on le stock dans listQduTheme
-            if (Objects.equals(questionsP1.get(i).getTheme().getNom(), themesP1.get(indiceTheme).getNom())) {
+            if (questionsP1.get(i).getTheme().equals(themesP1.get(indiceTheme))) {
                 questionsDuTheme.add(questions.getQuestions().get(i));
             }
         }
@@ -91,10 +91,12 @@ public class Jeu implements Phase {
                 joueurElimine = participant;
             }
         }
+
         joueurElimine.setEtatActuel("E");
         System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
         System.out.println("Thème utilisé lors de la phase 1 : " + this.themes.getThemes().get(indiceTheme).getNom() + "\n");
+        themes.remove(themesP1.get(indiceTheme)); //On supprime le thème de cette manche des thèmes du jeu
     }
 
     @Override

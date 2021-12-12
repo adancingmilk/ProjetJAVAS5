@@ -68,6 +68,7 @@ public class Joueur {
         } while(valide == 0); //Tant que ce que saisi le joueur n'est pas valide, on reste dans cette boucle
 
         //sc.close(); //Fermeture du scanner
+        sc.reset();
         return rep;
     }
 
@@ -91,15 +92,18 @@ public class Joueur {
     //Méthode de sélection d'un thème lors de la phase 2
     public void selectionTheme(List<Theme> themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
+        themesP2sel = new Themes();
         boolean valide = false; //Validité de la réponse
         String rep ="";
+
+        System.out.println(nom + ", veuillez choisir deux thèmes pour cette phase.");
 
         for(int i = 0; i < 2; i++) { //2 thèmes à choisir
             System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
             while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
                 rep = sc.next();
                 for(Theme theme : themesP2) {
-                    if(Objects.equals(rep, theme.getNom())) {
+                    if(Objects.equals(rep.toUpperCase(), theme.getNom().toUpperCase())) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
                         valide = true;
                         themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
                         break;
@@ -108,12 +112,13 @@ public class Joueur {
                 if(!valide)
                     System.out.println("[ERR] Le thème saisi n'est pas dans la liste. Réessayez.");
             }
+            valide = false; //On remet valide sur faux pour sélectionner le second thème
         }
 
         //Affiche les 2 thèmes sélectionnés par le joueur
-        System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0) + " et " + themesP2sel.getThemes().get(1) + ".");
+        System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0).getNom() + " et " + themesP2sel.getThemes().get(1).getNom() + ".");
 
-        //sc.close();
+        sc.reset();
     }
 
     @Override

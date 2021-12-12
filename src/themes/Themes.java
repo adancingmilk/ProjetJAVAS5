@@ -34,6 +34,8 @@ public class Themes {
         themes.add(theme);
     }
 
+    public void remove(Theme theme) { themes.remove(theme); }
+
     public int selectRandomTheme(){
         return ThreadLocalRandom.current().nextInt(0, themes.size());
     }
