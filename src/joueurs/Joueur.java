@@ -7,7 +7,6 @@ import questions.Questions;
 import themes.Theme;
 import themes.Themes;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
@@ -61,7 +60,7 @@ public class Joueur {
                 } else if(q instanceof Question_QCM) {
                     //Si la réponse est null, ou qu'elle n'est pas égale à 1, 2 ou 3, ressaisir la réponse
                     if(rep.equals("1") || rep.equals("2") || rep.equals("3"))
-                        valide =1;
+                        valide = 1;
                     else
                         System.out.println("[ERR] Saisie incorrecte.");
                 } else { //Si c'est une réponse courte et qu'elle a été saisi, alors elle est valide
@@ -72,7 +71,6 @@ public class Joueur {
 
         } while(valide == 0); //Tant que ce que saisi le joueur n'est pas valide, on reste dans cette boucle
 
-        //sc.close(); //Fermeture du scanner
         sc.reset();
         return rep;
     }
@@ -102,7 +100,7 @@ public class Joueur {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         themesP2sel = new Themes();
         boolean valide = false; //Validité de la réponse
-        String rep ="";
+        String rep;
 
         System.out.println(nom + ", veuillez choisir deux thèmes pour cette phase.");
 
