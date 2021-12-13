@@ -93,6 +93,9 @@ public class Joueur {
                 break;
         }
     }
+    public int getScore() {
+        return score;
+    }
 
     //Méthode de sélection d'un thème lors de la phase 2
     public void selectionThemeP2(Themes themesP2) {
@@ -164,6 +167,9 @@ public class Joueur {
                 etatActuel = etats[i];
         }
     }
+    public String getEtatActuel() {
+        return etatActuel;
+    }
 
     //GETTERS & SETTERS
     public int getNumero() {
@@ -171,20 +177,6 @@ public class Joueur {
     }
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public int getScore() {
-        return score;
-    }
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public String getEtatActuel() {
-        return etatActuel;
-    }
-    public void setEtatActuel(String etatActuel) {
-        this.etatActuel = etatActuel;
     }
 
     public String getNom() {
