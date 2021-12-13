@@ -64,7 +64,7 @@ public class Jeu implements Phase {
         System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine);
         System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
         themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
-        System.out.println("- - - FIN PHASE 1 - - -");
+        System.out.println("- - - FIN PHASE 1 - - - \n");
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Jeu implements Phase {
                 for(Theme t : participant.getThemesP2sel())
                     themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
             } else {
-                System.out.println("Il ne reste que 2 thèmes. Ils sont donc attribués automatiquement au joueur " + participant.getNom() + ".");
+                System.out.println("Il ne reste que 2 thèmes. Ils sont donc attribués automatiquement au joueur " + participant.getNom() + ". \n");
                 participant.setThemesP2sel(themesP2); //Il ne reste que 2 thèmes dans themesP2, donc attribués automatiquement
                 participant.addQuestionsP2(questions);
             }
@@ -92,6 +92,7 @@ public class Jeu implements Phase {
         //Fixe le nombre de questions posées basées sur la taille de la liste des questions du joueur 1 (par défaut)
         int nbQuestions = participants.get(0).getQuestionsP2().getQuestions().size();
 
+        //ON POSE LES QUESTIONS
         for(int i = 0; i < nbQuestions; i++) {
             for(int j = 0; j < 2; j++) { //On pose deux questions à chaque joueur à chaque tour
                 for(Joueur participant : participants) {
@@ -117,7 +118,7 @@ public class Jeu implements Phase {
             themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
 
         System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
-        System.out.println("- - - FIN PHASE 2 - - -");
+        System.out.println("- - - FIN PHASE 2 - - - \n");
     }
 
     @Override

@@ -143,7 +143,7 @@ public class Joueur {
         questionsP2 = new Questions();
         for(Question q : questions) {
             for(Theme t : themesP2sel) {
-                if(q.getTheme() == t) //Si le thème d'une question est le même que celui d'un des thèmes sélectionné par le joueur, alors on l'ajoute aux questionsP2
+                if(q.getTheme().equals(t)) //Si le thème d'une question est le même que celui d'un des thèmes sélectionné par le joueur, alors on l'ajoute aux questionsP2
                     questionsP2.add(q);
             }
         }

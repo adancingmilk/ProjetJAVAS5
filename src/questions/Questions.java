@@ -109,13 +109,13 @@ public class Questions implements Iterable<Question> {
         Question jvQ2 = new Question_RC(1,"Comment s'appelle le hérisson bleu de SEGA ?","Jeux-Vidéo",2,"Sonic");
         Question jvQ3 = new Question_VF(1,"Bowser est l'ennemi juré de Sonic","Jeux-Vidéo",3,"F");
         String[] reps_jvQ4 = {"Potali","Eclali","Noctali"};
-        Question jvQ4 = new Question_QCM(2,"Parmi ces noms, lequel est une des évolutions d'évoli ?","Jeux-Vidéos",4,reps_jvQ4, "3");
+        Question jvQ4 = new Question_QCM(2,"Parmi ces noms, lequel est une des évolutions d'évoli ?","Jeux-Vidéo",4,reps_jvQ4, "3");
         String[] reps_jvQ5 = {"1970","1965","1984"};
-        Question jvQ5 = new Question_QCM(2,"En quelle année les premières bornes d'arcades ont été installées ?","Jeux-Vidéos",5,reps_jvQ5, "1");
+        Question jvQ5 = new Question_QCM(2,"En quelle année les premières bornes d'arcades ont été installées ?","Jeux-Vidéo",5,reps_jvQ5, "1");
         Question jvQ6 = new Question_VF(2,"Les premiers jeux vidéos sur téléphones mobiles sont sortis en 1997","Jeux-Vidéo",6,"F");
         Question jvQ7 = new Question_VF(2,"La gameboy a été inventée en 1989","Jeux-Vidéo",7,"V");
         String[] reps_jvQ8 = {"2008","1995","1853"};
-        Question jvQ8 = new Question_QCM(3,"Quand le premier jeu en 3D sur PlayStation est-il édité ?","Jeux-Vidéos",8,reps_jvQ8, "2");
+        Question jvQ8 = new Question_QCM(3,"Quand le premier jeu en 3D sur PlayStation est-il édité ?","Jeux-Vidéo",8,reps_jvQ8, "2");
         Question jvQ9 = new Question_RC(3,"Dans quel pays les jeux vidéos sont-ils installés sur des machines en premier ","Jeux-Vidéo",9,"Etats-Unis");
         Question jvQ10 = new Question_RC(3,"En quelle année le premier jeu vidéo a-t-il été créé ?","Jeux-Vidéo",10,"1962");
 
