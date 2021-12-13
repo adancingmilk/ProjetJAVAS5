@@ -52,7 +52,7 @@ public class Jeu implements Phase {
 
         for (Question question : questionsP1) {
             for (Joueur participant : participants) {
-                repondreQuestion(question, participant); //Chaque joueur répond à une question à tour de rôle
+                repondreQuestion(question, participant, 1); //Chaque joueur répond à une question à tour de rôle
             }
         }
 
@@ -98,7 +98,7 @@ public class Jeu implements Phase {
                 for(Joueur participant : participants) {
                     if(participant.getQuestionsP2().getQuestions().size() <= 0) {
                         Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
-                        repondreQuestion(qRandom, participant);
+                        repondreQuestion(qRandom, participant, 2);
                     } else
                         break; // Si la taille de la liste de question du joueur est inférieur ou égal à zéro, alors on arrête de poser des questions
                 }
@@ -150,7 +150,7 @@ public class Jeu implements Phase {
     }
 
     //Méthode demandant à un joueur de répondre à une question
-    public void repondreQuestion(Question q, Joueur j) {
+    public void repondreQuestion(Question q, Joueur j, int phase) {
         String repJoueur;
 
         System.out.println("Joueur " + j.getNom() + ", veuillez répondre à la question suivante :");
@@ -163,7 +163,7 @@ public class Jeu implements Phase {
         repJoueur = j.saisie(q); //Répondre à la question
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
             System.out.println("Bonne réponse ! \n");
-            j.majScore(2); //On met à jour le score du joueur (Phase 2 donc +3)
+            j.majScore(phase); //On met à jour le score du joueur (Phase 2 donc +3)
         } else
             System.out.println("Mauvaise réponse. \n");
     }
