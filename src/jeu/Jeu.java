@@ -2,6 +2,7 @@
 package jeu;
 
 import joueurs.Joueur;
+import joueurs.JoueurScoreComparator;
 import joueurs.Joueurs;
 import questions.*;
 import themes.Theme;
@@ -121,12 +122,8 @@ public class Jeu implements Phase {
         }
 
         //On détermine les 2 joueurs ayant les scores les plus élevés de la Phase 2, et on met l'état des autres joueurs sur Éliminé (E)
-        List<Integer> scoresParticipants = new ArrayList<>();
-        for(Joueur participant : participants) {
-            scoresParticipants.add(participant.getScore()); //On ajoute le score de chaque joueur dans le tableau des scores
-        }
-
-        Collections.sort(scoresParticipants); //On classe les scores par ordre croissant
+        participants.sort(new JoueurScoreComparator()); //On classe les joueurs par ordre croissant de score
+        Collections.reverse(participants); //On inverse l'ordre des joueurs, donc on passe en ordre décroissant de score
 
         //On passe les deux joueurs ayant le meilleur score et on élimine les autres
         System.out.println("[INFO] Le(s) joueur(s) suivant(s) ont été éliminé(s) : ");
@@ -134,6 +131,7 @@ public class Jeu implements Phase {
             participants.get(i).majEtat(2); //On passe l'état des joueur aux scores les plus faibles sur E (Éliminé)
             System.out.println(participants.get(i));
         }
+        System.out.println(participants);
 
         for(Theme t : themesP2)
             themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
