@@ -85,14 +85,21 @@ public class Jeu implements Phase {
         System.out.println("- - - DÉBUT PHASE 2 - - -");
         Themes themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
 
-        System.out.println("Thèmes sélectionnés pour cette phase :");
-        for(Theme theme : themesP2)
-            System.out.println(theme);
-
         //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE ET ATTRIBUTION DES QUESTIONS
         for(Joueur participant : participants) {
-            participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
-            participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
+            if(themesP2.getThemes().size() != 2) { //Tant qu'il ne reste pas 2 thèmes dans themesP2
+                System.out.println("Thèmes sélectionnables :");
+                for(Theme theme : themesP2)
+                    System.out.println(theme);
+                participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
+                for(Theme t : participant.getThemesP2sel())
+                    themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
+            } else {
+                System.out.println("Il ne reste que 2 thèmes. Ils sont donc attribués automatiquement au joueur " + participant.getNom() + ".");
+                participant.setThemesP2sel(themesP2); //Il ne reste que 2 thèmes dans themesP2, donc attribués automatiquement
+                participant.addQuestionsP2(questions);
+            }
         }
 
         //Fixe le nombre de questions posées basées sur la taille de la liste des questions du joueur 1 (par défaut)
