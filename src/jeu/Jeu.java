@@ -102,9 +102,12 @@ public class Jeu implements Phase {
         //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE
         for(Joueur participant : participants) {
             participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+            for(Theme themesJoueur : participant.getThemesP2sel()) {
+
+            }
         }
 
-        //CODE PHASE 2
+
 
         System.out.println("- - - FIN PHASE 2 - - -");
     }

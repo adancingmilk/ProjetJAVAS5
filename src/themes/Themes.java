@@ -1,12 +1,9 @@
 package themes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Themes {
+public class Themes implements Iterable<Theme> {
 
     protected List<Theme> themes;     // The list of the themes
     protected List<Integer> indicator;    // Position, indicator of each theme
@@ -131,5 +128,10 @@ public class Themes {
     }
     public void setIndicator(List<Integer> indicator) {
         this.indicator = indicator;
+    }
+
+    @Override
+    public Iterator<Theme> iterator() {
+        return themes.iterator();
     }
 }
