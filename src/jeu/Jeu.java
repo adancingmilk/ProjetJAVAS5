@@ -12,29 +12,24 @@ import java.util.List;
 import java.util.Objects;
 
 public class Jeu implements Phase {
-    private int nbJ;
-    private Questions questions;
-    private Themes themes;
-    private Joueurs joueurs;
-    private List<Joueur> participants;
-    private List<Integer> indiceThemesJouer;
-
-    public Jeu(){
-    }
+    private final int nbJ;
+    private final Questions questions;
+    private final Themes themes;
+    private final Joueurs joueurs;
+    private final List<Joueur> participants;
 
     public Jeu(int nbJ, Questions questions, Themes themes, Joueurs joueurs){
         this.participants = new ArrayList<>();
         this.questions = questions;
         this.themes = themes;
         this.joueurs = joueurs;
-        this.indiceThemesJouer = new ArrayList<>();
         this.nbJ = nbJ;
     }
 
     @Override
     public void Phase1() {
         System.out.println("- - - DÉBUT PHASE 1 - - -");
-        Joueur player = new Joueur();
+        Joueur player;
         for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
             player = joueurs.selectJoueur();
             boolean doublon = false;
@@ -53,7 +48,7 @@ public class Jeu implements Phase {
         System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
         Questions questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
 
-        String repJoueur = "";
+        String repJoueur;
         for (Question question : questionsP1) {
             for (Joueur participant : participants) {
                 System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
@@ -84,7 +79,7 @@ public class Jeu implements Phase {
 
         joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
         System.out.println(participants);
-        System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
+        System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine);
         System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
         themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
         System.out.println("- - - FIN PHASE 1 - - -");
@@ -120,36 +115,5 @@ public class Jeu implements Phase {
     public void selectJoueurNextPhase() {
         //Si l'état d'un participant est E (Éliminé), alors on le supprime des participants
         participants.removeIf(participant -> Objects.equals(participant.getEtatActuel(), "E"));
-    }
-
-    public Questions getQuestions(){
-        return this.questions;
-    }
-    public Themes getThemes(){
-        return this.themes;
-    }
-    public Joueurs getJoueurs(){
-        return this.joueurs;
-    }
-    public List<Joueur> getParticipants() {
-        return participants;
-    }
-    public List<Integer> getIndiceThemesJouer() {
-        return indiceThemesJouer;
-    }
-    public void setQuestions(Questions questions){
-        this.questions = questions;
-    }
-    public void setIndiceThemesJouer(ArrayList<Integer> indiceThemesJouer) {
-        this.indiceThemesJouer = indiceThemesJouer;
-    }
-    public void setJoueurs(Joueurs joueurs) {
-        this.joueurs = joueurs;
-    }
-    public void setThemes(Themes themes) {
-        this.themes = themes;
-    }
-    public void setParticipants(ArrayList<Joueur> participants) {
-        this.participants = participants;
     }
 }
