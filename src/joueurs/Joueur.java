@@ -3,6 +3,7 @@ package joueurs;
 import questions.Question;
 import questions.Question_QCM;
 import questions.Question_VF;
+import questions.Questions;
 import themes.Theme;
 import themes.Themes;
 
@@ -16,7 +17,10 @@ public class Joueur {
     private int score;
     private final String[] etats = { "G", "SG", "E", "A" }; //Gagnant, Super-Gagnant, Éliminé, En Attente
     private String etatActuel;
+
+    //Variables de la phase 2
     private Themes themesP2sel; //Thème sélectionné par le joueur lors de la phase 2
+    private Questions questionsP2; //Questions de la phase 2 du joueur
 
     //Constructeur principal
     public Joueur(String nom, int numero) {
@@ -119,6 +123,14 @@ public class Joueur {
         System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0).getNom() + " et " + themesP2sel.getThemes().get(1).getNom() + ".");
 
         sc.reset();
+    }
+
+    //Sélectionne les questions de la Phase 2
+    public void addQuestionsP2(Questions questions) {
+        questionsP2 = new Questions();
+        for(Question q : questions) {
+
+        }
     }
 
     @Override

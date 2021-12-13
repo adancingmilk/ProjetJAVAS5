@@ -130,6 +130,7 @@ public class Themes implements Iterable<Theme> {
         this.indicator = indicator;
     }
 
+    //Méthode permettant de faire une boucle directement sur la classe Themes au lieu de passer par un compromis hideux
     @Override
     public Iterator<Theme> iterator() {
         return themes.iterator();

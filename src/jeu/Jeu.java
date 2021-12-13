@@ -51,7 +51,7 @@ public class Jeu implements Phase {
 
         Theme themeSelP1 = themes.selectRandomTheme(); //Thème sélectionné lors de la Phase 1
         System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
-        List<Question> questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
+        Questions questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
 
         String repJoueur = "";
         for (Question question : questionsP1) {
