@@ -56,8 +56,8 @@ public class Themes implements Iterable<Theme> {
         return themes; //this function was useful in subject n°1, "add 5 themes to the list"
     }
 
-    public List<Theme> selectMultipleThemeRandomly(int n) {
-        List<Theme> selectedThemes = new ArrayList<>();
+    public Themes selectMultipleThemeRandomly(int n) {
+        Themes selectedThemes = new Themes();
         List<Theme> tempThemes = themes; //Thèmes temporaires pour ne pas impacter la liste principale de thèmes
 
         Random rand = new Random();

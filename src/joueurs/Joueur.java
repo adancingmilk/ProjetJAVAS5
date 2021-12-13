@@ -9,6 +9,7 @@ import themes.Themes;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Joueur {
@@ -94,7 +95,7 @@ public class Joueur {
     }
 
     //Méthode de sélection d'un thème lors de la phase 2
-    public void selectionThemeP2(List<Theme> themesP2) {
+    public void selectionThemeP2(Themes themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         themesP2sel = new Themes();
         boolean valide = false; //Validité de la réponse
@@ -123,6 +124,17 @@ public class Joueur {
         System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0).getNom() + " et " + themesP2sel.getThemes().get(1).getNom() + ".");
 
         sc.reset();
+    }
+
+    //Sélectionne une question aléatoirement puis la supprime de la liste des questions du joueur et la retourne
+    public Question getRandomQuestionP2() {
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(questionsP2.getQuestions().size());
+
+        Question selectedQuestion = questionsP2.getQuestions().get(randomIndex);
+        questionsP2.remove(randomIndex); //On supprime la question des questions du joueur, mais elle reste en mémoire grâce à selectedQuestion
+
+        return selectedQuestion;
     }
 
     //Sélectionne les questions de la Phase 2
@@ -191,5 +203,12 @@ public class Joueur {
     }
     public void setThemesP2sel(Themes themesP2sel) {
         this.themesP2sel = themesP2sel;
+    }
+
+    public Questions getQuestionsP2() {
+        return questionsP2;
+    }
+    public void setQuestionsP2(Questions questionsP2) {
+        this.questionsP2 = questionsP2;
     }
 }
