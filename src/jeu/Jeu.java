@@ -91,16 +91,13 @@ public class Jeu implements Phase {
 
         //Fixe le nombre de questions posées basées sur la taille de la liste des questions du joueur 1 (par défaut)
         int nbQuestions = participants.get(0).getQuestionsP2().getQuestions().size();
-
+        System.out.println(nbQuestions);
         //ON POSE LES QUESTIONS
-        for(int i = 0; i < nbQuestions; i++) {
-            for(int j = 0; j < 2; j++) { //On pose deux questions à chaque joueur à chaque tour
-                for(Joueur participant : participants) {
-                    if(participant.getQuestionsP2().getQuestions().size() <= 0) {
-                        Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
-                        repondreQuestion(qRandom, participant, 2);
-                    } else
-                        break; // Si la taille de la liste de question du joueur est inférieur ou égal à zéro, alors on arrête de poser des questions
+        for(Joueur participant : participants) { //On pose deux questions à chaque joueur à chaque tour
+             for(int j = 0; j < 2; j++) {
+                if(participant.getQuestionsP2().getQuestions().size() > 0) {
+                    Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
+                    repondreQuestion(qRandom, participant, 2);
                 }
             }
         }
@@ -159,6 +156,7 @@ public class Jeu implements Phase {
             ((Question_QCM) q).afficherPropositions(); //On affiche les propositions de la question QCM
         else if (q instanceof Question_VF)
             System.out.println("Vrai(V) ou Faux(F) ?");
+
 
         repJoueur = j.saisie(q); //Répondre à la question
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
