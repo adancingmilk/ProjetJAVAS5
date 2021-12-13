@@ -96,8 +96,11 @@ public class Jeu implements Phase {
         for(int i = 0; i < nbQuestions; i++) {
             for(int j = 0; j < 2; j++) { //On pose deux questions à chaque joueur à chaque tour
                 for(Joueur participant : participants) {
-                    Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
-                    repondreQuestion(qRandom, participant);
+                    if(participant.getQuestionsP2().getQuestions().size() <= 0) {
+                        Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
+                        repondreQuestion(qRandom, participant);
+                    } else
+                        break; // Si la taille de la liste de question du joueur est inférieur ou égal à zéro, alors on arrête de poser des questions
                 }
             }
         }
