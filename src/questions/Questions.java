@@ -166,11 +166,11 @@ public class Questions implements Iterable<Question> {
         String[] reps_sportQ5 = { "42", "45", "47" };
         Question sportQ5 = new Question_QCM(2, "Quelle est la distance d'un marathon (en km) ?", "Sport", 5, reps_sportQ5, "1");
         String[] reps_sportQ6 = { "baseball", "sumo", "Basket" };
-        Question sportQ6 = new Question_QCM(2, "Quel est le sport national au Japon ?", "Sport", 6, reps_sportQ5, "2");
+        Question sportQ6 = new Question_QCM(2, "Quel est le sport national au Japon ?", "Sport", 6, reps_sportQ6, "2");
         Question sportQ7 = new Question_RC(2, "Combien de Grands chelems Roger Federer possede-t-il ?", "Sport", 7, "20");
         Question sportQ8 = new Question_RC(3, "Quel est le seul pays d’Amérique du Sud qui accueille un Grand Prix de Formule 1 ? ?", "Sport", 8, "Brésil");
         String[] reps_sportQ9 = { "1992", "1976", "1984" };
-        Question sportQ9 = new Question_QCM(3, "En quelle année le badminton est devenu une discipline olympique ?", "Sport", 9, reps_sportQ5, "1");
+        Question sportQ9 = new Question_QCM(3, "En quelle année le badminton est devenu une discipline olympique ?", "Sport", 9, reps_sportQ9, "1");
         Question sportQ10 = new Question_VF(3, "Le plus long match de baseball a duré 7h20 ?", "Sport", 10, "V");
 
         add(sportQ1);
