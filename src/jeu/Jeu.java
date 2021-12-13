@@ -50,22 +50,9 @@ public class Jeu implements Phase {
         System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
         Questions questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
 
-        String repJoueur;
         for (Question question : questionsP1) {
             for (Joueur participant : participants) {
-                System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
-                System.out.println(question.getDescription());
-                if (question instanceof Question_QCM)
-                    ((Question_QCM) question).afficherPropositions(); //On affiche les propositions de la question QCM
-                else if (question instanceof Question_VF)
-                    System.out.println("Vrai(V) ou Faux(F) ?");
-
-                repJoueur = participant.saisie(question); //Répondre à la question
-                if (Objects.equals(repJoueur.toUpperCase(), question.getReponse().toUpperCase())) {
-                    System.out.println("Bonne réponse ! \n");
-                    participant.majScore(1); //On met à jour le score du joueur (Phase 1 donc +2)
-                } else
-                    System.out.println("Mauvaise réponse. \n");
+                repondreQuestion(question, participant); //Chaque joueur répond à une question à tour de rôle
             }
         }
 
@@ -109,21 +96,7 @@ public class Jeu implements Phase {
             for(int j = 0; j < 2; j++) { //On pose deux questions à chaque joueur à chaque tour
                 for(Joueur participant : participants) {
                     Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
-                    String repJoueur;
-
-                    System.out.println("Joueur " + participant.getNom() + ", veuillez répondre à la question suivante :");
-                    System.out.println(qRandom.getDescription());
-                    if (qRandom instanceof Question_QCM)
-                        ((Question_QCM) qRandom).afficherPropositions(); //On affiche les propositions de la question QCM
-                    else if (qRandom instanceof Question_VF)
-                        System.out.println("Vrai(V) ou Faux(F) ?");
-
-                    repJoueur = participant.saisie(qRandom); //Répondre à la question
-                    if (Objects.equals(repJoueur.toUpperCase(), qRandom.getReponse().toUpperCase())) {
-                        System.out.println("Bonne réponse ! \n");
-                        participant.majScore(2); //On met à jour le score du joueur (Phase 2 donc +3)
-                    } else
-                        System.out.println("Mauvaise réponse. \n");
+                    repondreQuestion(qRandom, participant);
                 }
             }
         }
@@ -170,5 +143,24 @@ public class Jeu implements Phase {
         }
 
         return joueurElimine;
+    }
+
+    //Méthode demandant à un joueur de répondre à une question
+    public void repondreQuestion(Question q, Joueur j) {
+        String repJoueur;
+
+        System.out.println("Joueur " + j.getNom() + ", veuillez répondre à la question suivante :");
+        System.out.println(q.getDescription());
+        if (q instanceof Question_QCM)
+            ((Question_QCM) q).afficherPropositions(); //On affiche les propositions de la question QCM
+        else if (q instanceof Question_VF)
+            System.out.println("Vrai(V) ou Faux(F) ?");
+
+        repJoueur = j.saisie(q); //Répondre à la question
+        if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
+            System.out.println("Bonne réponse ! \n");
+            j.majScore(2); //On met à jour le score du joueur (Phase 2 donc +3)
+        } else
+            System.out.println("Mauvaise réponse. \n");
     }
 }
