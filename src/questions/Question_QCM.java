@@ -11,6 +11,16 @@ public class Question_QCM extends Question {
         super(d, description, nomTheme, num, bonneRep);
         this.reponses = reponses;
     }
+
+    //Affiche les différentes réponses possibles de la question
+    public void afficherPropositions() {
+        String propositions = "";
+        for(int i = 0; i < reponses.length; i++) {
+            propositions += i+1 + ". (" + reponses[i] + ") ";
+        }
+        System.out.println(propositions);
+    }
+
     @Override
     public String[] getReponses() {
         return reponses;

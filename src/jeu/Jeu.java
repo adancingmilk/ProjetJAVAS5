@@ -59,26 +59,22 @@ public class Jeu implements Phase {
                 System.out.println("Joueur : " + participant.getNom() + "\nVeuillez répondre à la question suivante : ");
                 System.out.println(question.getDescription());
                 if (question instanceof Question_QCM){
-                    String propositions = "";
-                    int i = 1;
-                    for(String s : question.getReponses()){
-                        propositions +=  i++ + ". (" + s.toString() + ") ";
-                    };
-                    System.out.println(propositions);
+                    ((Question_QCM) question).afficherPropositions(); //On affiche les propositions de la question QCM
                 }
                 else if (question instanceof Question_VF){
                     System.out.println("Vrai(V) ou Faux(F) ?");
                 }
-                repJoueur = participant.saisie(question);
+                repJoueur = participant.saisie(question); //Répondre à la question
                 if (Objects.equals(repJoueur.toUpperCase(), question.getReponse().toUpperCase())) {
                     System.out.println("Bonne réponse ! \n");
-                    int score = participant.getScore();
-                    participant.setScore(score + 2);
+                    participant.majScore(1); //On met à jour le score du joueur
                 } else {
-                    System.out.println("Mauvaise réponse \n");
+                    System.out.println("Mauvaise réponse. \n");
                 }
             }
         }
+
+        //On détermine le joueur ayant le score le plus faible (joueur éliminé)
         Joueur joueurElimine = new Joueur();
         for (Joueur participant : participants) {
             if (joueurElimine.getScore() > participant.getScore()) {
@@ -86,7 +82,7 @@ public class Jeu implements Phase {
             }
         }
 
-        joueurElimine.setEtatActuel("E");
+        joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
         System.out.println(participants);
         System.out.println("Passons à la phase 2, voici le joueur éliminé : " + joueurElimine.toString());
         System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
