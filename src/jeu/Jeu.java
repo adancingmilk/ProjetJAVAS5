@@ -93,7 +93,7 @@ public class Jeu implements Phase {
     @Override
     public void Phase2() {
         System.out.println("- - - DÉBUT PHASE 2 - - -");
-        List<Theme> themesP2 = themes.selectMultipleThemeRandomly(6); //Sélectionne 6 thèmes aléatoirement
+        List<Theme> themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
 
         System.out.println("Thèmes sélectionnés pour cette phase :");
         for(Theme theme : themesP2)
