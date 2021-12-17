@@ -78,7 +78,8 @@ public class Jeu implements Phase {
                 System.out.println("Thèmes sélectionnables :");
                 for(Theme theme : themesP2)
                     System.out.println(theme);
-                participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                //participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
                 participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
                 for(Theme t : participant.getThemesP2sel())
                     themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
@@ -158,8 +159,8 @@ public class Jeu implements Phase {
             System.out.println("Vrai(V) ou Faux(F) ?");
 
 
-        //repJoueur = j.saisie(q); //Répondre à la question
-        repJoueur = j.saisieAuto(q);
+        //repJoueur = j.saisie(q); //Répondre à la question manuellement
+        repJoueur = j.saisieAuto(q); //Répondre à la question automatiquement
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
             System.out.println("Bonne réponse ! \n");
             j.majScore(phase); //On met à jour le score du joueur (Phase 2 donc +3)
