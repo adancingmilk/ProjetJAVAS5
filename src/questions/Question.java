@@ -17,6 +17,7 @@ public abstract class Question {
         this.num = num;
         this.reponse = reponse;
     }
+
     protected Question(){
         this(0,"", "",0,"");
     }

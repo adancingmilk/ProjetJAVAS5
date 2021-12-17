@@ -8,10 +8,7 @@ import questions.*;
 import themes.Theme;
 import themes.Themes;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Jeu implements Phase {
     private final int nbJ;
@@ -117,7 +114,6 @@ public class Jeu implements Phase {
 
         for(Theme t : themesP2)
             themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
-
         System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
         System.out.println("- - - FIN PHASE 2 - - - \n");
     }
@@ -125,8 +121,42 @@ public class Jeu implements Phase {
     @Override
     public void Phase3() {
         System.out.println("- - - DÉBUT PHASE 3 - - -");
-        //CODE PHASE 3
+        Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
+        Questions qDifficile = new Questions();
+        Questions qTheme = new Questions();
+        Questions toutesLesQuestions = new Questions();
+        for (Theme theme:themesP3) { //On récupère 2 questions de niveaux difficiles de manière aléatoire dans chaque Thème
+            qTheme = questions.getQuestionsTheme(theme);
+            for (int i = 0 ; i < 2 ; i++){
+                qDifficile.add(qTheme.selectQuestion(3));
+            }
+        }
+
+        for(int i = 0; i < qDifficile.getQuestions().size(); i++){ //On sait que les questions sont de 2 par 2 donc on alterne les questions posés à chaque joueur pour que chaque joueur puisse répondre à 1 questions difficile de chacun des 3 thèmes
+            int indexJ = i%2;
+            repondreQuestion(qDifficile.getQuestions().get(i),participants.get(indexJ),3);
+        }
+        Questions questionP3 = new Questions();
+        Random rand = new Random();
+        for (Theme theme:themesP3){ //On commence a poser les questions aléatoirement pour chaque thème
+            questionP3 = questions.getQuestionsTheme(theme);
+            for (int i = 0 ; i < 6 ; i++){ // 6 parce qu'on s'est dit qu'on allait posé 3 questions aléatoires dans chaque thème à chaque joueur en plus des 3 questions difficiles que chaque joueur a eu donc 3*2 = 6
+                int j = i%2;
+                int index = rand.nextInt(questionP3.getQuestions().size()); //On selectionne au hasard une question parmit les questions qu'on a
+                repondreQuestion(questionP3.getQuestions().get(index),participants.get(j),3);
+                questionP3.remove(index); //On retire la question de la liste qu'on possède pour ne pas avoir des doublons de questions
+            }
+        }
         System.out.println("- - - FIN PHASE 3 - - -");
+
+        participants.sort(new JoueurScoreComparator()); //On classe les joueurs par ordre croissant de score
+        Collections.reverse(participants); //On inverse l'ordre des joueurs, donc on passe en ordre décroissant de score
+        Joueur supergagnant = participants.get(0);
+        Joueur gagnant = participants.get(1);
+        supergagnant.majEtat(1);
+        gagnant.majEtat(0);
+        System.out.println("Voici le classement générale de la partie : \n" + participants);
+        System.out.println("Le vainqueur de ce jeu est : " + supergagnant.getNom() + "\n" + "Numéro du joueur : " + supergagnant.getNumero());
         System.out.println("- - - - - FIN DU JEU - - - - -");
     }
 
@@ -163,8 +193,9 @@ public class Jeu implements Phase {
         repJoueur = j.saisieAuto(q); //Répondre à la question automatiquement
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
             System.out.println("Bonne réponse ! \n");
-            j.majScore(phase); //On met à jour le score du joueur (Phase 2 donc +3)
+            j.majScore(phase); //On met à jour le score du joueur (Phase 1 = +2 de score, Phase 2 = +3, Phase 3 = +5)
         } else
             System.out.println("Mauvaise réponse. \n");
     }
+
 }
