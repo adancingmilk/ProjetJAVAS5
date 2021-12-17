@@ -75,6 +75,43 @@ public class Joueur {
         return rep;
     }
 
+    //Classe de saisie automatique utilisée à des fins de tests
+    public String saisieAuto(Question q) {
+        Random rand = new Random();
+        int repInt;
+        String rep = "";
+
+        //L'utilisateur saisi sa réponse. 1, 2, ou 3 si QCM, V ou F si VF, une phrase si RC
+        System.out.println("[INFO] Veuillez saisir votre réponse: ");
+        //On génère un random compris entre 0 et 1 pour les cas où q est une VF et q est une RC
+        repInt = rand.nextInt(2);
+
+        if(q instanceof Question_VF) {
+            if(repInt == 0)
+                rep = "F";
+            else
+                rep = "V";
+
+            System.out.println(rep);
+        } else if(q instanceof Question_QCM) { //Si c'est une réponse QCM, on génère un nouveau random entre 0 et 2
+            repInt = rand.nextInt(3); // 0 = 1, 1 = 2, 2 = 3
+            switch(repInt) {
+                case 0: rep = "1";
+                case 1: rep = "2";
+                default: rep = "3";
+            }
+
+            System.out.println(rep);
+        } else { //Si c'est une réponse courte, soit rep vaut XXX (=indéterminé donc mauvaise réponse), soit c'est la bonne réponse
+            if(repInt == 0)
+                rep = "XXX";
+            else
+                rep = q.getReponse();
+        }
+
+        return rep;
+    }
+
     //Met à jour le score en fonction de la phase
     public void majScore(int phase) {
         switch (phase) {

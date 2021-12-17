@@ -158,7 +158,8 @@ public class Jeu implements Phase {
             System.out.println("Vrai(V) ou Faux(F) ?");
 
 
-        repJoueur = j.saisie(q); //Répondre à la question
+        //repJoueur = j.saisie(q); //Répondre à la question
+        repJoueur = j.saisieAuto(q);
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
             System.out.println("Bonne réponse ! \n");
             j.majScore(phase); //On met à jour le score du joueur (Phase 2 donc +3)

@@ -2,7 +2,7 @@ package joueurs;
 
 import java.util.Comparator;
 
-//Classe permettant de comparer les scores de deux joueurs
+//Classe de Monsieur Orsay permettant de comparer les scores de deux joueurs
 public class JoueurScoreComparator implements Comparator<Joueur> {
 
     @Override
