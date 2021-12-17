@@ -137,6 +137,7 @@ public class Joueur {
         themesP2sel = new Themes();
         boolean valide = false; //Validité de la réponse
         String rep;
+        String firstSelectedTheme = ""; //Premier thème sélectionné par le joueur
 
         System.out.println(nom + ", veuillez choisir deux thèmes pour cette phase.");
 
@@ -144,10 +145,18 @@ public class Joueur {
             System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
             while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
                 rep = sc.next();
+
+                //Si l'utilisateur saisi le même thème que le premier, alors on lui demande de saisir un thème différent jusqu'à ce qu'il en choisisse un autre
+                while(Objects.equals(rep.toUpperCase(), firstSelectedTheme.toUpperCase())) {
+                    System.out.println("[ERR] Vous ne pouvez pas choisir deux fois le même thème. Ressayez.");
+                    System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
+                    rep = sc.next();
+                }
                 for(Theme theme : themesP2) {
                     if(Objects.equals(rep.toUpperCase(), theme.getNom().toUpperCase())) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
                         valide = true;
                         themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
+                        firstSelectedTheme = theme.getNom();
                         break;
                     }
                 }
