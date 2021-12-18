@@ -172,32 +172,28 @@ public class Joueur {
         themesP2sel = new Themes();
         Random rand = new Random(); //Nouveau random
         int selectedIndex;
-        int alreadySelected = -1; //Int représentant un index sélectionné aléatoirement
         String rep;
 
         System.out.println(nom + ", veuillez choisir deux thèmes pour cette phase.");
+        System.out.println("Entrez le thème que vous souhaitez : ");
+        selectedIndex = rand.nextInt(themesP2.getThemes().size()); //Génère un int entre 0 et la taille de la liste des thèmes
+        rep = themesP2.getThemes().get(selectedIndex).getNom(); //On affecte le nom du thème à la réponse
 
-        for(int i = 0; i < 2; i++) { //2 thèmes à choisir
-            System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
-            selectedIndex = rand.nextInt(themesP2.getThemes().size()); //Génère un int entre 0 et la taille de la liste des thèmes
+        while(Objects.equals(rep, themesP2.getThemes().get(0).getNom())) { //Si le thème sélectionné aléatoirement est égal à celui choisi juste avant, alors on regénère des thèmes jusqu'à ce qu'on obtienne un thème différent
+            selectedIndex = rand.nextInt(themesP2.getThemes().size());
+            rep = themesP2.getThemes().get(selectedIndex).getNom();
 
-            while(alreadySelected == selectedIndex) { //Si le int généré est égal à celui généré juste avant, alors on regénère des int jusqu'à ce qu'on obtienne un int différent
-                selectedIndex = rand.nextInt(themesP2.getThemes().size());
+        }
+        for(Theme theme : themesP2) {
+            if(Objects.equals(rep, theme.getNom())) {
+                System.out.println(rep);
+                themesP2sel.add(new Theme(theme.getNom())); //On fixe le thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
+                break;
             }
+        }
 
-            rep = themesP2.getThemes().get(selectedIndex).getNom(); //On affecte le nom du thème à la réponse
-                for(Theme theme : themesP2) {
-                    if(Objects.equals(rep, theme.getNom())) {
-                        System.out.println(rep);
-                        themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
-                        alreadySelected = selectedIndex;
-                        break;
-                    }
-                }
-            }
-
-        //Affiche les 2 thèmes sélectionnés automatiquement
-        System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0).getNom() + " et " + themesP2sel.getThemes().get(1).getNom() + ".");
+        //Affiche le thème sélectionné automatiquement
+        System.out.println("Vous avez choisi les thèmes " + rep + ".");
     }
 
     //Sélectionne une question aléatoirement puis la supprime de la liste des questions du joueur et la retourne
