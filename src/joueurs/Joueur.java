@@ -194,6 +194,7 @@ public class Joueur {
 
         //Affiche le thème sélectionné automatiquement
         System.out.println("Vous avez choisi les thèmes " + rep + ".");
+        System.out.println();
     }
 
     //Sélectionne une question aléatoirement puis la supprime de la liste des questions du joueur et la retourne

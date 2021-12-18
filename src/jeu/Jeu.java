@@ -76,8 +76,8 @@ public class Jeu implements Phase {
                     System.out.println("Thèmes sélectionnables :");
                     for(Theme theme : themesP2)
                         System.out.println(theme);
-                    participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
-                    //participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
+                    //participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                    participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
                     participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
                     for(Theme t : participant.getThemesP2sel())
                         themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
