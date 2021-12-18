@@ -135,39 +135,35 @@ public class Joueur {
     public void selectionThemeP2(Themes themesP2) {
         Scanner sc = new Scanner(System.in); //Ouverture d'un nouveau scanner
         themesP2sel = new Themes();
+        String selectedTheme = "";
         boolean valide = false; //Validité de la réponse
         String rep;
-        String firstSelectedTheme = ""; //Premier thème sélectionné par le joueur
 
         System.out.println(nom + ", veuillez choisir deux thèmes pour cette phase.");
-
-        for(int i = 0; i < 2; i++) { //2 thèmes à choisir
-            System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
+        System.out.println("Entrez le thème que vous souhaitez : ");
             while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
                 rep = sc.next();
 
                 //Si l'utilisateur saisi le même thème que le premier, alors on lui demande de saisir un thème différent jusqu'à ce qu'il en choisisse un autre
-                while(Objects.equals(rep.toUpperCase(), firstSelectedTheme.toUpperCase())) {
+                while (Objects.equals(rep.toUpperCase(), themesP2.getThemes().get(0).getNom())) {
                     System.out.println("[ERR] Vous ne pouvez pas choisir deux fois le même thème. Ressayez.");
-                    System.out.println("Entrez le " + (i+1) + "e thème que vous souhaitez : ");
+                    System.out.println("Entrez le thème que vous souhaitez : ");
                     rep = sc.next();
                 }
-                for(Theme theme : themesP2) {
-                    if(Objects.equals(rep.toUpperCase(), theme.getNom().toUpperCase())) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
+                for (Theme theme : themesP2) {
+                    if (Objects.equals(rep.toUpperCase(), theme.getNom().toUpperCase())) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
                         valide = true;
                         themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
-                        firstSelectedTheme = theme.getNom();
+                        selectedTheme = theme.getNom();
                         break;
                     }
                 }
-                if(!valide)
+                if (!valide)
                     System.out.println("[ERR] Le thème saisi n'est pas dans la liste. Réessayez.");
-            }
-            valide = false; //On remet valide sur faux pour sélectionner le second thème
         }
 
-        //Affiche les 2 thèmes sélectionnés par le joueur
-        System.out.println("Vous avez choisi les thèmes " + themesP2sel.getThemes().get(0).getNom() + " et " + themesP2sel.getThemes().get(1).getNom() + ".");
+        //Affiche le thème sélectionné par le joueur
+        System.out.println("Vous avez choisi le thème " + selectedTheme + ".");
 
         sc.reset();
     }
