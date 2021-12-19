@@ -52,9 +52,8 @@ public class Joueur {
                     String repUp = rep.toUpperCase();
 
                     //Si la réponse est null, ou qu'elle n'est pas égale à V ou F, ressaisir la réponse
-                    if(repUp.equals("V") || repUp.equals("F")){
-                        valide = 1;
-                        return repUp;}
+                    if(repUp.equals("V") || repUp.equals("F"))
+                        return repUp;
                     else {
                         System.out.println("[ERR] Saisie X incorrecte.");}
                 } else if(q instanceof Question_QCM) {
@@ -79,7 +78,7 @@ public class Joueur {
     public String saisieAuto(Question q) {
         Random rand = new Random();
         int repInt;
-        String rep = "";
+        String rep;
 
         //L'utilisateur saisi sa réponse. 1, 2, ou 3 si QCM, V ou F si VF, une phrase si RC
         System.out.println("[INFO] Veuillez saisir votre réponse: ");
