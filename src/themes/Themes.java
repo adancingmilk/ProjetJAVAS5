@@ -1,7 +1,6 @@
 package themes;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Themes implements Iterable<Theme> {
 
@@ -37,9 +36,9 @@ public class Themes implements Iterable<Theme> {
         Random rand = new Random();
         int selectedThemeIndex = rand.nextInt(themes.size());
         return themes.get(selectedThemeIndex); //Retourne le thème sélectionné
-        //return ThreadLocalRandom.current().nextInt(0, themes.size());
     }
 
+    //Méthode utile dans le Sujet1, mais pas dans le Sujet2
     public List<Theme> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
         List<Theme> themes = new ArrayList<>();
         themes.add(this.themes.get(theme1));
@@ -53,7 +52,7 @@ public class Themes implements Iterable<Theme> {
         this.indicator.add(theme4);
         this.indicator.add(theme5);
 
-        return themes; //this function was useful in subject n°1, "add 5 themes to the list"
+        return themes;
     }
 
     public Themes selectMultipleThemeRandomly(int n) {
