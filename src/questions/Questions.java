@@ -288,7 +288,7 @@ public class Questions implements Iterable<Question> {
     }
 
     public Question selectQuestion(int difficulte){
-        List<Integer> listIndice = new ArrayList<Integer>();
+        List<Integer> listIndice = new ArrayList<>();
 
         for(int i = 0; i < questions.size(); i++){ //On récupère les indices contenant une question difficile
             if(questions.get(i).getDifficulte() == difficulte){
