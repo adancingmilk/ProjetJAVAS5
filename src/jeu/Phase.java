@@ -5,5 +5,4 @@ public interface Phase {
     public void Phase2();
     public void Phase3();
     public void selectJoueurNextPhase();
-
 }

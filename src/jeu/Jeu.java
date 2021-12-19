@@ -16,13 +16,15 @@ public class Jeu implements Phase {
     private final Themes themes;
     private final Joueurs joueurs;
     private final List<Joueur> participants;
+    private final boolean debug;
 
-    public Jeu(int nbJ, Questions questions, Themes themes, Joueurs joueurs){
+    public Jeu(int nbJ, Questions questions, Themes themes, Joueurs joueurs, boolean debug){
         this.participants = new ArrayList<>();
         this.questions = questions;
         this.themes = themes;
         this.joueurs = joueurs;
         this.nbJ = nbJ;
+        this.debug = debug;
     }
 
     @Override
@@ -76,8 +78,12 @@ public class Jeu implements Phase {
                     System.out.println("Thèmes sélectionnables :");
                     for(Theme theme : themesP2)
                         System.out.println(theme);
-                    //participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
-                    participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
+
+                    if(debug) //Si le debug est activé, les thèmes sont ajoutés automatiquement
+                        participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
+                    else
+                        participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+
                     participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
                     for(Theme t : participant.getThemesP2sel())
                         themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
@@ -195,9 +201,12 @@ public class Jeu implements Phase {
         else if (q instanceof Question_VF)
             System.out.println("Vrai(V) ou Faux(F) ?");
 
+        //Si le debug est activé, alors la réponse est saisie automatiquement
+        if(debug)
+            repJoueur = j.saisieAuto(q); //Répondre à la question automatiquement
+        else
+            repJoueur = j.saisie(q); //Répondre à la question manuellement
 
-        //repJoueur = j.saisie(q); //Répondre à la question manuellement
-        repJoueur = j.saisieAuto(q); //Répondre à la question automatiquement
         if (Objects.equals(repJoueur.toUpperCase(), q.getReponse().toUpperCase())) {
             System.out.println("Bonne réponse ! \n");
             j.majScore(phase); //On met à jour le score du joueur (Phase 1 = +2 de score, Phase 2 = +3, Phase 3 = +5)

@@ -21,7 +21,7 @@ public class Main {
         questionsJeu.genererQuestions(); //Génère les questions de TOUS les thèmes
 
         //4. DÉROULEMENT PHASE 1
-        Jeu jeu = new Jeu(4, questionsJeu, themesJeu, joueurs);
+        Jeu jeu = new Jeu(4, questionsJeu, themesJeu, joueurs, false); //Debug désactivé pour jouer le jeu de manière manuelle
         jeu.Phase1();
 
         jeu.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
@@ -29,24 +29,7 @@ public class Main {
         //5. DÉROULEMENT PHASE 2
         jeu.Phase2();
 
-        //5.1 SÉLECTION 6 THÈMES
-
-        //5.2 CHAQUE JOUEUR CHOISI THÈME DE SON CHOIX PARMI CEUX SÉLECTIONNÉS
-
-        //5.3 POSER AU MOINS 2 QUESTIONS MOYENNES PAR JOUEUR
-
-        //5.4 SCORE JOUEUR +3 SI BONNE RÉPONSE
-
-        //5.4 ÉLIMINATION DES JOUEURS AYANT LE PLUS FAIBLE SCORE À LA FIN DE LA PHASE 2 POUR GARDER QUW 2 JOUEURS
-
         //6. DÉROULEMENT PHASE 3
         jeu.Phase3();
-        //6.1 SÉLECTION 3 THÈMES
-
-        //6.2 POSER AU MOINS 2 QUESTIONS DIFFICILES PAR JOUEUR
-
-        //6.3 SCORE JOUEUR +5 SI BONNE RÉPONSE
-
-        //6.4 GAGNANT = CELUI AYANT LE MEILLEUR SCORE LORS DE LA PHASE 3
     }
 }
