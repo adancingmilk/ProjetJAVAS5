@@ -32,7 +32,7 @@ public class Jeu implements Phase {
         System.out.println("- - - DÉBUT PHASE 1 - - -");
         Joueur player;
         for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
-            player = joueurs.selectJoueur();
+            player = joueurs.selectJoueur(); //SELECTION ALEATOIRE
             boolean doublon = false;
             for (Joueur J : participants){
                 if(player.getNumero() == J.getNumero()){
