@@ -4,7 +4,7 @@ import themes.Theme;
 
 public class Question_VF extends Question {
 
-    protected Question_VF(int d, String description, String nomTheme, int num, String rep) {
+    public Question_VF(int d, String description, String nomTheme, int num, String rep) {
         super(d, description, nomTheme, num, rep);
     }
 
