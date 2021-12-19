@@ -145,13 +145,13 @@ public class Joueur {
                 rep = sc.next();
 
                 //Si l'utilisateur saisi le même thème que le premier, alors on lui demande de saisir un thème différent jusqu'à ce qu'il en choisisse un autre
-                while (Objects.equals(rep.toUpperCase(), themesP2.getThemes().get(0).getNom())) {
+                while (Objects.equals(rep.toUpperCase().replaceAll("\\s",""), themesP2.getThemes().get(0).getNom().replaceAll("\\s",""))) {
                     System.out.println("[ERR] Vous ne pouvez pas choisir deux fois le même thème. Ressayez.");
                     System.out.println("Entrez le thème que vous souhaitez : ");
                     rep = sc.next();
                 }
                 for (Theme theme : themesP2) {
-                    if (Objects.equals(rep.toUpperCase(), theme.getNom().toUpperCase())) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
+                    if (Objects.equals(rep.toUpperCase().replaceAll("\\s",""), theme.getNom().toUpperCase().replaceAll("\\s",""))) { //On passe la réponse du joueur ainsi que le thème en UPPERCASE pour ne pas prendre la casse en compte
                         valide = true;
                         themesP2sel.add(new Theme(theme.getNom())); //On fixe le ième thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
                         selectedTheme = theme.getNom();
@@ -179,13 +179,13 @@ public class Joueur {
         selectedIndex = rand.nextInt(themesP2.getThemes().size()); //Génère un int entre 0 et la taille de la liste des thèmes
         rep = themesP2.getThemes().get(selectedIndex).getNom(); //On affecte le nom du thème à la réponse
 
-        while(Objects.equals(rep, themesP2.getThemes().get(0).getNom())) { //Si le thème sélectionné aléatoirement est égal à celui choisi juste avant, alors on regénère des thèmes jusqu'à ce qu'on obtienne un thème différent
+        while(Objects.equals(rep.replaceAll("\\s",""), themesP2.getThemes().get(0).getNom().replaceAll("\\s",""))) { //Si le thème sélectionné aléatoirement est égal à celui choisi juste avant, alors on regénère des thèmes jusqu'à ce qu'on obtienne un thème différent
             selectedIndex = rand.nextInt(themesP2.getThemes().size());
             rep = themesP2.getThemes().get(selectedIndex).getNom();
 
         }
         for(Theme theme : themesP2) {
-            if(Objects.equals(rep, theme.getNom())) {
+            if(Objects.equals(rep.replaceAll("\\s",""), theme.getNom().replaceAll("\\s",""))) {
                 System.out.println(rep);
                 themesP2sel.add(new Theme(theme.getNom())); //On fixe le thème sélectionné par le joueur pour la jeu.Phase 2 (2 thèmes à choisir)
                 break;

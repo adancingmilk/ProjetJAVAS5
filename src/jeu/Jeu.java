@@ -126,11 +126,12 @@ public class Jeu implements Phase {
         Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
         Questions qDifficile = new Questions();
         Questions qTheme = new Questions();
-        Questions toutesLesQuestions = new Questions();
+        System.out.println(themesP3);
         for (Theme theme:themesP3) { //On récupère 2 questions de niveaux difficiles de manière aléatoire dans chaque Thème
             qTheme = questions.getQuestionsTheme(theme);
             for (int i = 0 ; i < 2 ; i++){
-                qDifficile.add(qTheme.selectQuestion(3));
+                Question stock = qTheme.selectQuestion(3);
+                qDifficile.add(stock);
             }
         }
 
@@ -138,14 +139,16 @@ public class Jeu implements Phase {
             int indexJ = i%2;
             repondreQuestion(qDifficile.getQuestions().get(i),participants.get(indexJ),3);
         }
+
         Questions questionP3 = new Questions();
         Random rand = new Random();
         for (Theme theme:themesP3){ //On commence a poser les questions aléatoirement pour chaque thème
             questionP3 = questions.getQuestionsTheme(theme);
-            for (int i = 0 ; i < 6 ; i++){ // 6 parce qu'on s'est dit qu'on allait posé 3 questions aléatoires dans chaque thème à chaque joueur en plus des 3 questions difficiles que chaque joueur a eu donc 3*2 = 6
+            for (int i = 0 ; i < questionP3.getQuestions().size() ; i++){ // 6 parce qu'on s'est dit qu'on allait posé 3 questions aléatoires dans chaque thème à chaque joueur en plus des 3 questions difficiles que chaque joueur a eu donc 3*2 = 6
                 int j = i%2;
                 int index = rand.nextInt(questionP3.getQuestions().size()); //On selectionne au hasard une question parmit les questions qu'on a
-                repondreQuestion(questionP3.getQuestions().get(index),participants.get(j),3);
+                Question questionpose = questionP3.getQuestions().get(index);
+                repondreQuestion(questionpose,participants.get(j),3);
                 questionP3.remove(index); //On retire la question de la liste qu'on possède pour ne pas avoir des doublons de questions
             }
         }
