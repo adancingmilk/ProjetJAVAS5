@@ -126,7 +126,9 @@ public class Jeu implements Phase {
         Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
         Questions qDifficile = new Questions();
         Questions qTheme = new Questions();
-        System.out.println(themesP3);
+        for(Theme t : themesP3){
+            System.out.println(t.getNom());
+        }
         for (Theme theme:themesP3) { //On récupère 2 questions de niveaux difficiles de manière aléatoire dans chaque Thème
             qTheme = questions.getQuestionsTheme(theme);
             for (int i = 0 ; i < 2 ; i++){
@@ -134,7 +136,7 @@ public class Jeu implements Phase {
                 qDifficile.add(stock);
             }
         }
-
+        System.out.println("\n");
         for(int i = 0; i < qDifficile.getQuestions().size(); i++){ //On sait que les questions sont de 2 par 2 donc on alterne les questions posés à chaque joueur pour que chaque joueur puisse répondre à 1 questions difficile de chacun des 3 thèmes
             int indexJ = i%2;
             repondreQuestion(qDifficile.getQuestions().get(i),participants.get(indexJ),3);

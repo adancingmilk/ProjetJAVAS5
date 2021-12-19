@@ -210,19 +210,19 @@ public class Questions implements Iterable<Question> {
         add(frQ10);
         //8. CULTURE JAPONAISE
         String[] reps_JapQ1 = { "Osaka", "Tokyo", "Shibuya" };
-        Question JapQ1 = new Question_QCM(1, "Quelle est la capitale du Japon ?", "Culture_Japonaise", 1, reps_JapQ1, "2");
-        Question JapQ2 = new Question_VF(1, "Le Japon est en Europe ?", "Culture_Japonaise", 2, "F");
-        Question JapQ3 = new Question_RC(1, "Quelle est la monnaie au Japon ?", "Culture_Japonaise", 3, "Yen");
-        Question JapQ4 = new Question_VF(2, "Les Japonais utilisent des kanjis ?", "Culture_Japonaise", 4, "V");
+        Question JapQ1 = new Question_QCM(1, "Quelle est la capitale du Japon ?", "Culture Japonaise", 1, reps_JapQ1, "2");
+        Question JapQ2 = new Question_VF(1, "Le Japon est en Europe ?", "Culture Japonaise", 2, "F");
+        Question JapQ3 = new Question_RC(1, "Quelle est la monnaie au Japon ?", "Culture Japonaise", 3, "Yen");
+        Question JapQ4 = new Question_VF(2, "Les Japonais utilisent des kanjis ?", "Culture Japonaise", 4, "V");
         String[] reps_JapQ5 = { "4", "5", "7" };
-        Question JapQ5 = new Question_QCM(2, "Quelle est la durée de la golden week au Japon (en jours) ?", "Culture_Japonaise", 5, reps_JapQ5, "1");
+        Question JapQ5 = new Question_QCM(2, "Quelle est la durée de la golden week au Japon (en jours) ?", "Culture Japonaise", 5, reps_JapQ5, "1");
         String[] reps_JapQ6 = { "Oni", "Yokai", "Akuma" };
-        Question JapQ6 = new Question_QCM(2, "Quelle est le nom donné aux esprits au Japon ?", "Culture_Japonaise", 6, reps_JapQ6, "2");
-        Question JapQ7 = new Question_RC(2, "En quelle année se sont déroulés les Jeux-Olympiques au Japon ?", "Culture_Japonaise", 7, "2021");
-        Question JapQ8 = new Question_RC(3, "Par qui Jiraiya s'est-il fait mordre dans son conte ?", "Culture_Japonaise", 8, "Orochimaru");
+        Question JapQ6 = new Question_QCM(2, "Quelle est le nom donné aux esprits au Japon ?", "Culture Japonaise", 6, reps_JapQ6, "2");
+        Question JapQ7 = new Question_RC(2, "En quelle année se sont déroulés les Jeux-Olympiques au Japon ?", "Culture Japonaise", 7, "2021");
+        Question JapQ8 = new Question_RC(3, "Par qui Jiraiya s'est-il fait mordre dans son conte ?", "Culture Japonaise", 8, "Orochimaru");
         String[] reps_JapQ9 = { "Kendo", "Hojojutsu", "Kyudo" };
-        Question JapQ9 = new Question_QCM(3, "Quelle est le nom de la pratique de l'arc au Japon ?", "Culture_Japonaise", 9, reps_JapQ9, "3");
-        Question JapQ10 = new Question_VF(3, "Le titre de l'hymne japonias est : Kimi ga yo ?", "Culture_Japonaise", 10, "V");
+        Question JapQ9 = new Question_QCM(3, "Quelle est le nom de la pratique de l'arc au Japon ?", "Culture Japonaise", 9, reps_JapQ9, "3");
+        Question JapQ10 = new Question_VF(3, "Le titre de l'hymne japonias est : Kimi ga yo ?", "Culture Japonaise", 10, "V");
 
 
         add(JapQ1);
@@ -237,18 +237,18 @@ public class Questions implements Iterable<Question> {
         add(JapQ10);
         //9. NOURRITURE
         String[] reps_nourQ1 = { "yaourt", "fromage", "carotte" };
-        Question nourQ1 = new Question_QCM(1, "Qui n'est pas un produit laitier ?", "nourriture", 1, reps_nourQ1, "3");
-        Question nourQ2 = new Question_VF(1, "Le sushi est un plat Japonais ?", "nourriture", 2, "V");
-        Question nourQ3 = new Question_RC(1, "Quelle est la nourriture préférée d'Obelix ?", "nourriture", 3, "Sanglier");
-        Question nourQ4 = new Question_VF(2, "Le caviar provient du Thon ?", "nourriture", 4, "F");
+        Question nourQ1 = new Question_QCM(1, "Qui n'est pas un produit laitier ?", "Nourriture", 1, reps_nourQ1, "3");
+        Question nourQ2 = new Question_VF(1, "Le sushi est un plat Japonais ?", "Nourriture", 2, "V");
+        Question nourQ3 = new Question_RC(1, "Quelle est la nourriture préférée d'Obelix ?", "Nourriture", 3, "Sanglier");
+        Question nourQ4 = new Question_VF(2, "Le caviar provient du Thon ?", "Nourriture", 4, "F");
         String[] reps_nourQ5 = { "échelle de scoville", "échelle de richter", "double décimètre" };
-        Question nourQ5 = new Question_QCM(2, "Comment mesure-t-on la force d'un piment ?", "nourriture", 5, reps_nourQ5, "1");
-        Question nourQ6 = new Question_VF(2, "Le sucre a une durée de conservation infinie ?", "nourriture", 6, "V");
-        Question nourQ7 = new Question_RC(2, "Quel est l'ingrédient principal du guacamole ?", "nourriture", 7, "Avocat");
-        Question nourQ8 = new Question_RC(3, "Quel est le terme qui désigne le fait de saupoudrer de farine ?", "nourriture", 8, "Singer");
+        Question nourQ5 = new Question_QCM(2, "Comment mesure-t-on la force d'un piment ?", "Nourriture", 5, reps_nourQ5, "1");
+        Question nourQ6 = new Question_VF(2, "Le sucre a une durée de conservation infinie ?", "Nourriture", 6, "V");
+        Question nourQ7 = new Question_RC(2, "Quel est l'ingrédient principal du guacamole ?", "Nourriture", 7, "Avocat");
+        Question nourQ8 = new Question_RC(3, "Quel est le terme qui désigne le fait de saupoudrer de farine ?", "Nourriture", 8, "Singer");
         String[] reps_nourQ9 = { "30", "35", "40" };
-        Question nourQ9 = new Question_QCM(3, "Quel est le diamètre idéal d'une pizza ?", "nourriture", 9, reps_nourQ9, "1");
-        Question nourQ10 = new Question_VF(3, "L’arachibutyrophobie désigne la peur du beurre d’arachide. ?", "nourriture", 10, "V");
+        Question nourQ9 = new Question_QCM(3, "Quel est le diamètre idéal d'une pizza ?", "Nourriture", 9, reps_nourQ9, "1");
+        Question nourQ10 = new Question_VF(3, "L’arachibutyrophobie désigne la peur du beurre d’arachide. ?", "Nourriture", 10, "V");
 
         add(nourQ1);
         add(nourQ2);
@@ -262,18 +262,18 @@ public class Questions implements Iterable<Question> {
         add(nourQ10);
         //10.INFORMATIQUE
         String[] reps_infoQ1 = { "HTML", "Java", "python" };
-        Question infoQ1 = new Question_QCM(1, "Quel est le langage utilisé pour créer un site web ?", "informatique", 1, reps_infoQ1, "1");
-        Question infoQ2 = new Question_VF(1, "On utilise un navigateur pour aller sur internet ?", "informatique", 2, "V");
-        Question infoQ3 = new Question_RC(1, "Quel est l'élément le plus important d'un ordinateur ?", "informatique", 3, "Processeur");
-        Question infoQ4 = new Question_VF(2, "On utilise l'USB pour se connecter à internet ?", "informatique", 4, "F");
+        Question infoQ1 = new Question_QCM(1, "Quel est le langage utilisé pour créer un site web ?", "Informatique", 1, reps_infoQ1, "1");
+        Question infoQ2 = new Question_VF(1, "On utilise un navigateur pour aller sur internet ?", "Informatique", 2, "V");
+        Question infoQ3 = new Question_RC(1, "Quel est l'élément le plus important d'un ordinateur ?", "Informatique", 3, "Processeur");
+        Question infoQ4 = new Question_VF(2, "On utilise l'USB pour se connecter à internet ?", "Informatique", 4, "F");
         String[] reps_infoQ5 = { "IP", "MAC", "mail" };
-        Question infoQ5 = new Question_QCM(2, "Avec quelle adresse vérifie-t-on qu'un ordianateur est connecté à internet ?", "informatique", 5, reps_infoQ5, "1");
-        Question infoQ6 = new Question_VF(2, "Un return affiche le résultat dans la console ?", "informatique", 6, "F");
-        Question infoQ7 = new Question_RC(2, "Comment traduire tant que ?", "informatique", 7, "while");
-        Question infoQ8 = new Question_RC(3, "Qui est le créateur de Java ?", "informatique", 8, "James Gosling");
+        Question infoQ5 = new Question_QCM(2, "Avec quelle adresse vérifie-t-on qu'un ordianateur est connecté à internet ?", "Informatique", 5, reps_infoQ5, "1");
+        Question infoQ6 = new Question_VF(2, "Un return affiche le résultat dans la console ?", "Informatique", 6, "F");
+        Question infoQ7 = new Question_RC(2, "Comment traduire tant que ?", "Informatique", 7, "while");
+        Question infoQ8 = new Question_RC(3, "Qui est le créateur de Java ?", "Informatique", 8, "James Gosling");
         String[] reps_infoQ9 = { "apprendre", "donner", "réutiliser" };
-        Question infoQ9 = new Question_QCM(3, "Qu'est ce que l'héritage ?", "informatique", 9, reps_infoQ9, "3");
-        Question infoQ10 = new Question_VF(3, "Les package java.nio2 existe ?", "informatique", 10, "F");
+        Question infoQ9 = new Question_QCM(3, "Qu'est ce que l'héritage ?", "Informatique", 9, reps_infoQ9, "3");
+        Question infoQ10 = new Question_VF(3, "Les package java.nio2 existe ?", "Informatique", 10, "F");
 
         add(infoQ1);
         add(infoQ2);
@@ -292,14 +292,11 @@ public class Questions implements Iterable<Question> {
 
         for(int i = 0; i < questions.size(); i++){ //On récupère les indices contenant une question difficile
             if(questions.get(i).getDifficulte() == difficulte){
-                System.out.println("In");
                 listIndice.add(i);
             }
         }
-        System.out.println("taille q : " + questions.size());
         Random rand = new Random();
         int randomIndex = rand.nextInt(listIndice.size()); //On choisit une question au hasard dans toutes ces questions difficiles
-        System.out.println("rand : " + randomIndex);
         return questions.get(listIndice.get(randomIndex)); //On retourne la question difficile choisit au hasard
     }
 
