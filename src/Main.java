@@ -15,7 +15,7 @@ public class Main {
         Joueur[] tabJoueurs = new Joueur[4]; //Tableau de 4 joueurs
         Joueurs joueurs = new Joueurs(tabJoueurs);
         joueurs.genererJoueurs(4); //Génère 4 joueurs
-
+        System.out.println(joueurs);
         //3. INITIALISATION QUESTIONS POUR CHAQUE THÈME
         Questions questionsJeu = new Questions();
         questionsJeu.genererQuestions(); //Génère les questions de TOUS les thèmes

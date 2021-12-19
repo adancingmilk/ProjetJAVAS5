@@ -43,14 +43,14 @@ public class Joueurs {
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("JOUEURS\n");
+        String s = "";
 
         //Chaque joueur contenu dans le tableau
         for(Joueur j : joueurs) {
-            s.append(j.toString()).append("\n");
+            s += j.toString() + "\n";
         }
 
-        return s.toString();
+        return s;
     }
 
     public Joueur[] getJoueurs() {

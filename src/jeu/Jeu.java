@@ -55,12 +55,16 @@ public class Jeu implements Phase {
             }
         }
 
+        this.triclassement();
+
         //On détermine le joueur ayant le score le plus faible de la Phase 1 (joueur éliminé)
         Joueur joueurElimine = selectJoueurElimineP1();
-
         joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
-        System.out.println(participants);
-        System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine);
+
+        System.out.println("Classement générale de la phase 1 : ");
+        this.classement();
+
+        System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine.getNom());
         System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
         themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
         System.out.println("- - - FIN PHASE 1 - - - \n");
@@ -109,8 +113,7 @@ public class Jeu implements Phase {
         }
 
         //On détermine les 2 joueurs ayant les scores les plus élevés de la Phase 2, et on met l'état des autres joueurs sur Éliminé (E)
-        participants.sort(new JoueurScoreComparator()); //On classe les joueurs par ordre croissant de score
-        Collections.reverse(participants); //On inverse l'ordre des joueurs, donc on passe en ordre décroissant de score
+        this.triclassement();
 
         //On passe les deux joueurs ayant le meilleur score et on élimine les autres
         System.out.println("[INFO] Le(s) joueur(s) suivant(s) ont été éliminé(s) : ");
@@ -118,7 +121,9 @@ public class Jeu implements Phase {
             participants.get(i).majEtat(2); //On passe l'état des joueur aux scores les plus faibles sur E (Éliminé)
             System.out.println(participants.get(i));
         }
-        System.out.println(participants);
+
+        System.out.println("Classement générale de la phase 2 : ");
+        this.classement();
 
         for(Theme t : themesP2)
             themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
@@ -162,27 +167,41 @@ public class Jeu implements Phase {
         }
         System.out.println("- - - FIN PHASE 3 - - -");
 
-        participants.sort(new JoueurScoreComparator()); //On classe les joueurs par ordre croissant de score
-        Collections.reverse(participants); //On inverse l'ordre des joueurs, donc on passe en ordre décroissant de score
+        this.triclassement();
         Joueur supergagnant = participants.get(0);
         Joueur gagnant = participants.get(1);
         supergagnant.majEtat(1);
         gagnant.majEtat(0);
-        System.out.println("Voici le classement générale de la partie : \n" + participants);
+        System.out.println("Voici le podium : \n");
+        this.classement();
         System.out.println("Le vainqueur de ce jeu est : " + supergagnant.getNom() + "\n" + "Numéro du joueur : " + supergagnant.getNumero());
         System.out.println("- - - - - FIN DU JEU - - - - -");
+    }
+
+    public void triclassement(){
+        this.participants.sort(new JoueurScoreComparator()); //On classe les joueurs par ordre croissant de score
+        Collections.reverse(this.participants); //On inverse l'ordre des joueurs, donc on passe en ordre décroissant de score
+    }
+
+    public void classement(){
+        int i = 1;
+        for(Joueur j : this.participants){
+            System.out.println("Classement du joueur : " + i);
+            System.out.println(j.toString());
+            i++;
+        }
     }
 
     @Override
     public void selectJoueurNextPhase() {
         //Si l'état d'un participant est E (Éliminé), alors on le supprime des participants
-        participants.removeIf(participant -> Objects.equals(participant.getEtatActuel(), "E"));
+        this.participants.removeIf(participant -> Objects.equals(participant.getEtatActuel(), "E"));
     }
 
     //Détermine et élimine un joueur
     public Joueur selectJoueurElimineP1() {
         Joueur joueurElimine = new Joueur();
-        for (Joueur participant : participants) {
+        for (Joueur participant : this.participants) {
             if (joueurElimine.getScore() > participant.getScore())
                 joueurElimine = participant;
         }

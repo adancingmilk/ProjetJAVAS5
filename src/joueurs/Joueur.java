@@ -219,10 +219,10 @@ public class Joueur {
 
     @Override
     public String toString() {
-        return "JOUEUR" + nom.toUpperCase() +
-                "\n| NUM: " + numero +
-                "\n| SCORE: " + score +
-                "\n| ETAT: " + etatActuel + "\n";
+        return "[JOUEUR] : " + nom.toUpperCase() +
+                "\nNUM : " + numero +
+                "\nSCORE : " + score +
+                "\nETAT : " + etatActuel + "\n";
     }
 
     //Met à jour l'état selon celui précisé en paramètres
