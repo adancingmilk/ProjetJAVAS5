@@ -9,6 +9,10 @@ public class Question_VF extends Question {
         super(d, description, nomTheme, num);
         this.reponse = rep;
     }
+    public Question_VF(){
+        super();
+        this.reponse = "";
+    }
     @Override
     public String getReponse() {
         return reponse;

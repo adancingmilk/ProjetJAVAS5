@@ -2,11 +2,11 @@ package questions;
 import themes.Theme;
 
 import java.util.Arrays;
-import java.util.Scanner;
-
 public class Question_QCM extends Question {
+
     private final String[] choix;
     private String reponse;
+
     public Question_QCM(int d, String description, String nomTheme, int num, String[] choix,String rep) {
         super(d, description, nomTheme, num);
         this.choix = choix;

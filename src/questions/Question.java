@@ -6,7 +6,7 @@ public abstract class Question {
     protected int difficulte;
     protected String description;
     protected final Theme theme;
-    protected int num;
+    protected final int num;
 
     protected Question(int difficulte, String description, String nomTheme, int num){
         this.difficulte = difficulte;
@@ -18,15 +18,8 @@ public abstract class Question {
     protected Question(){
         this(0,"", "",0);
     }
-    public void supprDescription(){
-        this.description = "";
-    }
-    public void setNum(int num){
-        this.num = num;
-    }
-    public int getNum(){
-        return this.num;
-    }
+
+
     public String getDescription(){
         return this.description;
     }
@@ -39,11 +32,9 @@ public abstract class Question {
     public void setDifficulte(int d){
         this.difficulte = d;
     }
-
     public String getReponse(){
         return "";
     }
-
     public Theme getTheme() {
         return theme;
     }
