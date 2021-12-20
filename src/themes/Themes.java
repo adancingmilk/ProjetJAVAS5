@@ -11,20 +11,6 @@ public class Themes implements Iterable<Theme> {
         this.themes = new ArrayList<>();
     }
 
-    public int selectTheme(){
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Enter a theme: ");
-        String theme= reader.nextLine();
-        reader.close(); //We ask the user a theme
-        if (!themes.contains(theme)){
-            System.out.println("themes.Theme isn't in the list");
-            return -1;
-        }
-        else{
-            this.indicator.add(themes.indexOf(theme));
-            return themes.indexOf(theme);
-        }  // We verify if the theme is in the list, if yes we return the indicator of the theme
-    }
 
     public void add(Theme theme) {
         themes.add(theme);
@@ -38,22 +24,6 @@ public class Themes implements Iterable<Theme> {
         return themes.get(selectedThemeIndex); //Retourne le thème sélectionné
     }
 
-    //Méthode utile dans le Sujet1, mais pas dans le Sujet2
-    public List<Theme> selectFiveTheme(int theme1, int theme2, int theme3, int theme4, int theme5){
-        List<Theme> themes = new ArrayList<>();
-        themes.add(this.themes.get(theme1));
-        themes.add(this.themes.get(theme2));
-        themes.add(this.themes.get(theme3));
-        themes.add(this.themes.get(theme4));
-        themes.add(this.themes.get(theme5));
-        this.indicator.add(theme1);
-        this.indicator.add(theme2);
-        this.indicator.add(theme3);
-        this.indicator.add(theme4);
-        this.indicator.add(theme5);
-
-        return themes;
-    }
 
     public Themes selectMultipleThemeRandomly(int n) {
         Themes selectedThemes = new Themes();
@@ -69,25 +39,6 @@ public class Themes implements Iterable<Theme> {
         }
 
         return selectedThemes;
-    }
-
-    public List<String> selectMultipleTheme(int n) {
-        List<String> themes = new ArrayList<>();
-        int i = 0;
-        while (i < n) {
-            Scanner reader = new Scanner(System.in);
-            System.out.println("Enter a theme: ");
-            String theme = reader.nextLine();
-            reader.close(); //We ask the user a theme
-            if (!this.themes.contains(theme)) {
-                System.out.println("themes.Theme isn't in the list");
-            } else {
-                this.indicator.add(this.themes.indexOf(theme));
-                themes.add(theme);
-                i++;
-            }// We verify if the theme is in the list, if yes we return the indicator of the theme and add the theme to the final list
-        }
-        return themes;
     }
 
     //Ajoute les thèmes à List themes
