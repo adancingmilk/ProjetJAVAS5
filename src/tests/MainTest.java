@@ -15,9 +15,9 @@ public class MainTest {
         themesJeu.genererThemes(); //Génère les 10 thèmes
 
         //2. INITIALISATION JOUEURS
-        Joueur[] tabJoueurs = new Joueur[4]; //Tableau de 4 joueurs
+        Joueur[] tabJoueurs = new Joueur[20]; //Tableau de 4 joueurs
         Joueurs joueurs = new Joueurs(tabJoueurs);
-        joueurs.genererJoueurs(4); //Génère 4 joueurs
+        joueurs.genererJoueurs(20); //Génère 4 joueurs
 
         //3. INITIALISATION QUESTIONS POUR CHAQUE THÈME
         Questions questionsJeu = new Questions();

@@ -13,7 +13,7 @@ import java.util.*;
 public class Jeu implements Phase {
     private final int nbJ;
     private final Questions questions;
-    private final Themes themes;
+    private Themes themes;
     private final Joueurs joueurs;
     private final List<Joueur> participants;
     private final boolean debug;
@@ -57,44 +57,60 @@ public class Jeu implements Phase {
 
         this.triclassement();
 
-        //On détermine le joueur ayant le score le plus faible de la Phase 1 (joueur éliminé)
-        Joueur joueurElimine = selectJoueurElimineP1();
-        joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
+        for (int i = 0; i < participants.size()/3 ; i++){
+            //On détermine le joueur ayant le score le plus faible de la Phase 1 (joueur éliminé)
+            Joueur joueurElimine = selectJoueurElimineP1();
+            joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
+            System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine.getNom());
+        }
 
         System.out.println("Classement générale de la phase 1 : ");
         this.classement();
 
-        System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine.getNom());
-        System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
-        themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
+        if(nbJ > 4){
+            System.out.println("Afin que le jeu puisse continuer à fonctionner on ne va pas supprimer le thème utilisé lors de cette phase");
+        }
+        else{
+            System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
+            themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
+        }
         System.out.println("- - - FIN PHASE 1 - - - \n");
     }
 
     @Override
     public void phase2() {
         System.out.println("- - - DÉBUT PHASE 2 - - -");
-        Themes themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
+
+        Themes themesP2 = themes;
+        if (nbJ == 4){ //sachant que le nombre de thèmes ne convient qu'à 5 joueurs alors on évite l'aléatoire et le piochage de thème à partir de 4 joueurs
+            themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
+        }
 
         //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE ET ATTRIBUTION DES QUESTIONS
         for(int i = 0; i < 2; i++) {
-            for(Joueur participant : participants) {
+            for(int j = 0 ; j < participants.size(); j++) {
                 if(themesP2.getThemes().size() != 1) { //Tant qu'il ne reste pas 1 thème dans themesP2
                     System.out.println("Thèmes sélectionnables :");
                     for(Theme theme : themesP2)
                         System.out.println(theme);
 
                     if(debug) //Si le debug est activé, les thèmes sont ajoutés automatiquement
-                        participant.selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
+                        participants.get(j).selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
                     else
-                        participant.selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                        participants.get(j).selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
 
-                    participant.addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
-                    for(Theme t : participant.getThemesP2sel())
-                        themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste
+                    participants.get(j).addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
+
+                    for(Theme t : participants.get(j).getThemesP2sel())
+                        themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste si ils sont que 4 joueurs sinon on supprime pas afin de pouvoir continuer le jeu
+
+                    if(themesP2.getThemes().size() == 2 && j < participants.size()){ //Si le nombre de thèmes ne suffit pas pour le nombre de joueur alors on en regénère et pour qu'il y ait toujours au moins 3 thèmes pour la prochaine phase
+                        themes.genererThemes();
+                    }
                 } else {
-                    System.out.println("Il ne reste que 1 thème. Il est donc attribué automatiquement au joueur " + participant.getNom() + ". \n");
-                    participant.getThemesP2sel().add(themesP2.getThemes().get(0)); //Il ne reste que 1 thème dans themesP2, donc attribués automatiquement
-                    participant.addQuestionsP2(questions);
+                    System.out.println("Il ne reste que 1 thème. Il est donc attribué automatiquement au joueur " + participants.get(j).getNom() + ". \n");
+                    participants.get(j).getThemesP2sel().add(themesP2.getThemes().get(0)); //Il ne reste que 1 thème dans themesP2, donc attribués automatiquement
+                    participants.get(j).addQuestionsP2(questions);
                 }
             }
         }
@@ -125,15 +141,21 @@ public class Jeu implements Phase {
         System.out.println("Classement générale de la phase 2 : ");
         this.classement();
 
-        for(Theme t : themesP2)
-            themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
-        System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
+        if(nbJ > 4){
+            System.out.println("Le nombre total de thème ne suffit pas pour pouvoir faire poursuivre le jeu donc on ne va pas supprimé les thèmes utilisés lors de cette phase");
+        }
+        else {
+            for(Theme t : themesP2)
+                themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
+            System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
+        }
         System.out.println("- - - FIN PHASE 2 - - - \n");
     }
 
     @Override
     public void phase3() {
         System.out.println("- - - DÉBUT PHASE 3 - - -");
+
         Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
         Questions qDifficile = new Questions();
         System.out.println("[INFO] Thème sélectionnés pour cette manche : ");
@@ -202,7 +224,7 @@ public class Jeu implements Phase {
     public Joueur selectJoueurElimineP1() {
         Joueur joueurElimine = new Joueur();
         for (Joueur participant : this.participants) {
-            if (joueurElimine.getScore() > participant.getScore())
+            if (joueurElimine.getScore() > participant.getScore() & !Objects.equals(participant.getEtatActuel(), "E"))
                 joueurElimine = participant;
         }
 
@@ -233,4 +255,11 @@ public class Jeu implements Phase {
             System.out.println("Mauvaise réponse. \n");
     }
 
+    public Themes getThemes() {
+        return themes;
+    }
+
+    public void setThemes(Themes themes) {
+        this.themes = themes;
+    }
 }

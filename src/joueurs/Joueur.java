@@ -135,7 +135,7 @@ public class Joueur {
         boolean valide = false; //Validité de la réponse
         String rep;
 
-        System.out.println("\n" + nom + ", veuillez choisir deux thèmes pour cette phase.");
+        System.out.println("\n" + nom + ", veuillez choisir un thème pour cette phase dans la liste en haut.");
         System.out.println("Entrez le thème que vous souhaitez : ");
             while(!valide) { //Tant que le thème écrit par l'utilisateur n'existe pas dans la liste fournie en paramètres, on demande à l'utilisateur de recommencer
                 rep = sc.next();
@@ -170,7 +170,7 @@ public class Joueur {
         int selectedIndex;
         String rep;
 
-        System.out.println("\n" + nom + ", veuillez choisir deux thèmes pour cette phase.");
+        System.out.println("\n" + nom + ", veuillez choisir un thème pour cette phase dans la liste en haut.");
         System.out.println("Entrez le thème que vous souhaitez : ");
         selectedIndex = rand.nextInt(themesP2.getThemes().size()); //Génère un int entre 0 et la taille de la liste des thèmes
         rep = themesP2.getThemes().get(selectedIndex).getNom(); //On affecte le nom du thème à la réponse
