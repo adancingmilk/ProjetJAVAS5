@@ -3,7 +3,7 @@ package joueurs;
 import java.util.Random;
 
 public class Joueurs {
-    Joueur[] joueurs;
+    private Joueur[] joueurs;
 
     //Constructeur principal
     public Joueurs(Joueur[] joueurs) {

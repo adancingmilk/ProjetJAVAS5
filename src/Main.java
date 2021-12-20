@@ -22,13 +22,13 @@ public class Main {
 
         //4. DÉROULEMENT PHASE 1
         Jeu jeu = new Jeu(4, questionsJeu, themesJeu, joueurs, false); //Debug désactivé pour jouer le jeu de manière manuelle
-        jeu.Phase1();
+        jeu.phase1();
         jeu.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
 
         //5. DÉROULEMENT PHASE 2
-        jeu.Phase2();
+        jeu.phase2();
 
         //6. DÉROULEMENT PHASE 3
-        jeu.Phase3();
+        jeu.phase3();
     }
 }

@@ -28,7 +28,7 @@ public class Jeu implements Phase {
     }
 
     @Override
-    public void Phase1() {
+    public void phase1() {
         System.out.println("- - - DÉBUT PHASE 1 - - -");
         Joueur player;
         for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
@@ -71,7 +71,7 @@ public class Jeu implements Phase {
     }
 
     @Override
-    public void Phase2() {
+    public void phase2() {
         System.out.println("- - - DÉBUT PHASE 2 - - -");
         Themes themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
 
@@ -132,7 +132,7 @@ public class Jeu implements Phase {
     }
 
     @Override
-    public void Phase3() {
+    public void phase3() {
         System.out.println("- - - DÉBUT PHASE 3 - - -");
         Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
         Questions qDifficile = new Questions();

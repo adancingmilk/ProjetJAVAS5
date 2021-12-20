@@ -25,14 +25,14 @@ public class MainTest {
 
         //4. DÉROULEMENT PHASE 1
         Jeu jeu = new Jeu(4, questionsJeu, themesJeu, joueurs, true); //Debug activé pour dire qu'on joue le jeu de manière automatique
-        jeu.Phase1();
+        jeu.phase1();
 
         jeu.selectJoueurNextPhase(); //Sélection des joueurs pour la phase suivante
 
         //5. DÉROULEMENT PHASE 2
-        jeu.Phase2();
+        jeu.phase2();
 
         //6. DÉROULEMENT PHASE 3
-        jeu.Phase3();
+        jeu.phase3();
     }
 }
