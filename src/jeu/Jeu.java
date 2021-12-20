@@ -27,52 +27,58 @@ public class Jeu implements Phase {
         this.debug = debug;
     }
 
+    //Méthode permettant le déroulement de la phase 1
     @Override
     public void phase1() {
         System.out.println("- - - DÉBUT PHASE 1 - - -");
-        Joueur player;
-        for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
-            player = joueurs.selectJoueur(); //SELECTION ALEATOIRE
-            boolean doublon = false;
-            for (Joueur J : participants){
-                if(player.getNumero() == J.getNumero()){
-                    doublon = true;
-                    i--;
+        try {
+            Joueur joueur;
+            for (int i = 0; i < nbJ ; i++){ //On pioche un nombre de joueur en fonction du nombre de participants autorisé dans le jeu
+                joueur = joueurs.selectJoueur(); //SELECTION ALEATOIRE
+                boolean doublon = false;
+                for (Joueur J : participants){
+                    if(joueur.getNumero() == J.getNumero()){
+                        doublon = true;
+                        i--;
+                    }
+                }
+                if(!doublon){
+                    participants.add(joueur);
                 }
             }
-            if(!doublon){
-                participants.add(player);
+
+            Theme themeSelP1 = themes.selectRandomTheme(); //Thème sélectionné lors de la Phase 1
+            System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
+            Questions questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
+
+            for (Question question : questionsP1) {
+                for (Joueur participant : participants) {
+                    repondreQuestion(question, participant, 1); //Chaque joueur répond à une question à tour de rôle
+                }
             }
-        }
 
-        Theme themeSelP1 = themes.selectRandomTheme(); //Thème sélectionné lors de la Phase 1
-        System.out.println("[INFO] Thème sélectionné pour cette phase : " + themeSelP1);
-        Questions questionsP1 = questions.getQuestionsTheme(themeSelP1); //On récupère la liste des questions du thème de la phase
+            this.triclassement();
 
-        for (Question question : questionsP1) {
-            for (Joueur participant : participants) {
-                repondreQuestion(question, participant, 1); //Chaque joueur répond à une question à tour de rôle
+            for (int i = 0; i < participants.size()/3 ; i++){
+                //On détermine le joueur ayant le score le plus faible de la Phase 1 (joueur éliminé)
+                Joueur joueurElimine = selectJoueurElimineP1();
+                joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
+                System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine.getNom());
             }
-        }
 
-        this.triclassement();
+            System.out.println("Classement générale de la phase 1 : ");
+            this.classement();
 
-        for (int i = 0; i < participants.size()/3 ; i++){
-            //On détermine le joueur ayant le score le plus faible de la Phase 1 (joueur éliminé)
-            Joueur joueurElimine = selectJoueurElimineP1();
-            joueurElimine.majEtat(2); //On passe l'état du joueur au score le plus faible sur E (Éliminé)
-            System.out.println("[INFO] Le joueur suivant a été éliminé : " + joueurElimine.getNom());
-        }
-
-        System.out.println("Classement générale de la phase 1 : ");
-        this.classement();
-
-        if(nbJ > 4){
-            System.out.println("Afin que le jeu puisse continuer à fonctionner on ne va pas supprimer le thème utilisé lors de cette phase");
-        }
-        else{
-            System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
-            themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
+            if(nbJ > 4){
+                System.out.println("Afin que le jeu puisse continuer à fonctionner on ne va pas supprimer le thème utilisé lors de cette phase");
+            }
+            else{
+                System.out.println("[INFO] Suppression du thème utilisé en phase 1 (" + themeSelP1 + ")");
+                themes.remove(themeSelP1); //On supprime le thème de cette phase des thèmes du jeu
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Problème rencontré on arrête le jeu");
         }
         System.out.println("- - - FIN PHASE 1 - - - \n");
     }
@@ -80,74 +86,77 @@ public class Jeu implements Phase {
     @Override
     public void phase2() {
         System.out.println("- - - DÉBUT PHASE 2 - - -");
+        try{
+            Themes themesP2 = themes;
+            if (nbJ == 4){ //sachant que le nombre de thèmes ne convient qu'à 5 joueurs alors on évite l'aléatoire et le piochage de thème à partir de 4 joueurs
+                themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
+            }
 
-        Themes themesP2 = themes;
-        if (nbJ == 4){ //sachant que le nombre de thèmes ne convient qu'à 5 joueurs alors on évite l'aléatoire et le piochage de thème à partir de 4 joueurs
-            themesP2 = themes.selectMultipleThemeRandomly(participants.size()*2); //Sélectionne 2*nbJoueurs thèmes aléatoirement
-        }
+            //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE ET ATTRIBUTION DES QUESTIONS
+            for(int i = 0; i < 2; i++) {
+                for(int j = 0 ; j < participants.size(); j++) {
+                    if(themesP2.getThemes().size() != 1) { //Tant qu'il ne reste pas 1 thème dans themesP2
+                        System.out.println("Thèmes sélectionnables :");
+                        for(Theme theme : themesP2)
+                            System.out.println(theme);
 
-        //SÉLECTION DES 2 THÈMES DE CHAQUE JOUEUR À TOUR DE RÔLE ET ATTRIBUTION DES QUESTIONS
-        for(int i = 0; i < 2; i++) {
-            for(int j = 0 ; j < participants.size(); j++) {
-                if(themesP2.getThemes().size() != 1) { //Tant qu'il ne reste pas 1 thème dans themesP2
-                    System.out.println("Thèmes sélectionnables :");
-                    for(Theme theme : themesP2)
-                        System.out.println(theme);
+                        if(debug) //Si le debug est activé, les thèmes sont ajoutés automatiquement
+                            participants.get(j).selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
+                        else
+                            participants.get(j).selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
 
-                    if(debug) //Si le debug est activé, les thèmes sont ajoutés automatiquement
-                        participants.get(j).selectionThemeAutoP2(themesP2); //Sélection des thèmes pour chaque joueur aléatoirement et automatiquement
-                    else
-                        participants.get(j).selectionThemeP2(themesP2); //Chaque joueur sélectionne 2 thèmes sur lesquels il veut être interrogé
+                        participants.get(j).addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
 
-                    participants.get(j).addQuestionsP2(questions); //Filtre les questions en fonction des thèmes sélectionnés par le joueur et les ajoutent aux questions sélectionnées
+                        for(Theme t : participants.get(j).getThemesP2sel())
+                            themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste si ils sont que 4 joueurs sinon on supprime pas afin de pouvoir continuer le jeu
 
-                    for(Theme t : participants.get(j).getThemesP2sel())
-                        themesP2.remove(t); //On supprime les thèmes choisis par le joueur de la liste si ils sont que 4 joueurs sinon on supprime pas afin de pouvoir continuer le jeu
-
-                    if(themesP2.getThemes().size() == 2 && j < participants.size()){ //Si le nombre de thèmes ne suffit pas pour le nombre de joueur alors on en regénère et pour qu'il y ait toujours au moins 3 thèmes pour la prochaine phase
-                        themes.genererThemes();
+                        if(themesP2.getThemes().size() == 2 && j < participants.size()){ //Si le nombre de thèmes ne suffit pas pour le nombre de joueur alors on en regénère et pour qu'il y ait toujours au moins 3 thèmes pour la prochaine phase
+                            themes.genererThemes();
+                        }
+                    } else {
+                        System.out.println("Il ne reste que 1 thème. Il est donc attribué automatiquement au joueur " + participants.get(j).getNom() + ". \n");
+                        participants.get(j).getThemesP2sel().add(themesP2.getThemes().get(0)); //Il ne reste que 1 thème dans themesP2, donc attribués automatiquement
+                        participants.get(j).addQuestionsP2(questions);
                     }
-                } else {
-                    System.out.println("Il ne reste que 1 thème. Il est donc attribué automatiquement au joueur " + participants.get(j).getNom() + ". \n");
-                    participants.get(j).getThemesP2sel().add(themesP2.getThemes().get(0)); //Il ne reste que 1 thème dans themesP2, donc attribués automatiquement
-                    participants.get(j).addQuestionsP2(questions);
                 }
             }
-        }
 
-        //Fixe le nombre de questions posées basées sur la taille de la liste des questions du joueur 1 (par défaut)
-        int nbQuestions = participants.get(0).getQuestionsP2().getQuestions().size();
-        System.out.println(nbQuestions);
-        //ON POSE LES QUESTIONS
-        for(Joueur participant : participants) { //On pose deux questions à chaque joueur à chaque tour
-             for(int j = 0; j < 2; j++) {
-                if(participant.getQuestionsP2().getQuestions().size() > 0) {
-                    Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
-                    repondreQuestion(qRandom, participant, 2);
+            //Fixe le nombre de questions posées basées sur la taille de la liste des questions du joueur 1 (par défaut)
+            int nbQuestions = participants.get(0).getQuestionsP2().getQuestions().size();
+            //ON POSE LES QUESTIONS
+            for(Joueur participant : participants) { //On pose deux questions à chaque joueur à chaque tour
+                for(int j = 0; j < 2; j++) {
+                    if(participant.getQuestionsP2().getQuestions().size() > 0) {
+                        Question qRandom = participant.getRandomQuestionP2(); //Pioche une question au hasard parmi celles du joueur
+                        repondreQuestion(qRandom, participant, 2);
+                    }
                 }
             }
-        }
 
-        //On détermine les 2 joueurs ayant les scores les plus élevés de la Phase 2, et on met l'état des autres joueurs sur Éliminé (E)
-        this.triclassement();
+            //On détermine les 2 joueurs ayant les scores les plus élevés de la Phase 2, et on met l'état des autres joueurs sur Éliminé (E)
+            this.triclassement();
 
-        //On passe les deux joueurs ayant le meilleur score et on élimine les autres
-        System.out.println("[INFO] Le(s) joueur(s) suivant(s) ont été éliminé(s) : ");
-        for(int i = 2; i < participants.size(); i++) {
-            participants.get(i).majEtat(2); //On passe l'état des joueur aux scores les plus faibles sur E (Éliminé)
-            System.out.println(participants.get(i));
-        }
+            //On passe les deux joueurs ayant le meilleur score et on élimine les autres
+            System.out.println("[INFO] Le(s) joueur(s) suivant(s) ont été éliminé(s) : ");
+            for(int i = 2; i < participants.size(); i++) {
+                participants.get(i).majEtat(2); //On passe l'état des joueur aux scores les plus faibles sur E (Éliminé)
+                System.out.println(participants.get(i));
+            }
 
-        System.out.println("Classement générale de la phase 2 : ");
-        this.classement();
+            System.out.println("Classement générale de la phase 2 : ");
+            this.classement();
 
-        if(nbJ > 4){
-            System.out.println("Le nombre total de thème ne suffit pas pour pouvoir faire poursuivre le jeu donc on ne va pas supprimé les thèmes utilisés lors de cette phase");
-        }
-        else {
-            for(Theme t : themesP2)
-                themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
-            System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
+            if(nbJ > 4){
+                System.out.println("Le nombre total de thème ne suffit pas pour pouvoir faire poursuivre le jeu donc on ne va pas supprimé les thèmes utilisés lors de cette phase");
+            }
+            else {
+                for(Theme t : themesP2)
+                    themes.remove(t); //On supprime tous les thèmes utilisés lors de la Phase 2
+                System.out.println("[INFO] Les thèmes utilisés lors de cette phase ont été supprimés.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Problème rencontré on arrête le jeu");
         }
         System.out.println("- - - FIN PHASE 2 - - - \n");
     }
@@ -155,37 +164,41 @@ public class Jeu implements Phase {
     @Override
     public void phase3() {
         System.out.println("- - - DÉBUT PHASE 3 - - -");
-
-        Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
-        Questions qDifficile = new Questions();
-        System.out.println("[INFO] Thème sélectionnés pour cette manche : ");
-        for(Theme t : themesP3){
-            System.out.println(t.getNom());
-        }
-        for (Theme theme:themesP3) { //On récupère 2 questions de niveaux difficiles de manière aléatoire dans chaque Thème
-            Questions qTheme = questions.getQuestionsTheme(theme);
-            for (int i = 0 ; i < 2 ; i++){
-                Question stock = qTheme.selectQuestion(3);
-                qDifficile.add(stock);
+        try{
+            Themes themesP3 = themes.selectMultipleThemeRandomly(3); //On sélectionne 3 thèmes vu qu'on sait qu'il y a plus que 2 joueurs
+            Questions qDifficile = new Questions();
+            System.out.println("[INFO] Thème sélectionnés pour cette manche : ");
+            for(Theme t : themesP3){
+                System.out.println(t.getNom());
             }
-        }
-        System.out.println("\n");
-        for(int i = 0; i < qDifficile.getQuestions().size(); i++){ //On sait que les questions sont de 2 par 2 donc on alterne les questions posés à chaque joueur pour que chaque joueur puisse répondre à 1 questions difficile de chacun des 3 thèmes
-            int indexJ = i%2;
-            repondreQuestion(qDifficile.getQuestions().get(i),participants.get(indexJ),3);
-        }
-
-        Questions questionP3 = new Questions();
-        Random rand = new Random();
-        for (Theme theme:themesP3){ //On commence a poser les questions aléatoirement pour chaque thème
-            questionP3 = questions.getQuestionsTheme(theme);
-            for (int i = 0 ; i < questionP3.getQuestions().size() ; i++){ // 6 parce qu'on s'est dit qu'on allait posé 3 questions aléatoires dans chaque thème à chaque joueur en plus des 3 questions difficiles que chaque joueur a eu donc 3*2 = 6
-                int j = i%2;
-                int index = rand.nextInt(questionP3.getQuestions().size()); //On selectionne au hasard une question parmit les questions qu'on a
-                Question questionpose = questionP3.getQuestions().get(index);
-                repondreQuestion(questionpose,participants.get(j),3);
-                questionP3.remove(index); //On retire la question de la liste qu'on possède pour ne pas avoir des doublons de questions
+            for (Theme theme:themesP3) { //On récupère 2 questions de niveaux difficiles de manière aléatoire dans chaque Thème
+                Questions qTheme = questions.getQuestionsTheme(theme);
+                for (int i = 0 ; i < 2 ; i++){
+                    Question stockQuestion = qTheme.selectQuestion(3);
+                    qDifficile.add(stockQuestion);
+                }
             }
+            System.out.println("\n");
+            for(int i = 0; i < qDifficile.getQuestions().size(); i++){ //On sait que les questions sont de 2 par 2 donc on alterne les questions posés à chaque joueur pour que chaque joueur puisse répondre à 1 questions difficile de chacun des 3 thèmes
+                int indexJoueur = i%2;
+                repondreQuestion(qDifficile.getQuestions().get(i),participants.get(indexJoueur),3);
+            }
+
+            Questions questionP3 = new Questions();
+            Random rand = new Random();
+            for (Theme theme:themesP3){ //On commence a poser les questions aléatoirement pour chaque thème
+                questionP3 = questions.getQuestionsTheme(theme);
+                for (int i = 0 ; i < questionP3.getQuestions().size() ; i++){ // 6 parce qu'on s'est dit qu'on allait posé 3 questions aléatoires dans chaque thème à chaque joueur en plus des 3 questions difficiles que chaque joueur a eu donc 3*2 = 6
+                    int j = i%2;
+                    int index = rand.nextInt(questionP3.getQuestions().size()); //On selectionne au hasard une question parmit les questions qu'on a
+                    Question questionpose = questionP3.getQuestions().get(index);
+                    repondreQuestion(questionpose,participants.get(j),3);
+                    questionP3.remove(index); //On retire la question de la liste qu'on possède pour ne pas avoir des doublons de questions
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Problème rencontré on arrête le jeu");
         }
         System.out.println("- - - FIN PHASE 3 - - -");
 
